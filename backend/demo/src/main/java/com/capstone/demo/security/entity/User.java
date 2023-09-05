@@ -13,8 +13,8 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -33,12 +33,15 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
+
+    private boolean isAuthenticated = false;
     
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
+    
     @JsonIgnore
     private Set<Role> roles = new HashSet<>();
 }

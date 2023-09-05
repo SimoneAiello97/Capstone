@@ -25,6 +25,24 @@ public class UserService {
 			throw new MyAPIException(HttpStatus.BAD_REQUEST, "Utente non trovato!");			
 		}
 	}
+
+	public User getByUsername(String username) {
+	if(repo.existsByUsername(username)){
+		return repo.findByUsername(username).get();
+	}
+	else {
+			throw new MyAPIException(HttpStatus.BAD_REQUEST, "Username non trovato!");			
+		}
+	}
+
+	public User getByEmail(String Email) {
+	if(repo.existsByEmail(Email)){
+		return repo.findByEmail(Email).get();
+	}
+	else {
+			throw new MyAPIException(HttpStatus.BAD_REQUEST, "Email non trovata!");			
+		}
+	}
 	
 	public Page<User> getUsersPagination(Pageable page) {
 		return pageRepo.findAll(page);

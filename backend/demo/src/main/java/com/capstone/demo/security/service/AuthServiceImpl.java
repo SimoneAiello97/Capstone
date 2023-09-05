@@ -1,8 +1,10 @@
 package com.capstone.demo.security.service;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +22,9 @@ import com.capstone.demo.security.payload.RegisterDto;
 import com.capstone.demo.security.repository.IUserRepository;
 import com.capstone.demo.security.repository.RoleRepository;
 import com.capstone.demo.security.security.JwtTokenProvider;
+import com.capstone.demo.security.token.VerificationToken;
+import com.capstone.demo.security.token.VerificationTokenRepository;
+
 
 
 
@@ -31,6 +36,8 @@ public class AuthServiceImpl implements AuthService {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
     private JwtTokenProvider jwtTokenProvider;
+    @Autowired
+    private VerificationTokenRepository tokenRepository;
 
 
     public AuthServiceImpl(AuthenticationManager authenticationManager,
@@ -62,16 +69,16 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String register(RegisterDto registerDto) {
+    public User register(RegisterDto registerDto) {
 
         // add check for username exists in database
         if(userRepository.existsByUsername(registerDto.getUsername())){
-            throw new MyAPIException(HttpStatus.BAD_REQUEST, "Username is already exists!.");
+            throw new MyAPIException(HttpStatus.BAD_REQUEST, "Username `"+ registerDto.getUsername() +"` is already exists!.");
         }
 
         // add check for email exists in database
         if(userRepository.existsByEmail(registerDto.getEmail())){
-            throw new MyAPIException(HttpStatus.BAD_REQUEST, "Email is already exists!.");
+            throw new MyAPIException(HttpStatus.BAD_REQUEST, "Email `"+ registerDto.getEmail() +"` is already exists!.");
         }
 
         User user = new User();
@@ -96,13 +103,37 @@ public class AuthServiceImpl implements AuthService {
         System.out.println(user);
         userRepository.save(user);
 
-        return "User registered successfully!.";
+        /* return "User registered successfully!."; */
+        return user;
     }
     
     public ERole getRole(String role) {
     	if(role.equals("ADMIN")) return ERole.ROLE_ADMIN;
     	else if(role.equals("MODERATOR")) return ERole.ROLE_MODERATOR;
     	else return ERole.ROLE_USER;
+    }
+
+    @Override
+    public void saveUserVerificationToken(User theUser, String token) {
+        VerificationToken verificationToken = new VerificationToken(token, theUser);
+        tokenRepository.save(verificationToken);
+    }
+
+    @Override
+    public String validateToken(String theToken) {
+        VerificationToken token = tokenRepository.findByToken(theToken);
+        if(token == null){
+            return "Invalid verification token";
+        }
+        User user = token.getUser();
+        Calendar calendar = Calendar.getInstance();
+        if ((token.getExpirationTime().getTime()-calendar.getTime().getTime())<= 0){
+            return "Verification link already expired," +
+                    " Please, click the link below to receive a new verification link";
+        }
+        user.setAuthenticated(true);
+        userRepository.save(user);
+        return "valid";
     }
     
 }
