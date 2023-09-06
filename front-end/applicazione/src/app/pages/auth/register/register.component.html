@@ -1,27 +1,33 @@
 <div class="main">
-  <div class="card">
-    <span class="p-float-label">
-      <input pInputText id="name" [(ngModel)]="value" />
-      <label htmlFor="username">Name</label>
+  <form>
+
+    <div class="card">
+      <span class="p-float-label">
+      <input pInputText name="name" [(ngModel)]="data.name" />
+      <label htmlFor="name">Name</label>
     </span>
   </div>
   <div class="card">
     <span class="p-float-label">
-      <input pInputText id="username" [(ngModel)]="value" />
+      <input pInputText name="username" [(ngModel)]="data.username" />
       <label htmlFor="username">Username</label>
     </span>
   </div>
   <div class="card">
     <span class="p-float-label">
-      <input pInputText id="email" [(ngModel)]="value" />
-      <label htmlFor="username">Email</label>
+      <input pInputText name="email" [(ngModel)]="data.email" />
+      <label htmlFor="email">Email</label>
     </span>
   </div>
   <div class="card">
     <span class="p-float-label">
-      <input pInputText id="password" [(ngModel)]="value" />
-      <label htmlFor="username">Password</label>
+      <input pInputText name="password" [(ngModel)]="data.password" />
+      <label htmlFor="password">Password</label>
     </span>
   </div>
 
+  <button (click)="register()" pButton pRipple label="Submit" class="p-button-success"></button>
+
+
+    </form>
 </div>

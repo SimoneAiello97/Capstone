@@ -5,6 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
 import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     RegisterRoutingModule,
     FormsModule,
-    InputTextModule
+    InputTextModule,
+    ButtonModule
   ]
 })
 export class RegisterModule { }
