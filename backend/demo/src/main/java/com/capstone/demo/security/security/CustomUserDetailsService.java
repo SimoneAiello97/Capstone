@@ -1,5 +1,6 @@
 package com.capstone.demo.security.security;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.capstone.demo.security.entity.User;
+import com.capstone.demo.security.exception.MyAPIException;
 import com.capstone.demo.security.repository.IUserRepository;
 
 import java.util.HashSet;
@@ -29,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                  .orElseThrow(() ->
                          new UsernameNotFoundException("User not found with username or email: "+ usernameOrEmail));
         if (!user.isAuthenticated()) {
-        throw new UsernameNotFoundException("L'utente non è autenticato: " + user.getEmail());
+        throw new MyAPIException(HttpStatus.CREATED, "L'utente non è autenticato");
     }
             Set<GrantedAuthority> authorities = user
             .getRoles()

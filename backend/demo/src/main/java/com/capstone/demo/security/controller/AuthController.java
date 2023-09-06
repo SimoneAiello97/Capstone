@@ -1,5 +1,8 @@
 package com.capstone.demo.security.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -55,13 +58,24 @@ public class AuthController {
     }
 
     // Build Register REST API
-    @PostMapping(value = {"/register", "/signup"})
+    /* @PostMapping(value = {"/register", "/signup"})
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto, HttpServletRequest request){
         User user = authService.register(registerDto);
          publisher.publishEvent(new RegistrationCompleteEvent(user, applicationUrl(request)));
         return new ResponseEntity<>("User create succssfully! Please, check your email for to complete your registration",
          HttpStatus.CREATED);
-    }
+    } */
+    @PostMapping(value = {"/register", "/signup"})
+public ResponseEntity<Map<String, String>> register(@RequestBody RegisterDto registerDto, HttpServletRequest request) {
+    User user = authService.register(registerDto);
+    publisher.publishEvent(new RegistrationCompleteEvent(user, applicationUrl(request)));
+
+    Map<String, String> response = new HashMap<>();
+    response.put("message", "User created successfully! Please, check your email to complete your registration");
+
+    return new ResponseEntity<>(response, HttpStatus.CREATED);
+}
+
     
 
     public String applicationUrl(HttpServletRequest request) {

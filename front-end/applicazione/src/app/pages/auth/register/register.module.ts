@@ -6,6 +6,7 @@ import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { MessagesModule } from 'primeng/messages';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ButtonModule } from 'primeng/button';
     RegisterRoutingModule,
     FormsModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    MessagesModule,
   ]
 })
 export class RegisterModule { }

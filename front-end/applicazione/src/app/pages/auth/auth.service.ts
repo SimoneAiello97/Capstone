@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, catchError, map, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Subject, catchError, map, of, tap, throwError } from 'rxjs';
 import { IAuthData } from 'src/app/interfaces/IAuthData';
 import { ISignIn } from 'src/app/interfaces/ISignIn';
 import { ISignUp } from 'src/app/interfaces/ISignUp';
@@ -20,6 +20,13 @@ export class AuthService {
   user$ = this.authSubject.asObservable();
   isLoggedIn$ = this.user$.pipe(map(user => Boolean(user)));
 
+  private userNotAuthenticatedSubject = new Subject<void>();
+  userNotAuthenticated$ = this.userNotAuthenticatedSubject.asObservable();
+
+  private userCredenzialiSubject = new Subject<void>();
+  userCredenziali$ = this.userCredenzialiSubject.asObservable();
+
+
   private userSubject = new BehaviorSubject<null| ISignUp>(null);
   userLogged$ = this.userSubject.asObservable();
 
@@ -30,10 +37,8 @@ export class AuthService {
     return this.http.post<IAuthData>(this.SignUpUrl, data).pipe(
       catchError(error => {
         console.error(error);
-        console.error(error.message);
-
         if (error.status) {
-          alert(error.message)
+          console.error(error);
         }
         return throwError(error);
       })
@@ -51,12 +56,17 @@ export class AuthService {
       this.autoLogout(expDate);
     }))
     .pipe(catchError(error => {
-      if (error.status) {
-        alert(error.message)
-      }
-      return throwError(error);
-    }))
-  }
+      console.error(error);
+      if(error.error.message == "L'utente non è autenticato"){
+        this.userNotAuthenticatedSubject.next();
+        return of('');
+        }
+        else {
+          this.userCredenzialiSubject.next();
+        return throwError(error)}
+          }))
+    }
+
 
   logout(){
     this.authSubject.next(null);

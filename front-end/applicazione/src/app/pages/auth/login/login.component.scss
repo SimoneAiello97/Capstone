@@ -1,0 +1,16 @@
+.main{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .card{
+    width: 235px !important;
+    height: 50px!important;
+    margin-bottom: 2rem;
+    input{
+      border: 0;
+      width: 100%;
+    }
+  }
+ }

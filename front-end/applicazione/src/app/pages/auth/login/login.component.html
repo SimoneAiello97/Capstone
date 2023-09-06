@@ -1,1 +1,19 @@
-<p>login works!</p>
+<div class="main">
+  <form>
+    <div class="card">
+      <span class="p-float-label">
+        <input pInputText name="email" [(ngModel)]="data.username" />
+        <label htmlFor="email">Email</label>
+      </span>
+    </div>
+    <div class="card flex justify-content-center">
+      <p-password name="password" [(ngModel)]="data.password" [toggleMask]="true" [feedback]=false class="w-100"></p-password>
+    </div>
+    <button (click)="login()" pButton pRipple label="Login" class="p-button-info w-100"></button>
+  </form>
+  <div *ngIf="validazione" class="d-flex flex-column align-items-center">
+    <p-messages [(value)]="messages2" [enableService]="false"></p-messages>
+    <p-button label="Go to Login " styleClass="p-button-link" [routerLink]="['../login']"></p-button>
+  </div>
+  <p-messages *ngIf="credenziali" [(value)]="messages" [enableService]="false"></p-messages>
+</div>
