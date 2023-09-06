@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.capstone.demo.security.entity.User;
 import com.capstone.demo.security.repository.IUserRepository;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -27,13 +28,15 @@ public class CustomUserDetailsService implements UserDetailsService {
           User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
                  .orElseThrow(() ->
                          new UsernameNotFoundException("User not found with username or email: "+ usernameOrEmail));
-
-        Set<GrantedAuthority> authorities = user
-                .getRoles()
-                .stream()
+        if (!user.isAuthenticated()) {
+        throw new UsernameNotFoundException("L'utente non è autenticato: " + user.getEmail());
+    }
+            Set<GrantedAuthority> authorities = user
+            .getRoles()
+            .stream()
                 .map((role) -> new SimpleGrantedAuthority(role.getRoleName().toString())).collect(Collectors.toSet());
 
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),
+                return new org.springframework.security.core.userdetails.User(user.getEmail(),
                 user.getPassword(),
                 authorities);
     }
