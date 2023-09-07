@@ -1,1 +1,37 @@
-<p>auth works!</p>
+<nav class="top-bar fixed-top navbarr" [ngClass]="{'transparent': isNavbarTransparent}">
+
+  <div class="container">
+    <div class="links">
+        <img class="logo" src="../../../assets/Yellow E-commerce Shop Bag Store Logo.png" alt="logo">
+      <ul class="list">
+
+        <li class="listItem"><a href="#">Home</a></li>
+        <li class="listItem"><a href="#">Prezzi</a></li>
+        <li class="listItem"><a href="#">Risorse</a></li>
+      </ul>
+
+
+    </div>
+    <div class="button-group">
+
+      <p-button label="Login" styleClass="p-button-link button text-dark" [routerLink]="['login']"></p-button>
+      <p-button label="Registrati" styleClass="p-button-warning button" [routerLink]="['register']"></p-button>
+    </div>
+  </div>
+
+</nav>
+
+
+
+<div class="prima sezione">
+  <div class="left">
+    <app-model></app-model>
+  </div>
+  <div class="right">
+    <h1>Benvenuti nel nostro negozio online, dove il tuo shopping diventa un'esperienza unica!</h1>
+    <h4 class="fst-italic">Scopri le ultime tendenze della moda a prezzi imbattibili.</h4>
+  </div>
+</div>
+<div class="prima sezione">
+
+</div>

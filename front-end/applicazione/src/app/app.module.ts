@@ -7,11 +7,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ModelComponent } from './model/model.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    /* ModelComponent */
   ],
   imports: [
     BrowserModule,
