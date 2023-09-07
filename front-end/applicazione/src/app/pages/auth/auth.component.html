@@ -2,12 +2,12 @@
 
   <div class="container">
     <div class="links">
-        <img class="logo" src="../../../assets/Yellow E-commerce Shop Bag Store Logo.png" alt="logo">
+      <img class="logo" src="../../../assets/logo-e-store.png" alt="logo">
       <ul class="list">
 
-        <li class="listItem"><a href="#">Home</a></li>
-        <li class="listItem"><a href="#">Prezzi</a></li>
-        <li class="listItem"><a href="#">Risorse</a></li>
+        <li class="listItem"><a [routerLink]="'#home-section'" (click)="scrollToSection('#home-section')">Home</a></li>
+        <li class="listItem"><a [routerLink]="'#prodotti-section'" (click)="scrollToSection('#prodotti-section')">Prodotti</a></li>
+        <li class="listItem"><a [routerLink]="'#recensioni-section'" (click)="scrollToSection('#recensioni-section')">Recensioni</a></li>
       </ul>
 
 
@@ -23,7 +23,7 @@
 
 
 
-<div class="prima sezione">
+<div class="prima sezione" id="home-section">
   <div class="left">
     <app-model></app-model>
   </div>
@@ -32,6 +32,72 @@
     <h4 class="fst-italic">Scopri le ultime tendenze della moda a prezzi imbattibili.</h4>
   </div>
 </div>
-<div class="prima sezione">
+<div class="seconda sezione" id="prodotti-section">
+  <div class="left">
+    <h3 class="text-center">
+      Scegli tra i migliori prodotti quello giusto per te
+    </h3>
+  </div>
+  <div class="right">
+    <ngb-carousel #carousel [interval]="5000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus"
+      (slide)="onSlide($event)" >
+      <ng-template ngbSlide *ngFor="let img of images; index as i">
+        <a href="https://www.google.fr/?q=Number+{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
+          <div class="picsum-img-wrapper">
+            <img [src]="img" alt="My image {{i + 1}} description" class="rounded"/>
+          </div>
+        </a>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>
+<div class="terza sezione" id="recensioni-section">
+  <!-- <p>Da eStore, ci impegniamo a fornire un'esperienza di shopping online eccezionale. Con anni di esperienza nel settore dell'e-commerce, siamo pronti a soddisfare le vostre esigenze di shopping online in modo efficiente e affidabile. Scoprite il futuro dello shopping con eStore!</p> -->
+  <p-card header="Emily Johnson">
+    <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
+    <p>Sono rimasto davvero soddisfatto dello shopping su eStore. Ampia scelta di prodotti e un'esperienza utente molto piacevole!</p>
+  <ngb-rating [rate]="4"></ngb-rating>
+  </p-card>
+  <p-card header="James Smith">
+    <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
+    <p>
+  eStore è il mio nuovo punto di riferimento per lo shopping online! Grandi offerte e un servizio clienti eccellente. Consigliato!</p>
+<ngb-rating [rate]="5"></ngb-rating>
+  </p-card>
+<p-card header="Olivia Davis">
+  <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
+  <p>Che piacevole esperienza di shopping su eStore! Ampia selezione di prodotti e consegna veloce. Sono davvero soddisfatto dei miei acquisti qui.</p>
+<ngb-rating [rate]="5"></ngb-rating>
+</p-card>
 
 </div>
+<footer >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h4>Informazioni</h4>
+        <ul>
+          <li>Chi siamo</li>
+          <li>Contatti</li>
+          <li>Termini e condizioni</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h4>Servizi</h4>
+        <ul>
+          <li>Spedizioni</li>
+          <li>Resi</li>
+          <li>Assistenza clienti</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h4>Seguimi</h4>
+        <ul>
+          <li><a href="https://github.com/SimoneAiello97"><i class="pi pi-github"></i> GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/simone-aiello/"><i class="pi pi-linkedin"></i> LinkedIn</a></li>
+          <li><a href="#"><i class="pi pi-user"></i> Portfolio</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

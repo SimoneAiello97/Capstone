@@ -1,16 +1,30 @@
 <div class="main">
-  <form>
-    <div class="card">
-      <span class="p-float-label">
-        <input pInputText name="email" [(ngModel)]="data.username" />
-        <label htmlFor="email">Email</label>
-      </span>
-    </div>
-    <div class="card flex justify-content-center">
-      <p-password name="password" [(ngModel)]="data.password" [toggleMask]="true" [feedback]=false class="w-100"></p-password>
-    </div>
-    <button (click)="login()" pButton pRipple label="Login" class="p-button-info w-100"></button>
-  </form>
+
+
+    <p-card header="Accedi" subheader="Continua su eStore" [style]="{ width: '360px' }">
+
+        <ng-template pTemplate="header">
+          <div class="logo">
+            <img alt="Card" src="../../../../assets/logo-e-store.png" />
+          </div>
+        </ng-template>
+
+        <form class="d-flex flex-column justify-content-center align-items-center">
+          <div class="ciao">
+          <span class="p-float-label">
+            <input pInputText name="username" [(ngModel)]="data.username" />
+            <label htmlFor="username">Username</label>
+          </span>
+        </div>
+        <div class="ciao">
+          <p-password name="password" [(ngModel)]="data.password" [toggleMask]="true" [feedback]=false class="w-100" placeholder="Password"></p-password>
+        </div>
+        <button (click)="login()" pButton pRipple label="Login" class="p-button-warning"></button>
+      </form>
+    </p-card>
+
+
+
   <div *ngIf="validazione" class="d-flex flex-column align-items-center">
     <p-messages [(value)]="messages2" [enableService]="false"></p-messages>
     <p-button label="Go to Login " styleClass="p-button-link" [routerLink]="['../login']"></p-button>

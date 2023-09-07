@@ -1,7 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
-@import "primeicons/primeicons.css";
-
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+@import "primeicons/primeicons.css";
+
+
+body::-webkit-scrollbar {
+  width: 10px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #f4f4f4;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #e08142;
+  border-radius: 20px;
+  /* border: 1px solid #cf6537; */
+}
