@@ -96,6 +96,7 @@ export class ModelComponent {
       // Imposta la canvas come quadrata
       const canvasSize = Math.max(this.canvas.clientWidth, this.canvas.clientHeight);
       this.renderer.setSize(1000, 1000);
+      this.canvas.style.height = '100%';
       this.canvas.style.maxWidth = '100%';
 
       console.log('clientWidth', this.canvas.clientWidth);

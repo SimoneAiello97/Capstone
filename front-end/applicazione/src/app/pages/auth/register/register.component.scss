@@ -4,7 +4,10 @@
  justify-content: center;
  align-items: center;
  flex-direction: column;
- .card{
+background-image: url(../../../../assets/HomePage.png);
+backdrop-filter: blur(10px) !important;
+form{
+}.card{
   margin-bottom: 2rem;
  }
 }

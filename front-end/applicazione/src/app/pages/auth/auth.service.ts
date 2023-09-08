@@ -19,6 +19,7 @@ export class AuthService {
   private authSubject = new BehaviorSubject<null | IAuthData>(null)
   user$ = this.authSubject.asObservable();
   isLoggedIn$ = this.user$.pipe(map(user => Boolean(user)));
+  isAdmin$ = this.user$.pipe(map(user => Boolean(user?.username==='admin')));
 
   private userNotAuthenticatedSubject = new Subject<void>();
   userNotAuthenticated$ = this.userNotAuthenticatedSubject.asObservable();
@@ -26,9 +27,6 @@ export class AuthService {
   private userCredenzialiSubject = new Subject<void>();
   userCredenziali$ = this.userCredenzialiSubject.asObservable();
 
-
-  private userSubject = new BehaviorSubject<null| ISignUp>(null);
-  userLogged$ = this.userSubject.asObservable();
 
   constructor(private http:HttpClient, private router: Router) { this.restoreUser()}
 
@@ -54,6 +52,18 @@ export class AuthService {
       console.log(user);
       const expDate = this.jwtHlper.getTokenExpirationDate(data.accessToken) as Date;
       this.autoLogout(expDate);
+      const userRoles = data.username;
+
+
+      // Verifica se il ruolo contiene "admin"
+       if (userRoles!=undefined && userRoles==='admin') {
+        // Reindirizza l'utente alla pagina "admin"
+        this.router.navigate(['/admin']);
+      } else {
+        // Altrimenti, reindirizza l'utente alla pagina "home" (o altrove)
+        this.router.navigate(['/']);
+      }
+
     }))
     .pipe(catchError(error => {
       console.error(error);

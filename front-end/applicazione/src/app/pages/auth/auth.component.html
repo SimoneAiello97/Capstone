@@ -41,21 +41,20 @@
   <div class="right">
     <ngb-carousel #carousel [interval]="5000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus"
       (slide)="onSlide($event)" >
-      <ng-template ngbSlide *ngFor="let img of images; index as i">
+      <ng-template ngbSlide *ngFor="let img of images; index as i" class="rounded">
         <a href="https://www.google.fr/?q=Number+{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
           <div class="picsum-img-wrapper">
-            <img [src]="img" alt="My image {{i + 1}} description" class="rounded"/>
+            <img [src]="img" alt="My image {{i + 1}} description" class="rounded img-fluid"/>
           </div>
         </a>
       </ng-template>
     </ngb-carousel>
   </div>
 </div>
-<div class="terza sezione" id="recensioni-section">
-  <!-- <p>Da eStore, ci impegniamo a fornire un'esperienza di shopping online eccezionale. Con anni di esperienza nel settore dell'e-commerce, siamo pronti a soddisfare le vostre esigenze di shopping online in modo efficiente e affidabile. Scoprite il futuro dello shopping con eStore!</p> -->
+<div class="terza" id="recensioni-section">
   <p-card header="Emily Johnson">
     <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
-    <p>Sono rimasto davvero soddisfatto dello shopping su eStore. Ampia scelta di prodotti e un'esperienza utente molto piacevole!</p>
+    <p>Sono rimasta davvero soddisfatta dello shopping su eStore. Ampia scelta di prodotti e un'esperienza utente molto piacevole!</p>
   <ngb-rating [rate]="4"></ngb-rating>
   </p-card>
   <p-card header="James Smith">
@@ -71,7 +70,7 @@
 </p-card>
 
 </div>
-<footer >
+<footer class="pt-5">
   <div class="container">
     <div class="row">
       <div class="col-md-4">

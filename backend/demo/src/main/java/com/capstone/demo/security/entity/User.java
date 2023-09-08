@@ -44,4 +44,8 @@ public class User {
     
     @JsonIgnore
     private Set<Role> roles = new HashSet<>();
+
+    public User get() {
+        return null;
+    }
 }

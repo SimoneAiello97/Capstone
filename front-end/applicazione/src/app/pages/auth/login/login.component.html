@@ -1,7 +1,7 @@
 <div class="main">
 
 
-    <p-card header="Accedi" subheader="Continua su eStore" [style]="{ width: '360px' }">
+    <p-card header="Accedi" subheader="Continua su eStore" [style]="{ width: '340px' }">
 
         <ng-template pTemplate="header">
           <div class="logo">
@@ -23,11 +23,12 @@
       </form>
     </p-card>
 
-
-
-  <div *ngIf="validazione" class="d-flex flex-column align-items-center">
+  <!-- <div  class="d-flex flex-column align-items-center"> -->
     <p-messages [(value)]="messages2" [enableService]="false"></p-messages>
-    <p-button label="Go to Login " styleClass="p-button-link" [routerLink]="['../login']"></p-button>
-  </div>
-  <p-messages *ngIf="credenziali" [(value)]="messages" [enableService]="false"></p-messages>
+
+  <p-messages  [(value)]="messages" [enableService]="false" ></p-messages>
+
+  <p-button label="Non sei ancora Registrato?" styleClass="p-button-warning p-button-text mt-5" [routerLink]="['../register']"></p-button>
+  <p-button label="Indietro" styleClass="p-button-secondary p-button-text" [routerLink]="['/']"></p-button>
 </div>
+<!-- *ngIf="credenziali" [closable]="false" -->

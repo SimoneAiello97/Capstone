@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +17,8 @@ import com.capstone.demo.security.payload.RegisterDto;
 import com.capstone.demo.security.repository.IUserRepository;
 import com.capstone.demo.security.repository.RoleRepository;
 import com.capstone.demo.security.service.AuthService;
+
+import jakarta.annotation.PostConstruct;
 
 
 @Component
@@ -29,13 +32,27 @@ public class AuthRunner implements ApplicationRunner {
 	private Set<Role> adminRole;
 	private Set<Role> moderatorRole;
 	private Set<Role> userRole;
-	
+
+	/* @Value("${app.roles.setup.enabled}")
+    private boolean rolesSetupEnabled; */
+
+	//private boolean rolesInitialized = false;
+
+    /* @PostConstruct
+    public void init() {
+        if (rolesSetupEnabled) {
+            setRoleDefault();
+        }
+    } */
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		//System.out.println("Run auth...");
+		System.out.println("Run auth...");
 		// Da lanciare solo la prima volta
-		//setRoleDefault();
-		
+		//setRoleDefault(); 
+		/* if (rolesSetupEnabled && !rolesInitialized) {
+            setRoleDefault();
+            rolesInitialized = true; // Imposta il flag di inizializzazione a true
+        } */
 	}
 	
 	private void setRoleDefault() {

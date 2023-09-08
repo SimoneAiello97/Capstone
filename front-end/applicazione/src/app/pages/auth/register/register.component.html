@@ -1,6 +1,6 @@
 <div class="main">
-<form>
-
+  <p-card role="region">
+    <form>
   <div class="card">
       <span class="p-float-label">
       <input pInputText name="name" [(ngModel)]="data.name" />
@@ -29,6 +29,7 @@
   <button (click)="register()" pButton pRipple label="Register" class="p-button-info w-100"></button>
 
 </form>
+</p-card>
 <div *ngIf="validazione" class="d-flex flex-column align-items-center">
   <p-messages  [(value)]="messages" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'" [enableService]="false"></p-messages>
   <p-button label="Go to Login " styleClass="p-button-link" [routerLink]="['../login']"></p-button>
