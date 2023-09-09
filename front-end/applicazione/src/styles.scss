@@ -4,7 +4,7 @@
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 @import "primeicons/primeicons.css";
-
+@import 'assets/layout/styles/layout/layout.scss';
 
 body::-webkit-scrollbar {
   width: 10px;               /* width of the entire scrollbar */
