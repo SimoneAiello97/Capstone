@@ -1,6 +1,57 @@
-<div class="main">
-  <p-card role="region">
-    <form>
+<div class="main bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+  <p-card role="region"  header="Registrati!" [style]="{ width: '340px' }" >
+    <form class="d-flex flex-column justify-content-center align-items-center">
   <div class="card">
       <span class="p-float-label">
       <input pInputText name="name" [(ngModel)]="data.name" />
@@ -26,12 +77,12 @@
     </span>
   </div>
 
-  <button (click)="register()" pButton pRipple label="Register" class="p-button-info w-100"></button>
+  <button (click)="register()" pButton pRipple label="Registrati" class="p-button-info w-75"></button>
 
 </form>
 </p-card>
-<div *ngIf="validazione" class="d-flex flex-column align-items-center">
-  <p-messages  [(value)]="messages" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'" [enableService]="false"></p-messages>
-  <p-button label="Go to Login " styleClass="p-button-link" [routerLink]="['../login']"></p-button>
-</div>
+<p-button label="Sei già registrato? Accedi" styleClass="p-button-info p-button-text mt-3" [routerLink]="['../login']"></p-button>
+<p-button label="Indietro" styleClass="p-button-secondary p-button-text" [routerLink]="['/']"></p-button>
+  <p-messages  [(value)]="messages" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'" [enableService]="false" [closable]="false"></p-messages>
+
 </div>

@@ -1,3 +1,5 @@
+import { AppLayoutModule } from './pages/admin/layout/app.layout.module';
+import { AppLayoutComponent } from './pages/admin/layout/app.layout.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,10 +12,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ModelComponent } from './model/model.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    /* ModelComponent */
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,8 @@ import { ModelComponent } from './model/model.component';
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    AppLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

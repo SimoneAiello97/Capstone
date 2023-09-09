@@ -57,7 +57,7 @@ addMessages() {
 }
 addMessages2() {
   this.messages2 = [
-    { severity: 'error', summary: 'Error', detail: 'L`utente non è autenticato' },
+    { severity: 'error', summary: 'Error', detail: "L'utente non è autenticato" },
 ];
 }
 clearMessages() {
