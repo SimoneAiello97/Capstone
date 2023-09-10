@@ -72,7 +72,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public User register(RegisterDto registerDto) {
         // Controllo se l'utente di default "ADMIN" esiste nel database
-        User adminUser = userRepository.findByUsername("admin");
+        User adminUser = userRepository.findByUsername("admin").get();
         if (adminUser == null) {
         // L'utente "ADMIN" non esiste, quindi lo creo
         adminUser = new User();

@@ -6,10 +6,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ModelComponent } from './model/model.component';
+import { AdminInterceptor } from './pages/admin/admin.interceptor';
 
 
 
@@ -24,9 +25,13 @@ import { ModelComponent } from './model/model.component';
     HttpClientModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    AppLayoutModule
+    AppLayoutModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AdminInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

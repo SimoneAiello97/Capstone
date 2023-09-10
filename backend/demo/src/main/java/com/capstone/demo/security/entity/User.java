@@ -36,16 +36,18 @@ public class User {
 
     private boolean isAuthenticated = false;
     
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    /* @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+    ) */
+    
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
-    
+
     @JsonIgnore
     private Set<Role> roles = new HashSet<>();
-
-    public User get() {
-        return null;
-    }
 }

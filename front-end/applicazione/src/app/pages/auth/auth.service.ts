@@ -6,6 +6,7 @@ import { BehaviorSubject, Subject, catchError, map, of, tap, throwError } from '
 import { IAuthData } from 'src/app/interfaces/IAuthData';
 import { ISignIn } from 'src/app/interfaces/ISignIn';
 import { ISignUp } from 'src/app/interfaces/ISignUp';
+import { IUser } from 'src/app/interfaces/IUser';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -105,4 +106,6 @@ export class AuthService {
     this.authSubject.next(user)
     console.log('Sei attualmente loggato');
   }
+
+
 }

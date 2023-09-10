@@ -1,2 +1,7 @@
-<p class="card">admin works</p>
+<p class="card" *ngFor="let user of users">
+
+  {{user.username}}
+
+  <p-button (click)="deleteUser(user.id)" label="Danger" styleClass="p-button-danger"> Cancella utente</p-button>
+</p>
 

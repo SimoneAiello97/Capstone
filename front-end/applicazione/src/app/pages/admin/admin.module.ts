@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     AdminRoutingModule,
     NgbModule,
+    ButtonModule
   ]
 })
 export class AdminModule { }
