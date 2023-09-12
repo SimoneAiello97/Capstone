@@ -31,7 +31,7 @@ export class AdminService {
   }
 
   deleteUser(id:number){
-    return this.http.delete('http://localhost:4200/admin/users/'+id).pipe(
+    return this.http.delete(this.adminUrl+'/users/'+id).pipe(
       catchError(error => {
         console.error(error);
         if (error.status) {

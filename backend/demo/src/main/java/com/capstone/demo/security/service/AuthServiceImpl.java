@@ -3,6 +3,7 @@ package com.capstone.demo.security.service;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public User register(RegisterDto registerDto) {
         // Controllo se l'utente di default "ADMIN" esiste nel database
-        User adminUser = userRepository.findByUsername("admin").get();
+       /*  User adminUser = userRepository.findByUsername("admin").get();
         if (adminUser == null) {
         // L'utente "ADMIN" non esiste, quindi lo creo
         adminUser = new User();
@@ -84,7 +85,20 @@ public class AuthServiceImpl implements AuthService {
         Role adminRole = roleRepository.findByRoleName(ERole.ROLE_ADMIN).get();
         adminUser.setRoles(Collections.singleton(adminRole)); // Imposta il ruolo "ADMIN"
         userRepository.save(adminUser);
-    }
+    } */
+    Optional<User> adminUserOptional = userRepository.findByUsername("admin");
+    if (adminUserOptional.isEmpty()) {
+    // L'utente "admin" non esiste, quindi lo creo
+    User adminUser = new User();
+    adminUser.setName("Admin Name");
+    adminUser.setUsername("admin");
+    adminUser.setEmail("admin@example.com");
+    adminUser.setAuthenticated(true);
+    adminUser.setPassword(passwordEncoder.encode("admin")); // Imposta la password di default
+    Role adminRole = roleRepository.findByRoleName(ERole.ROLE_ADMIN).get();
+    adminUser.setRoles(Collections.singleton(adminRole)); // Imposta il ruolo "ADMIN"
+    userRepository.save(adminUser);
+}
         // add check for username exists in database
         if(userRepository.existsByUsername(registerDto.getUsername())){
             throw new MyAPIException(HttpStatus.BAD_REQUEST, "Username `"+ registerDto.getUsername() +"` is already exists!.");
@@ -100,6 +114,7 @@ public class AuthServiceImpl implements AuthService {
         user.setUsername(registerDto.getUsername());
         user.setEmail(registerDto.getEmail());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
+        /* user.setAuthenticated(false); */
 
         Set<Role> roles = new HashSet<>();
         
@@ -120,6 +135,7 @@ public class AuthServiceImpl implements AuthService {
         /* return "User registered successfully!."; */
         return user;
     }
+
     
     public ERole getRole(String role) {
     	if(role.equals("ADMIN")) return ERole.ROLE_ADMIN;

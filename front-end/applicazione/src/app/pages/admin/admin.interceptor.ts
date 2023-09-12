@@ -23,7 +23,7 @@ export class AdminInterceptor implements HttpInterceptor {
       const newReq = request.clone({
         headers:request.headers.append('Authorization', `Bearer ${user.accessToken}`)
       })
-      return next.handle(newReq)
+      return next.handle(request)
       })
       );
   }

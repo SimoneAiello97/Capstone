@@ -2,10 +2,10 @@ package com.capstone.demo.security.runner;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,12 +13,11 @@ import org.springframework.stereotype.Component;
 
 import com.capstone.demo.security.entity.ERole;
 import com.capstone.demo.security.entity.Role;
-import com.capstone.demo.security.payload.RegisterDto;
+
 import com.capstone.demo.security.repository.IUserRepository;
 import com.capstone.demo.security.repository.RoleRepository;
 import com.capstone.demo.security.service.AuthService;
 
-import jakarta.annotation.PostConstruct;
 
 
 @Component

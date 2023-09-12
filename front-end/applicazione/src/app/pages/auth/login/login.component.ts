@@ -44,7 +44,7 @@ login(){
   .subscribe(data => {
     if (data) {
       console.log('Sei loggato', data);
-      const userRoles = data;
+      //const userRoles = data;
     } else {
       // Non fare nulla se l'autenticazione non ha successo
       console.log("L'utente non è stato autenticato con successo");
