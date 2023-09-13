@@ -26,7 +26,5 @@ export class AdminComponent {
     });
   }
 
-  deleteUser(id:number){
-    this.adminSvc.deleteUser(id).subscribe();
-  }
+
 }

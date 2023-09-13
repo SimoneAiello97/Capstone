@@ -1,0 +1,38 @@
+.card{
+  &:hover{
+    cursor: pointer;
+   /*  box-shadow: 0 0 0 4px rgba(black, 0.0688); */
+    .x-button{
+      opacity: 1;
+      transition-delay: 0.35s;
+      transform: scale(1);
+    }}
+  .x-button{
+    position: absolute;
+  top: 12px;
+  right: 12px;
+  height: 30px;
+ /*  width: 30px;
+  background-color: rgb(238, 212, 212);
+  border-radius: 4px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+
+  opacity: 0;
+  transform: scale(0.35);
+  &:hover{
+    background-color: rgb(207, 43, 43);
+    svg{
+      color: white !important;
+      width: 80% !important;
+    }
+  }
+  &:active{
+    background-color: darkred;
+    svg{color: rgb(150, 142, 142)}
+  }
+}
+
+  }

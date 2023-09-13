@@ -50,4 +50,10 @@ public class User {
 
     @JsonIgnore
     private Set<Role> roles = new HashSet<>();
+    
+    @OneToOne(mappedBy = "customer")
+    private ShoppingCart shoppingCart;
+    /* 
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders; */
 }

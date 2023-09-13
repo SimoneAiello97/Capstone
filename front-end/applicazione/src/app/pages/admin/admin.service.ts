@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, throwError } from 'rxjs';
 import { IAuthData } from 'src/app/interfaces/IAuthData';
+import { ICategory } from 'src/app/interfaces/ICategory';
+import { IProduct } from 'src/app/interfaces/IProduct';
 import { IUser } from 'src/app/interfaces/IUser';
 import { environment } from 'src/environments/environment.development';
 
@@ -30,8 +32,20 @@ export class AdminService {
       }))
   }
 
-  deleteUser(id:number){
-    return this.http.delete(this.adminUrl+'/users/'+id).pipe(
+  getCategories(){
+    return this.http.get<ICategory[]>(this.adminUrl+'/categories').pipe(
+      catchError(error => {
+        console.error(error);
+        if (error.status) {
+          console.error(error);
+        }
+        return throwError(error);
+      }))
+  }
+
+  postCategory(c:ICategory){
+    return this.http.post<ICategory>(this.adminUrl+'/categories/new',c)
+    .pipe(
       catchError(error => {
         console.error(error);
         if (error.status) {
@@ -41,4 +55,36 @@ export class AdminService {
       })
     );
   }
+
+  deleteCategory(id:number){
+    return this.http.delete(this.adminUrl+'/categories/'+id)
+    .pipe(
+      catchError(error => {
+        console.error(error);
+        if (error.status) {
+          console.error(error);
+        }
+        return throwError(error);
+      })
+    );
+  }
+
+  toggleCategory(c:Partial<ICategory>){
+    return this.http.put<ICategory>(this.adminUrl+'/categories/'+c.id, c)
+  }
+
+
+  getProducts(){
+  return this.http.get<IProduct[]>(this.adminUrl+'/products')
+  .pipe(
+    catchError(error => {
+      console.error(error);
+      if (error.status) {
+        console.error(error);
+      }
+      return throwError(error);
+    })
+  );
+  }
+
 }
