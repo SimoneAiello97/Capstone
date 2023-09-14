@@ -14,14 +14,16 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.capstone.demo.security.dto.ProductDto;
 import com.capstone.demo.security.entity.Category;
@@ -71,13 +73,14 @@ public class AdminController {
        return resp;
     }
 
-    @DeleteMapping("/categories/{id}")
+    // LA DELETE NON MI SERVE IN QUANTO SI COLLEGA AI VARI PRODOTTI
+    /* @DeleteMapping("/categories/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Category> deleteCategory(@PathVariable Long id) {
 		Category c = categoryService.findById(id);
         categoryService.deleteById(id);
 		return  new ResponseEntity<Category>(c, HttpStatus.OK);
-	}
+	} */
 
     @PutMapping("categories/{id}")
     @PreAuthorize("hasRole('ADMIN')")
@@ -103,12 +106,96 @@ public class AdminController {
        return resp;
     }
     
-    @PostMapping("/products/new")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> addProduct(@RequestBody Product product){
-        Product p = productService.addProduct(product);
-       ResponseEntity<Product> resp = new ResponseEntity<Product>(p, HttpStatus.OK);
-       return resp;
+
+    @GetMapping("/products/{productId}")
+public ResponseEntity<?> getProductById(@PathVariable Long productId) {
+    // Cerca il prodotto per ID
+    Product product = productService.getById(productId);
+
+    if (product == null) {
+        return new ResponseEntity<>("Prodotto non trovato", HttpStatus.NOT_FOUND);
     }
 
+    return new ResponseEntity<>(product, HttpStatus.OK);
 }
+
+    @PostMapping("/products/new")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> addProduct(@RequestBody Product productRequest) {
+        // Verifica se esiste già una categoria con lo stesso nome
+        Category category = categoryService.findByName(productRequest.getCategory().getName());
+        
+        // Se la categoria non esiste, crea una nuova categoria
+        if (category == null) {
+            category = new Category(productRequest.getCategory().getName());
+            categoryService.addCategory(category);
+        }
+        
+        // Crea il nuovo prodotto e associatelo alla categoria trovata o creata
+        Product product = new Product();
+        product.setName(productRequest.getName());
+        product.setDescription(productRequest.getDescription());
+        product.setCostPrice(productRequest.getCostPrice());
+        product.setSalePrice(productRequest.getSalePrice());
+        product.setCurrentQuantity(productRequest.getCurrentQuantity());
+        product.setImage(productRequest.getImage());
+        product.setCategory(category);
+        
+        Product newProduct = productService.addProduct(product);
+        
+        return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
+    }
+
+    @PutMapping("products/{productId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> updateProduct(
+            @PathVariable Long productId,
+            @RequestBody Product productRequest) {
+        
+        // Verifica se il prodotto esiste
+        Product existingProduct = productService.getById(productId);
+        if (existingProduct == null) {
+            return new ResponseEntity<>("Prodotto non trovato", HttpStatus.NOT_FOUND);
+        }
+        
+        // Verifica se esiste già una categoria con lo stesso nome
+        Category category = categoryService.findByName(productRequest.getCategory().getName());
+        
+        // Se la categoria non esiste, crea una nuova categoria
+        if (category == null) {
+            category = new Category(productRequest.getCategory().getName());
+            categoryService.addCategory(category);
+        }
+        
+        // Aggiorna le informazioni del prodotto
+        existingProduct.setName(productRequest.getName());
+        existingProduct.setDescription(productRequest.getDescription());
+        existingProduct.setCostPrice(productRequest.getCostPrice());
+        existingProduct.setSalePrice(productRequest.getSalePrice());
+        existingProduct.setCurrentQuantity(productRequest.getCurrentQuantity());
+        existingProduct.setImage(productRequest.getImage());
+        existingProduct.setCategory(category);
+        
+        Product updatedProduct = productService.save(existingProduct);
+        
+        return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/products/{productId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long productId) {
+        Product existingProduct = productService.getById(productId);
+    productService.deleteById(productId);
+
+    return new ResponseEntity<>(existingProduct, HttpStatus.OK);
+}
+}
+
+
+
+
+
+
+    
+

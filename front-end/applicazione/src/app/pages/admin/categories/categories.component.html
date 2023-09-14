@@ -9,11 +9,11 @@
 
 
 
-  <p-button *ngIf="category._activated" label="Disabilita" styleClass="p-button-raised p-button-text mt-2" (click)="toggleCategory(category)" ></p-button>
+  <p-button *ngIf="category._activated" label="Disabilita" styleClass="p-button-text mt-2" (click)="toggleCategory(category)" ></p-button>
   <p-button *ngIf="!category._activated" label="Abilita" styleClass="p-button-outlined mt-2"(click)="toggleCategory(category)" ></p-button>
 
 
-  <p-button styleClass="p-button-danger" icon="pi pi-times" (click)="deleteCategory(category.id!)" class="x-button"></p-button>
+<!--   <p-button styleClass="p-button-danger" icon="pi pi-times" (click)="deleteCategory(category.id!)" class="x-button"></p-button> -->
   </p>
 </div>
 

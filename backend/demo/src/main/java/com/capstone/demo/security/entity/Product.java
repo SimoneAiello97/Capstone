@@ -20,8 +20,6 @@ public class Product {
     private double costPrice;
     private double salePrice;
     private int currentQuantity;
-    /* @Lob
-    @Column(columnDefinition = "MEDIUMBLOB") */
     private String image;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")

@@ -37,12 +37,12 @@ export class CategoriesComponent {
   })
   }
 
-  deleteCategory(id:number){
+/*   deleteCategory(id:number){
     this.adminSvc.deleteCategory(id).subscribe(res=>{
       console.log(res)
     this.getAllCategories();
   })
-}
+} */
 
 toggleCategory(c:Partial<ICategory>){
   this.adminSvc.toggleCategory(c).subscribe(res=>{

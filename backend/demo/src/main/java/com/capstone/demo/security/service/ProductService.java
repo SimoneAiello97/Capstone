@@ -10,9 +10,8 @@ import com.capstone.demo.security.entity.Product;
 
 public interface ProductService {
     List<ProductDto> findAll();
-    Product save(MultipartFile imageProduct, ProductDto productDto);
-    Product update(MultipartFile imageProduct, ProductDto productDto);
+    Product save(Product product);
     void deleteById(Long id);
     void enableById(Long id);
-    ProductDto getById(Long id);
+    Product getById(Long id);
 }

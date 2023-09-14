@@ -1,37 +1,141 @@
 <h3 class="">Prodotti</h3>
-<p class="card mb-2" *ngIf="prodotti.length == 0">
+<p class="card mb-2" *ngIf="prodotti == undefined">
   Non ci sono prodotti
 </p>
-<!-- <div *ngFor="let prodotto of prodotti">
-  <div class="card mb-2">
 
-  <div>
-    {{prodotto.name}}
-  </div>
-  <div>
-    {{prodotto.description}}
-  </div>
+<p-button (click)="showDialog3()" icon="pi pi-plus" label="Crea nuovo Prodotto"></p-button>
+<p-dialog header="Nuova Categoria" [(visible)]="visible"[(visible)]="visible3" [style]="{width: '50vw'}" [maximizable]="true">
 
-  </div>
-</div> -->
+  <form>
+    <div class="d-flex flex-column gap-2 mb-2">
+      <label htmlFor="username">Nome</label>
+      <input  type="text" pInputText [(ngModel)]="newProduct.name"  name="newProduct.name" [value]="newProduct.name" />
+    </div>
+<div class="d-flex flex-column gap-2 mb-2">
+  <label htmlFor="username">Descrizione</label>
+  <input  type="text" pInputText [(ngModel)]="newProduct.description" name="newProduct.description" [value]="newProduct.description" />
+</div>
+<div class="d-flex flex-column gap-2 mb-2">
+  <label htmlFor="username">Costo base</label>
+  <input  type="number" pInputText pKeyFilter="int" [(ngModel)]="newProduct.costPrice" name="newProduct.costPrice" [value]="newProduct.costPrice" />
+</div>
+<div class="d-flex flex-column gap-2 mb-2">
+  <label htmlFor="username">Costo di vendita</label>
+  <input  type="number" pInputText pKeyFilter="int" [(ngModel)]="newProduct.salePrice" name="newProduct.salePrice" [value]="newProduct.salePrice" />
+</div>
+<div class="d-flex flex-column gap-2 mb-2">
+  <label htmlFor="username">Quantità</label>
+  <input  type="number" pInputText pKeyFilter="int" [(ngModel)]="newProduct.currentQuantity" name="newProduct.currentQuantity" [value]="newProduct.currentQuantity" />
+</div>
+<div class="d-flex flex-column gap-2 mb-2">
+  <label htmlFor="username">Immagine</label>
+  <input  type="text" pInputText [(ngModel)]="newProduct.image" name="newProduct.image" [value]="newProduct.image" />
+</div>
 
-<div class="card">
-  <p-table [value]="prodotti" [tableStyle]="{ 'min-width': '50rem' }">
-      <ng-template pTemplate="header">
-          <tr>
-              <th>Code</th>
-              <th>Nome</th>
-              <th>Descrizione</th>
-              <th>Quantita</th>
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-product>
-          <tr>
-              <td>{{ product.id }}</td>
-              <td>{{ product.name }}</td>
-              <td>{{ product.description }}</td>
-              <td>{{ product.currentQuantity }}</td>
-          </tr>
-      </ng-template>
+
+<div class="d-flex flex-column gap-2 mb-2">
+  <label htmlFor="username">Categoria</label>
+  <select class="form-select" name="newProduct.category" aria-label="Default select example" [(ngModel)]="newProduct.category" [value]="newProduct.category">
+    <option *ngFor="let categoria of categorie" [value]="categoria.name">{{ categoria.name }}</option>
+
+  </select>
+</div>
+<p-button (click)="addProduct()" label="Crea" styleClass="p-button-primary p-button-text"></p-button>
+</form>
+
+
+</p-dialog>
+
+<div class="card mt-3">
+  <p-table [value]="prodotti!" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Edit</th>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Quantita</th>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td><p-button (click)="showDialog2()" (click)="getProduct(product.id)" icon="pi pi-file-edit"
+            styleClass="p-button-rounded p-button-secondary p-button-text"></p-button></td>
+        <td (click)="showDialog()" (click)="getProduct(product.id)">{{ product.name }}</td>
+        <td>{{ product.category?.name}}</td>
+        <td>{{ product.currentQuantity }}</td>
+        <span><p-button (click)="deleteProduct(product.id)" icon="pi pi-trash" styleClass="p-button-danger" class="x-button"></p-button></span>
+      </tr>
+    </ng-template>
   </p-table>
 </div>
+
+<p-dialog header="Prodotto n: {{prodotto?.id}}" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
+  [draggable]="false" [resizable]="false">
+
+    <p class="m-0">
+      <b>Nome prodotto:</b> {{prodotto?.name}}
+    </p>
+    <p class="m-0">
+      <b>Descrizione prodotto:</b> {{prodotto?.description}}
+    </p>
+    <p class="m-0">
+      <b>Costo base prodotto:</b> {{prodotto?.costPrice}}
+    </p>
+    <p class="m-0">
+      <b>Costo vendita prodotto:</b> {{prodotto?.salePrice}}
+    </p>
+    <p class="m-0">
+      <b>Quantità prodotto:</b> {{prodotto?.currentQuantity}}
+    </p>
+    <p class="m-0">
+      <b>Categoria prodotto:</b> {{prodotto?.category?.name}}
+    </p>
+    <p>
+      <b>Immagine prodotto:</b>
+      <img src="{{prodotto?.image}}" alt="immagine prodotto" class="img-fluid">
+    </p>
+
+</p-dialog>
+
+<p-dialog header="Prodotto n:{{prodotto?.id}}" [(visible)]="visible2" [modal]="true" [style]="{ width: '50vw' }"
+  [draggable]="false" [resizable]="false">
+
+  <form>
+    <div class="d-flex flex-column gap-2 mb-2">
+      <label htmlFor="username">Nome</label>
+      <input  type="text" pInputText [(ngModel)]="prodotto.name"  name="prodotto.name" [value]="prodotto.name" />
+    </div>
+<div class="d-flex flex-column gap-2 mb-2">
+  <label htmlFor="username">Descrizione</label>
+  <input  type="text" pInputText [(ngModel)]="prodotto.description" name="prodotto.description" [value]="prodotto.description" />
+</div>
+<div class="d-flex flex-column gap-2 mb-2">
+  <label htmlFor="username">Costo base</label>
+  <input  type="number" pInputText pKeyFilter="int" [(ngModel)]="prodotto.costPrice" name="prodotto.costPrice" [value]="prodotto.costPrice" />
+</div>
+<div class="d-flex flex-column gap-2 mb-2">
+  <label htmlFor="username">Costo di vendita</label>
+  <input  type="number" pInputText pKeyFilter="int" [(ngModel)]="prodotto.salePrice" name="prodotto.salePrice" [value]="prodotto.salePrice" />
+</div>
+<div class="d-flex flex-column gap-2 mb-2">
+  <label htmlFor="username">Quantità</label>
+  <input  type="number" pInputText pKeyFilter="int" [(ngModel)]="prodotto.currentQuantity" name="prodotto.currentQuantity" [value]="prodotto.currentQuantity" />
+</div>
+<div class="d-flex flex-column gap-2 mb-2">
+  <label htmlFor="username">Immagine</label>
+  <input  type="text" pInputText [(ngModel)]="prodotto.image" name="prodotto.image" [value]="prodotto.image" />
+</div>
+
+
+<div class="d-flex flex-column gap-2 mb-2">
+  <label htmlFor="username">Categoria</label>
+  <select class="form-select" name="prodotto.category" aria-label="Default select example" [(ngModel)]="prodotto.category" [value]="prodotto.category">
+    <option *ngFor="let categoria of categorie" [value]="categoria.name">{{ categoria.name }}</option>
+
+  </select>
+</div>
+<p-button (click)="editProduct()" label="Modifica" styleClass="p-button-secondary p-button-text"></p-button>
+</form>
+
+</p-dialog>

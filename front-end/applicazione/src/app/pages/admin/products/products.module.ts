@@ -4,6 +4,14 @@ import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
 import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
+import { TreeSelectModule } from 'primeng/treeselect';
+import { InputNumberModule } from 'primeng/inputnumber';
+
 
 
 @NgModule({
@@ -13,7 +21,13 @@ import { TableModule } from 'primeng/table';
   imports: [
     CommonModule,
     ProductsRoutingModule,
-    TableModule
+    TableModule,
+    DialogModule,
+    ButtonModule,
+    InputTextModule,
+    FormsModule,
+    TreeSelectModule,
+    InputNumberModule
   ]
 })
 export class ProductsModule { }

@@ -1,3 +1,5 @@
+import { ICategory } from "./ICategory";
+
 export interface IProduct {
   id?:number,
   name:string,
@@ -5,5 +7,6 @@ export interface IProduct {
   costPrice:number,
   salePrice:number,
   currentQuantity:number,
-  image:string
+  image:string,
+  category:ICategory
 }

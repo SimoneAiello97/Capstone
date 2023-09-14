@@ -81,4 +81,9 @@ public class CategoryServiceImpl implements CategoryService {
     category.set_activated(false);
     return repo.save(category);
 }
+
+@Override
+public Category findByName(String name) {
+   return repo.findByName(name);
+}
 }

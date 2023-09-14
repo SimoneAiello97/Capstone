@@ -74,7 +74,7 @@ export class AdminService {
   }
 
 
-  getProducts(){
+  getAllProducts(){
   return this.http.get<IProduct[]>(this.adminUrl+'/products')
   .pipe(
     catchError(error => {
@@ -85,6 +85,55 @@ export class AdminService {
       return throwError(error);
     })
   );
+  }
+
+  getProduct(id:number){
+    return this.http.get<IProduct>(this.adminUrl + '/products/' + id)
+    .pipe(
+      catchError(error => {
+        console.error(error);
+        if (error.status) {
+          console.error(error);
+        }
+        return throwError(error);
+      })
+    );
+  }
+
+  postProduct(p:Partial<IProduct> ){
+    return this.http.post<IProduct>(this.adminUrl + '/products/new', p)
+    .pipe(
+      catchError(error => {
+        console.error(error);
+        if (error.status) {
+          console.error(error);
+        }
+        return throwError(error);
+      })
+    );
+  }
+
+  putProduct(p:Partial<IProduct>){
+    return this.http.put<IProduct>(this.adminUrl + '/products/'+p.id, p)
+    .pipe(
+      catchError(error => {
+        console.error(error);
+        if (error.status) {
+          console.error(error);
+        }
+        return throwError(error);
+      })
+    );
+  }
+
+  deleteProduct(id: number) {
+    return this.http.delete(this.adminUrl + '/products/' + id)
+      .pipe(
+        catchError(error => {
+          console.error(error);
+          return throwError(error);
+        })
+      );
   }
 
 }

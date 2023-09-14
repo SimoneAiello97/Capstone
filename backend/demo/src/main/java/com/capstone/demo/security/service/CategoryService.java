@@ -17,6 +17,6 @@ public interface CategoryService {
     void enabledById(Long id);
     List<Category> findAllByActivated();
 
-    /* List<CategoryDto> getCategoryAndProduct(); */
+    Category findByName(String name);
 
 }
