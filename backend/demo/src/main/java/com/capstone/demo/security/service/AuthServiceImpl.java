@@ -113,7 +113,8 @@ public class AuthServiceImpl implements AuthService {
         user.setName(registerDto.getName());
         user.setUsername(registerDto.getUsername());
         user.setEmail(registerDto.getEmail());
-        /* user.setShoppingCart(null); */
+        user.setShoppingCart(null); 
+        user.setOrders(null);
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
         /* user.setAuthenticated(false); */
 

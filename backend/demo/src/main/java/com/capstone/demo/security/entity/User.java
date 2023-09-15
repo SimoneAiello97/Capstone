@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -36,24 +37,23 @@ public class User {
 
     private boolean isAuthenticated = false;
     
-    /* @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-    ) */
-    
+    @OneToOne(mappedBy = "customer")
+    private ShoppingCart shoppingCart;
+
+        @OneToMany(mappedBy = "customer")
+    private List<Order> orders; 
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
 
+
     @JsonIgnore
     private Set<Role> roles = new HashSet<>();
     
-    @OneToOne(mappedBy = "customer")
-    private ShoppingCart shoppingCart;
-    /* 
-    @OneToMany(mappedBy = "customer")
-    private List<Order> orders; */
+    
+    
+    
 }

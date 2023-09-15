@@ -1,5 +1,7 @@
 package com.capstone.demo.security.entity;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +25,6 @@ public class ShoppingCart {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User customer;
 
-    /* @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
-    private Set<CartItem> cartItem; */
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
+    private Set<CartItem> cartItem;
 }

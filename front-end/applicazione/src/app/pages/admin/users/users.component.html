@@ -1,0 +1,15 @@
+<div class="main" >
+
+
+
+<div *ngFor="let user of users, let i=index" class="my-3">
+
+  <p-card  [header]="'Utente ' + (i + 1)" >
+    <p class="m-0">
+
+      {{user.username}}
+    </p>
+  </p-card>
+
+</div>
+</div>
