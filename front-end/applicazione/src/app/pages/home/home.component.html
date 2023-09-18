@@ -50,7 +50,7 @@
     </p>
     <ng-template pTemplate="footer">
         <p-button label="Add to Cart" icon="pi pi-shopping-cart"></p-button>
-        <p-button label="View Product" icon="pi pi-eye" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+        <p-button label="View Product" icon="pi pi-eye" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }" [routerLink]="['single-product',prodotto.id]"></p-button>
     </ng-template>
 </p-card>
 </section>

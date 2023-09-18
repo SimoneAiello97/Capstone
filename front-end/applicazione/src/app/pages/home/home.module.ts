@@ -8,6 +8,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { PaginatorModule } from 'primeng/paginator';
     AvatarModule,
     AvatarGroupModule,
     CardModule,
-    PaginatorModule
+    PaginatorModule,
+    RouterModule
   ]
 })
 export class HomeModule { }

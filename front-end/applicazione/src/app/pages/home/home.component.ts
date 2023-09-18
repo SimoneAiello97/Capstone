@@ -84,4 +84,13 @@ export class HomeComponent {
       this.prodotti = c.content;
     });
   }
+
+  /* getSingoloProdotto(id:number){
+    this.adminSvc.getProduct(id).subscribe(res =>{
+      console.log(res, "Singolo prodotto");
+
+      this.router.navigate(['../home/single-product']);
+    }
+    )
+  } */
 }
