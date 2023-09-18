@@ -6,6 +6,7 @@ import { BehaviorSubject, catchError, throwError } from 'rxjs';
 import { IAuthData } from 'src/app/interfaces/IAuthData';
 import { ICategory } from 'src/app/interfaces/ICategory';
 import { IProduct } from 'src/app/interfaces/IProduct';
+import { IPage } from 'src/app/interfaces/IPage';
 import { IUser } from 'src/app/interfaces/IUser';
 import { environment } from 'src/environments/environment.development';
 
@@ -74,8 +75,8 @@ export class AdminService {
   }
 
 
-  getAllProducts(){
-  return this.http.get<IProduct[]>(this.adminUrl+'/products')
+  getAllProducts(nPagina:number, size:number){
+  return this.http.get<IPage>(this.adminUrl+'/products'+"?page="+nPagina+"&size="+size)
   .pipe(
     catchError(error => {
       console.error(error);
@@ -86,6 +87,13 @@ export class AdminService {
     })
   );
   }
+
+  searchProducts(pageNo: number, keyword: string){
+    const url = `${this.adminUrl}/products/search-result/${pageNo}?keyword=${keyword}`;
+    return this.http.get<IPage>(url);
+  }
+
+
 
   getProduct(id:number){
     return this.http.get<IProduct>(this.adminUrl + '/products/' + id)

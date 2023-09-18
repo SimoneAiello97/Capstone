@@ -3,6 +3,7 @@ package com.capstone.demo.security.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.capstone.demo.security.dto.ProductDto;
@@ -14,4 +15,5 @@ public interface ProductService {
     void deleteById(Long id);
     void enableById(Long id);
     Product getById(Long id);
+     Page<ProductDto> searchProducts(int pageNo, String keyword);
 }

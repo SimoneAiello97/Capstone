@@ -28,7 +28,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Users', icon: 'pi pi-user', routerLink: ['./users'] },
                     { label: 'Categorie', icon: 'pi pi-fw pi-list', routerLink: ['./categories'] },
                     { label: 'Prodotti', icon: 'pi pi-fw pi-slack', routerLink: ['./products'] },
-                    { label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate'] },
+                  /*   { label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate'] },
                     { label: 'Button', icon: 'pi pi-fw pi-box', routerLink: ['/uikit/table'] },
                     { label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
                     { label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list'] },
@@ -39,7 +39,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu'], routerLinkActiveOptions: { paths: 'subset', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' } },
                     { label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message'] },
                     { label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file'] },
-                    { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts'] },
+                    { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts'] }, */
                     { label: 'Logout', icon: 'pi pi-sign-out', routerLink: ['/uikit/misc'], command: () => this.logout() }
                 ]
             },

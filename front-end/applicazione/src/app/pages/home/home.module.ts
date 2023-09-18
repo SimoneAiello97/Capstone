@@ -6,6 +6,8 @@ import { HomeComponent } from './home.component';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { CardModule } from 'primeng/card';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     HomeRoutingModule,
     ButtonModule,
     AvatarModule,
-    AvatarGroupModule
+    AvatarGroupModule,
+    CardModule,
+    PaginatorModule
   ]
 })
 export class HomeModule { }

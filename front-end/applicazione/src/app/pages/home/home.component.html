@@ -20,4 +20,38 @@
 
 </nav>
 
+
+<div class="hero">
+
+	<div class="hero__item">
+		<h1 class="title">Lo Store giusto per te!</h1>
+	</div>
+	<div class="hero__item">
+
+		<div class="boxes">
+			<div><img src="../../../assets/logo-e-store.png" alt=""></div>
+			<div class="boxes__box"></div>
+			<div class="boxes__box"></div>
+			<div class="boxes__box"></div>
+			<div class="boxes__box"></div>
+			<div class="boxes__box"></div>
+			<div class="boxes__box"></div>
+		</div>
+	</div>
 </div>
+
+<section >
+  <p-card *ngFor="let prodotto of prodotti" header="{{prodotto.name}}" subheader="{{prodotto.salePrice}} $" [style]="{ width: '360px' }">
+    <ng-template pTemplate="header">
+        <img alt="Card" src="{{prodotto.image}}" />
+    </ng-template>
+    <p>
+        {{prodotto.description}}
+    </p>
+    <ng-template pTemplate="footer">
+        <p-button label="Add to Cart" icon="pi pi-shopping-cart"></p-button>
+        <p-button label="View Product" icon="pi pi-eye" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+    </ng-template>
+</p-card>
+</section>
+<p-paginator (onPageChange)="onPageChange($event)" [first]="0" [rows]="10" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>

@@ -1,7 +1,9 @@
+/* import { IProduct } from './../../../interfaces/IProduct'; */
 import { ICategory } from './../../../interfaces/ICategory';
 import { Component } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { IProduct } from 'src/app/interfaces/IProduct';
+import { IPage } from 'src/app/interfaces/IPage';
 
 @Component({
   selector: 'app-products',
@@ -9,6 +11,22 @@ import { IProduct } from 'src/app/interfaces/IProduct';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
+
+  protected page: IPage = {
+    content: [],
+    empty: false,
+    first: false,
+    last: false,
+    number: 0,
+    numberOfElements: 0,
+    pageable: [],
+    size: 0,
+    sort: [],
+    totalElements: 0,
+    totalPages: 0
+  };
+  keyword!:string;
+
   prodotto:Partial<IProduct> = {
     name: '',
     description: '',
@@ -20,7 +38,7 @@ export class ProductsComponent {
   }
 
 categorie!:ICategory[]
-
+pagination:any =1
 
   newProduct:Partial<IProduct>  ={
     name: '',
@@ -32,14 +50,14 @@ categorie!:ICategory[]
     category: undefined
   }
 
-  prodotti!: IProduct[]
+  prodotti: IProduct[] = []
 
-  visible: boolean = false;
+  visible4: boolean = false;
   visible2: boolean = false;
   visible3: boolean = false;
 
-    showDialog() {
-        this.visible = true;
+    showDialog4() {
+        this.visible4 = true;
     }
     showDialog2() {
       this.visible2 = true;
@@ -51,18 +69,20 @@ categorie!:ICategory[]
   }
 
   ngOnInit(){
-    this.getAllProducts();
+    this.getAllProducts(0,10);
     this.adminSvc.getCategories().subscribe(res=>
       {
         this.categorie=res
         console.log(this.categorie);
 
       });
+      //this.loadProducts()
   }
-  getAllProducts() {
-    this.adminSvc.getAllProducts().subscribe(res=> {
+  getAllProducts(n:number, n2:number) {
+    this.adminSvc.getAllProducts(n,n2).subscribe(res=> {
       console.log(res, "Lista prodotti")
-      this.prodotti = res;
+      this.page = res;
+      this.prodotti = res.content
     })
     }
 
@@ -76,7 +96,7 @@ categorie!:ICategory[]
     addProduct(){
       this.adminSvc.postProduct(this.newProduct).subscribe(res=> {
         console.log(res, "prodotto aggiunto");
-        this.getAllProducts();
+        this.getAllProducts(0,10);
         this.visible3 = false;
       })
     }
@@ -84,7 +104,7 @@ categorie!:ICategory[]
     editProduct(){
       this.adminSvc.putProduct(this.prodotto).subscribe(res=> {
       console.log(res, "prodotto aggiornato");
-      this.getAllProducts();
+      this.getAllProducts(0,10);
       this.visible2 = false;
       })
     }
@@ -92,8 +112,25 @@ categorie!:ICategory[]
     deleteProduct(id:number){
     this.adminSvc.deleteProduct(id).subscribe(res=> {
       console.log("Elemento eliminato", res)
-      this.getAllProducts();
+      this.getAllProducts(0,10);
     });
+    }
+
+    onPageChange(e: any) {
+      console.log(e);
+      this.adminSvc.getAllProducts(e.page, e.rows).subscribe(c => {
+        this.prodotti = c.content;
+      });
+    }
+
+    loadProducts() {
+      this.adminSvc
+        .searchProducts(this.page.number, this.keyword)
+        .subscribe((data) => {
+          console.log(data, "ricerca");
+
+          this.prodotti = data.content;
+        });
     }
 
 }

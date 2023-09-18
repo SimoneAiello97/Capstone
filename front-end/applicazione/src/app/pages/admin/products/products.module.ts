@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 
@@ -27,7 +28,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     InputTextModule,
     FormsModule,
     TreeSelectModule,
-    InputNumberModule
+    InputNumberModule,
+    PaginatorModule
   ]
 })
 export class ProductsModule { }

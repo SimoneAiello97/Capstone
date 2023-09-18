@@ -6,12 +6,17 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.capstone.demo.security.dto.ProductDto;
 import com.capstone.demo.security.entity.Category;
 import com.capstone.demo.security.entity.Product;
+import com.capstone.demo.security.repository.ProductPaginationRepository;
 import com.capstone.demo.security.repository.ProductRepository;
 import com.capstone.demo.security.util.ImageUpload;
 
@@ -22,13 +27,17 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Autowired
-    private ImageUpload imageUpload;
+    private ProductPaginationRepository productPageRepo;
 
     @Override
     public List<ProductDto> findAll() {
         List<Product> products = productRepository.findAll();
         List<ProductDto> productDtoList = transfer(products);
         return productDtoList;
+    }
+
+    public Page<Product> getAllPage(Pageable page){
+        return productPageRepo.findAll(page);
     }
 
 
@@ -92,6 +101,26 @@ public class ProductServiceImpl implements ProductService {
 	public Product save(Product existingProduct) {
 		return productRepository.save(existingProduct);
 	}
+
+    @Override
+    public Page<ProductDto> searchProducts(int pageNo, String keyword) {
+        Pageable pageable = PageRequest.of(pageNo, 10);
+        List<ProductDto> productDtoList = transfer(productRepository.searchProductsList(keyword));
+        Page<ProductDto> products = toPage(productDtoList, pageable);
+        return products;
+    }
+
+     private Page toPage(List<ProductDto> list , Pageable pageable){
+        if(pageable.getOffset() >= list.size()){
+            return Page.empty();
+        }
+        int startIndex = (int) pageable.getOffset();
+        int endIndex = ((pageable.getOffset() + pageable.getPageSize()) > list.size())
+                ? list.size()
+                : (int) (pageable.getOffset() + pageable.getPageSize());
+        List subList = list.subList(startIndex, endIndex);
+        return new PageImpl(subList, pageable, list.size());
+    }
 
 
 

@@ -1,16 +1,18 @@
 package com.capstone.demo.security.controller;
 
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -99,12 +101,26 @@ public class AdminController {
     
 
     @GetMapping("/products")
-    @PreAuthorize("hasRole('ADMIN')")
-    public  ResponseEntity<List<ProductDto>> getAllProducts(){
-        List<ProductDto> productDtoList = productService.findAll();
-        ResponseEntity<List<ProductDto>> resp = new ResponseEntity<List<ProductDto>>(productDtoList, HttpStatus.OK);
+    //@PreAuthorize("hasRole('ADMIN')")
+    public  ResponseEntity<Page<Product>> getAllProducts(Pageable page){
+        Page<Product> productDtoList = productService.getAllPage(page);
+        ResponseEntity<Page<Product>> resp = new ResponseEntity<Page<Product>>(productDtoList, HttpStatus.OK);
        return resp;
     }
+
+     @GetMapping("/products/search-result/{pageNo}")
+      //@PreAuthorize("hasRole('ADMIN')")
+        public ResponseEntity<Page<ProductDto>> searchProducts(@PathVariable("pageNo") int pageNo,
+                                                           @RequestParam("keyword") String keyword,
+                                                           Principal principal) {
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        Page<ProductDto> products = productService.searchProducts(pageNo, keyword);
+        return ResponseEntity.ok(products);
+    }
+    
     
 
     @GetMapping("/products/{productId}")

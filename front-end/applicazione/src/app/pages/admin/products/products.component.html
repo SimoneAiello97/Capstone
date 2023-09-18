@@ -2,9 +2,16 @@
 <p class="card mb-2" *ngIf="prodotti == undefined">
   Non ci sono prodotti
 </p>
+<div class="d-flex justify-content-between w-100">
 
-<p-button (click)="showDialog3()" icon="pi pi-plus" label="Crea nuovo Prodotto"></p-button>
-<p-dialog header="Nuova Categoria" [(visible)]="visible"[(visible)]="visible3" [style]="{width: '50vw'}" [maximizable]="true">
+
+<form (submit)="loadProducts()" class="p-input-icon-left">
+  <i type="submit" class="pi pi-search"></i>
+  <input type="text" pInputText [(ngModel)]="keyword"  [ngModelOptions]="{standalone: true}" placeholder="Inserisci la parola chiave di ricerca">
+</form>
+
+<p-button (click)="showDialog3()" icon="pi pi-plus" label="Crea nuovo Prodotto" class="d-flex justify-content-end"></p-button>
+<p-dialog header="Nuovo Prodotto" [(visible)]="visible3" [style]="{width: '50vw'}" [maximizable]="true">
 
   <form>
     <div class="d-flex flex-column gap-2 mb-2">
@@ -46,6 +53,7 @@
 
 </p-dialog>
 
+</div>
 <div class="card mt-3">
   <p-table [value]="prodotti!" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
@@ -61,7 +69,7 @@
       <tr>
         <td><p-button (click)="showDialog2()" (click)="getProduct(product.id)" icon="pi pi-file-edit"
             styleClass="p-button-rounded p-button-secondary p-button-text"></p-button></td>
-        <td (click)="showDialog()" (click)="getProduct(product.id)">{{ product.name }}</td>
+        <td (click)="showDialog4()" (click)="getProduct(product.id)">{{ product.name }}</td>
         <td>{{ product.category?.name}}</td>
         <td>{{ product.currentQuantity }}</td>
         <span><p-button (click)="deleteProduct(product.id)" icon="pi pi-trash" styleClass="p-button-danger" class="x-button"></p-button></span>
@@ -70,7 +78,7 @@
   </p-table>
 </div>
 
-<p-dialog header="Prodotto n: {{prodotto?.id}}" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
+<p-dialog header="Prodotto n: {{prodotto?.id}}" [(visible)]="visible4" [modal]="true" [style]="{ width: '50vw' }"
   [draggable]="false" [resizable]="false">
 
     <p class="m-0">
@@ -139,3 +147,5 @@
 </form>
 
 </p-dialog>
+<p-paginator (onPageChange)="onPageChange($event)" [first]="0" [rows]="10" [totalRecords]="page!.totalElements"
+[rowsPerPageOptions]="[10, 20, 30]" ></p-paginator>
