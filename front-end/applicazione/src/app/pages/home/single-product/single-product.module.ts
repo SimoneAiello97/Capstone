@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SingleProductRoutingModule } from './single-product-routing.module';
 import { SingleProductComponent } from './single-product.component';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { SingleProductComponent } from './single-product.component';
   ],
   imports: [
     CommonModule,
-    SingleProductRoutingModule
+    SingleProductRoutingModule,
+    ButtonModule
   ]
 })
 export class SingleProductModule { }

@@ -9,6 +9,7 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
 import { RouterModule } from '@angular/router';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { RouterModule } from '@angular/router';
     AvatarGroupModule,
     CardModule,
     PaginatorModule,
-    RouterModule
+    RouterModule,
+    InputTextModule
   ]
 })
 export class HomeModule { }

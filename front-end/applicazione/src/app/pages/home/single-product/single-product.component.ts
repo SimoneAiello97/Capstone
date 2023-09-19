@@ -11,6 +11,7 @@ import { IProduct } from 'src/app/interfaces/IProduct';
 export class SingleProductComponent {
 
   prodotto!:IProduct
+  
   constructor(
     private adminSvc:AdminService,
     private router:Router,

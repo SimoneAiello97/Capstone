@@ -122,7 +122,19 @@ public class ProductServiceImpl implements ProductService {
         return new PageImpl(subList, pageable, list.size());
     }
 
+    public List<Product> getRelatedProducts(Long categoryId) {
+        return productRepository.getRelatedProducts(categoryId);
+    }
 
+    public List<Product> getProductsInCategory(Long categoryId) {
+        return productRepository.getProductsInCategory(categoryId);
+    }
 
-    
+    public List<Product> filterHighPrice() {
+        return productRepository.filterHighPrice();
+    }
+
+    public List<Product> filterLowPrice() {
+        return productRepository.filterLowPrice();
+    }
 }

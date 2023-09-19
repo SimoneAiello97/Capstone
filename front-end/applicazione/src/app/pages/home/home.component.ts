@@ -3,6 +3,8 @@ import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { AdminService } from '../admin/admin.service';
 import { IProduct } from 'src/app/interfaces/IProduct';
+import { IPage } from 'src/app/interfaces/IPage';
+import { HomeService } from './home.service';
 
 
 @Component({
@@ -13,9 +15,23 @@ import { IProduct } from 'src/app/interfaces/IProduct';
 export class HomeComponent {
   prodotti!:IProduct[]
   nomeUtente!:string
-  constructor(private authSvc:AuthService, private adminSvc:AdminService, private router: Router){}
+  protected page: IPage = {
+    content: [],
+    empty: false,
+    first: false,
+    last: false,
+    number: 0,
+    numberOfElements: 0,
+    pageable: [],
+    size: 0,
+    sort: [],
+    totalElements: 0,
+    totalPages: 0
+  };
+  keyword!:string;
+  constructor(private authSvc:AuthService, private adminSvc:AdminService,private homeSvc:HomeService, private router: Router){}
   ngOnInit(){
-    this.adminSvc.getAllProducts(0,10).subscribe(res=>{
+    this.adminSvc.getAllProducts(0,4).subscribe(res=>{
       this.prodotti=res.content
     })
     this.initAnimation();
@@ -85,12 +101,22 @@ export class HomeComponent {
     });
   }
 
-  /* getSingoloProdotto(id:number){
-    this.adminSvc.getProduct(id).subscribe(res =>{
-      console.log(res, "Singolo prodotto");
+  loadProducts() {
+    this.adminSvc
+      .searchProducts(0, this.keyword)
+      .subscribe((data) => {
+        console.log(data, "ricerca");
 
-      this.router.navigate(['../home/single-product']);
-    }
+        this.prodotti = data.content;
+      });
+  }
+
+  filterHighPrice(){
+    this.homeSvc.filterHighPrice().subscribe(
+      res=>{
+        this.prodotti = res
+
+      }
     )
-  } */
+  }
 }

@@ -40,18 +40,34 @@
 	</div>
 </div>
 
-<section >
-  <p-card *ngFor="let prodotto of prodotti" header="{{prodotto.name}}" subheader="{{prodotto.salePrice}} $" [style]="{ width: '360px' }">
+<section class="container-fluid">
+  <div class="row">
+    <form (submit)="loadProducts()" class="p-input-icon-left">
+      <i type="submit" class="pi pi-search"></i>
+      <input type="text" pInputText [(ngModel)]="keyword"  [ngModelOptions]="{standalone: true}" placeholder="Inserisci la parola chiave di ricerca">
+    </form>
+
+    <button pButton pRipple label="Submit" class="p-button-success" (click)="filterHighPrice()"></button>
+  </div>
+<div class="row">
+  <div *ngFor="let prodotto of prodotti" class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 d-flex justify-content-center">
+
+
+  <p-card  header="{{prodotto.name}}" subheader="{{prodotto.salePrice}} $" [style]="{ width: '360px', height: '540px'}">
     <ng-template pTemplate="header">
-        <img alt="Card" src="{{prodotto.image}}" />
+        <img alt="Card" src="{{prodotto.image}}" class="immagine img-fluid"/>
     </ng-template>
     <p>
         {{prodotto.description}}
     </p>
     <ng-template pTemplate="footer">
-        <p-button label="Add to Cart" icon="pi pi-shopping-cart"></p-button>
-        <p-button label="View Product" icon="pi pi-eye" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }" [routerLink]="['single-product',prodotto.id]"></p-button>
+        <p-button label="Add to Cart" icon="pi pi-shopping-cart" styleClass="p-button-warning"></p-button>
+        <p-button label="View Product" icon="pi pi-eye" styleClass="p-button-secondary bg-dark" [style]="{ 'margin-left': '.5em' }" [routerLink]="['single-product',prodotto.id]"></p-button>
     </ng-template>
 </p-card>
+</div>
+
+</div>
+
 </section>
-<p-paginator (onPageChange)="onPageChange($event)" [first]="0" [rows]="10" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+<p-paginator (onPageChange)="onPageChange($event)" [first]="0" [rows]="4" [totalRecords]="120" [rowsPerPageOptions]="[4, 8, 12]"></p-paginator>
