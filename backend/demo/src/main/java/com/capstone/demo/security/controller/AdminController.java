@@ -60,7 +60,7 @@ public class AdminController {
     private CategoryServiceImpl categoryService;
 
     @GetMapping("/categories")
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Category>> getAllcategories(){
         List<Category> categories = categoryService.findAll();
        ResponseEntity<List<Category>> resp = new ResponseEntity<List<Category>>(categories, HttpStatus.OK);

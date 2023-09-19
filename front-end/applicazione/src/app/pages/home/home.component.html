@@ -46,9 +46,21 @@
       <i type="submit" class="pi pi-search"></i>
       <input type="text" pInputText [(ngModel)]="keyword"  [ngModelOptions]="{standalone: true}" placeholder="Inserisci la parola chiave di ricerca">
     </form>
+    <button pButton pRipple icon="pi pi-times"  label="reset" class="p-button-danger" (click)="reset()"></button>
+    <button pButton pRipple icon="pi pi-sort-amount-down-alt" label="low" class="p-button-success" (click)="filterLowPrice()"></button>
+    <button pButton pRipple icon="pi pi-sort-amount-up" label="high" class="p-button-primary" (click)="filterHighPrice()"></button>
 
-    <button pButton pRipple label="Submit" class="p-button-success" (click)="filterHighPrice()"></button>
-  </div>
+
+   <select class="form-select" [(ngModel)]="numberCategory" [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelectChange($event)">
+    <option [value]="" disabled selected>Seleziona una categoria</option>
+    <ng-container *ngFor="let categoria of categorie">
+      <option type="submit" [value]="categoria.id" >{{categoria.name}}</option>
+    </ng-container>
+  </select>
+
+
+</div>
+
 <div class="row">
   <div *ngFor="let prodotto of prodotti" class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 d-flex justify-content-center">
 
@@ -70,4 +82,4 @@
 </div>
 
 </section>
-<p-paginator (onPageChange)="onPageChange($event)" [first]="0" [rows]="4" [totalRecords]="120" [rowsPerPageOptions]="[4, 8, 12]"></p-paginator>
+<p-paginator (onPageChange)="onPageChange($event)" [first]="0" [rows]="4" [totalRecords]="120" [rowsPerPageOptions]="[4, 8, 12]" ></p-paginator>

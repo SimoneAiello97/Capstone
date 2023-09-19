@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { IPage } from 'src/app/interfaces/IPage';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { environment } from 'src/environments/environment.development';
 
@@ -20,14 +22,14 @@ export class HomeService {
   }
 
   filterLowPrice(){
-    return this.http.get(this.productUrls+'/lowPrice');
+    return this.http.get<IProduct[]>(this.productUrls+'/lowPrice');
   }
 
   filterCategory(id:number){
-    return this.http.get(this.productUrls+'/inCategory/'+id);
+    return this.http.get<IProduct[]>(this.productUrls+'/inCategory/'+id);
   }
 
   relatedProducts(id:number){
-    return this.http.get(this.productUrls+'/related/'+id);
+    return this.http.get<IProduct[]>(this.productUrls+'/related/'+id);
   }
 }

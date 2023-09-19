@@ -10,6 +10,7 @@ import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
 import { RouterModule } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
+import { TreeSelectModule } from 'primeng/treeselect';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { InputTextModule } from 'primeng/inputtext';
     CardModule,
     PaginatorModule,
     RouterModule,
-    InputTextModule
+    InputTextModule,
+    TreeSelectModule
   ]
 })
 export class HomeModule { }

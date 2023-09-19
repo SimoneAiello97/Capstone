@@ -5,6 +5,7 @@ import { AdminService } from '../admin/admin.service';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { IPage } from 'src/app/interfaces/IPage';
 import { HomeService } from './home.service';
+import { ICategory } from 'src/app/interfaces/ICategory';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { HomeService } from './home.service';
 })
 export class HomeComponent {
   prodotti!:IProduct[]
+  categorie!:any[]
   nomeUtente!:string
   protected page: IPage = {
     content: [],
@@ -28,9 +30,11 @@ export class HomeComponent {
     totalElements: 0,
     totalPages: 0
   };
+  numberCategory!:number
   keyword!:string;
   constructor(private authSvc:AuthService, private adminSvc:AdminService,private homeSvc:HomeService, private router: Router){}
   ngOnInit(){
+    this.allCategories()
     this.adminSvc.getAllProducts(0,4).subscribe(res=>{
       this.prodotti=res.content
     })
@@ -113,10 +117,41 @@ export class HomeComponent {
 
   filterHighPrice(){
     this.homeSvc.filterHighPrice().subscribe(
-      res=>{
-        this.prodotti = res
-
+      (res: IProduct[]) => {
+        this.prodotti = res;
       }
-    )
+    );
+  }
+
+  filterLowPrice(){
+    this.homeSvc.filterLowPrice().subscribe(
+      res => {
+        this.prodotti = res
+      })
+  }
+
+  allCategories(){
+    this.adminSvc.getCategories().subscribe(res =>{
+
+      this.categorie = res
+      console.log(this.categorie);
+    })
+  }
+
+  onSelectChange(id:number){
+    this.filterCategory(id)
+  }
+
+  filterCategory(id:number){
+    this.homeSvc.filterCategory(id).subscribe(res=>{
+      this.prodotti = res
+    })
+  }
+
+  reset(){
+    this.adminSvc.getAllProducts(0,4).subscribe(res=>{
+      this.prodotti=res.content
+      this.keyword = ''
+    })
   }
 }

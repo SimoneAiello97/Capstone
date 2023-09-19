@@ -1,3 +1,4 @@
+import { HomeService } from './../home.service';
 import { Component } from '@angular/core';
 import { AdminService } from '../../admin/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,9 +12,13 @@ import { IProduct } from 'src/app/interfaces/IProduct';
 export class SingleProductComponent {
 
   prodotto!:IProduct
-  
+
+  prodottiCorrelati!:IProduct[]
+
+
   constructor(
     private adminSvc:AdminService,
+    private homeSvc:HomeService,
     private router:Router,
     private route:ActivatedRoute
     ){}
@@ -27,10 +32,15 @@ export class SingleProductComponent {
           this.prodotto = prodotto
           console.log(this.prodotto);
 
-      })
-    })
+            this.homeSvc.relatedProducts(prodotto.category.id as number).subscribe((res)=>{
+                    console.log(res);
 
+                    this.prodottiCorrelati = res
+                })
+      });
 
+  })}
 
-  }
 }
+
+
