@@ -1,10 +1,12 @@
+<app-navbar></app-navbar>
+
 <div class="container-fluid py-2">
 
   <div class="row ">
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 d-flex justify-content-center">
        <img src="{{prodotto.image}}" alt="" class="img-fluid">
     </div>
-    <div class="col">
+    <div class="col d-flex flex-column justify-content-center">
       <h1>
         {{prodotto.name}}
       </h1>
@@ -17,12 +19,31 @@
         {{prodotto.description}}
        </p>
        <p-button label="Add to Cart" icon="pi pi-shopping-cart" styleClass="p-button-warning"></p-button>
-    </div>
+       <p-button label="Indietro"  styleClass="p-button-secondary p-button-text" [routerLink]="['/home']"></p-button>
+      </div>
   </div>
-  <div class="row">
+  <div class="row card mt-4">
      <h2>Prodotti Correlati:</h2>
-    <div class="col" *ngFor="let prodottoCorrelato of prodottiCorrelati">
-      <p>{{prodottoCorrelato.name}}</p>
-    </div>
+
+
+      <p-carousel [value]="prodottiCorrelati" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+          <ng-template let-product pTemplate="item">
+              <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                  <div class="mb-3">
+                      <img src="{{ product.image }}" [alt]="product.name" class="w-50 shadow-2" />
+                  </div>
+                  <div>
+                      <h4 class="mb-1">{{ product.name }}</h4>
+                      <h6 class="mt-0 mb-3">{{ '$' + product.salePrice }}</h6>
+                      <!-- <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"></p-tag> -->
+                      <div class="car-buttons mt-5">
+                          <p-button type="button" styleClass="p-button-secondary bg-dark p-button-rounded mr-2" icon="pi pi-eye" [routerLink]="['../',product.id]"></p-button>
+                      </div>
+                  </div>
+              </div>
+          </ng-template>
+      </p-carousel>
   </div>
-</div>
+
+  </div>
+

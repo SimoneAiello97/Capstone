@@ -11,11 +11,13 @@ import { PaginatorModule } from 'primeng/paginator';
 import { RouterModule } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { TreeSelectModule } from 'primeng/treeselect';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { TreeSelectModule } from 'primeng/treeselect';
     PaginatorModule,
     RouterModule,
     InputTextModule,
-    TreeSelectModule
+    TreeSelectModule,
+    DropdownModule
   ]
 })
 export class HomeModule { }

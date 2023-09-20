@@ -42,24 +42,37 @@
 
 <section class="container-fluid">
   <div class="row">
-    <form (submit)="loadProducts()" class="p-input-icon-left">
-      <i type="submit" class="pi pi-search"></i>
-      <input type="text" pInputText [(ngModel)]="keyword"  [ngModelOptions]="{standalone: true}" placeholder="Inserisci la parola chiave di ricerca">
-    </form>
-    <button pButton pRipple icon="pi pi-times"  label="reset" class="p-button-danger" (click)="reset()"></button>
-    <button pButton pRipple icon="pi pi-sort-amount-down-alt" label="low" class="p-button-success" (click)="filterLowPrice()"></button>
-    <button pButton pRipple icon="pi pi-sort-amount-up" label="high" class="p-button-primary" (click)="filterHighPrice()"></button>
+    <div class="card d-flex flex-column flex-md-row justify-content-center gap-3">
 
+      <form (submit)="loadProducts()" class="p-float-label">
+        <!-- <i  type="submit" class="pi pi-search"></i> -->
+        <input id="username" type="text" pInputText [(ngModel)]="keyword" [ngModelOptions]="{standalone: true}">
+        <label htmlFor="username">Cosa cerchi?</label>
+      </form>
+      <p-button icon="pi pi-sort-amount-down-alt" styleClass="p-button-rounded p-button-secondary  p-button-outlined"
+        (click)="filterLowPrice()"></p-button>
 
-   <select class="form-select" [(ngModel)]="numberCategory" [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelectChange($event)">
-    <option [value]="" disabled selected>Seleziona una categoria</option>
-    <ng-container *ngFor="let categoria of categorie">
-      <option type="submit" [value]="categoria.id" >{{categoria.name}}</option>
-    </ng-container>
-  </select>
+      <p-button icon="pi pi-sort-amount-up" styleClass="p-button-rounded p-button-secondary  p-button-outlined"
+        (click)="filterHighPrice()"></p-button>
 
+      <!--
+      <select  class="form-select" [(ngModel)]="numberCategory" [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelectChange($event)">
 
-</div>
+        <option [value]="" selected disabled>una categoria</option>
+
+        <ng-container *ngFor="let categoria of categorie">
+        <option selected type="submit" [value]="categoria.id" >{{categoria.name}}</option>
+      </ng-container>
+    </select> -->
+
+      <p-dropdown placeholder="Seleziona un Categoria" [options]="categorie" [(ngModel)]="numberCategory"
+        optionLabel="name" [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelectChange($event.id)"></p-dropdown>
+
+      <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger  p-button-outlined"
+        (click)="reset()"></p-button>
+    </div>
+  </div>
+
 
 <div class="row">
   <div *ngFor="let prodotto of prodotti" class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 d-flex justify-content-center">

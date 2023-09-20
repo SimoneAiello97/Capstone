@@ -40,7 +40,7 @@ public class User {
     @OneToOne(mappedBy = "customer")
     private ShoppingCart shoppingCart;
 
-        @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer")
     private List<Order> orders; 
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

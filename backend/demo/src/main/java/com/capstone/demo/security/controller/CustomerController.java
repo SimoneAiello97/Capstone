@@ -1,5 +1,6 @@
 package com.capstone.demo.security.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +9,26 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.demo.security.entity.Category;
 import com.capstone.demo.security.entity.Product;
+import com.capstone.demo.security.entity.ShoppingCart;
+import com.capstone.demo.security.entity.User;
 import com.capstone.demo.security.service.CategoryService;
 import com.capstone.demo.security.service.ProductServiceImpl;
+import com.capstone.demo.security.service.ShoppingCartServiceImpl;
+import com.capstone.demo.security.service.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -29,6 +40,12 @@ public class CustomerController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ShoppingCartServiceImpl cartService;
 
     @GetMapping("/products/highPrice")
     @PreAuthorize("hasRole('USER')")
@@ -60,5 +77,35 @@ public class CustomerController {
         List<Product> productDtoList = productService.getRelatedProducts(id);
         ResponseEntity<List<Product>> resp = new ResponseEntity<List<Product>>(productDtoList, HttpStatus.OK);
        return resp;
+    }
+
+    @GetMapping("/cart")
+    @PreAuthorize("hasRole('USER')")
+public ResponseEntity<ShoppingCart> cart() {
+    String email = SecurityContextHolder.getContext().getAuthentication().getName();;
+    User customer = userService.getByEmail(email);
+    ShoppingCart shoppingCart = customer.getShoppingCart();
+    System.out.println(shoppingCart + " --> Cart dell'utente");
+
+    ResponseEntity<ShoppingCart> resp =new ResponseEntity<ShoppingCart>(shoppingCart, HttpStatus.OK);
+        return resp;
+   
+}
+
+ @PostMapping("/addToCart/{id}")
+ @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<ShoppingCart> addItemToCart(
+            @PathVariable("id")  Long productId,
+            @RequestParam(value = "quantity", required = false, defaultValue = "1") int quantity
+           ){
+
+       
+        Product product = productService.getById(productId);
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();;
+        User customer = userService.getByEmail(email);
+
+        ShoppingCart cart = cartService.addItemToCart(product, quantity, customer);
+         ResponseEntity<ShoppingCart> resp =new ResponseEntity<ShoppingCart>(cart, HttpStatus.OK);
+        return resp;
     }
 }

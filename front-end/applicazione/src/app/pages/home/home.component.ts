@@ -30,7 +30,9 @@ export class HomeComponent {
     totalElements: 0,
     totalPages: 0
   };
-  numberCategory!:number
+
+  numberCategory:number|undefined
+
   keyword!:string;
   constructor(private authSvc:AuthService, private adminSvc:AdminService,private homeSvc:HomeService, private router: Router){}
   ngOnInit(){
@@ -152,6 +154,7 @@ export class HomeComponent {
     this.adminSvc.getAllProducts(0,4).subscribe(res=>{
       this.prodotti=res.content
       this.keyword = ''
+      this.numberCategory =undefined;
     })
   }
 }

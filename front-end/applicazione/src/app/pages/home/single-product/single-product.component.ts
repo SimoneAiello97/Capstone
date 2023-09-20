@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { AdminService } from '../../admin/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from 'src/app/interfaces/IProduct';
+import {NavbarComponent} from '../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-single-product',
@@ -14,6 +15,8 @@ export class SingleProductComponent {
   prodotto!:IProduct
 
   prodottiCorrelati!:IProduct[]
+
+  responsiveOptions: any[] | undefined;
 
 
   constructor(
@@ -39,7 +42,26 @@ export class SingleProductComponent {
                 })
       });
 
-  })}
+  })
+  this.responsiveOptions = [
+    {
+        breakpoint: '1199px',
+        numVisible: 1,
+        numScroll: 1
+    },
+    {
+        breakpoint: '991px',
+        numVisible: 2,
+        numScroll: 1
+    },
+    {
+        breakpoint: '767px',
+        numVisible: 1,
+        numScroll: 1
+    }
+];
+
+}
 
 }
 

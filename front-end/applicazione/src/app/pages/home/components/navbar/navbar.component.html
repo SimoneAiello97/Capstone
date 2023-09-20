@@ -1,0 +1,20 @@
+<nav class="top-bar sticky-top navbarr">
+
+  <div class="container">
+  <div class="links">
+    <img class="logo" src="../../../assets/logo-e-store.png" alt="logo">
+
+
+  </div>
+  <div class="button-group d-flex align-items-center justify-content-between">
+    <p-avatar size="large" shape="circle" [style]="{ 'background-color': '#f9af23', color: '#ffffff' }">
+      <span class="text-base">{{nomeUtente.charAt(0).toUpperCase()}}</span>
+  </p-avatar>
+
+    <p-button label="Logout" styleClass="p-button-rounded p-button-secondary ms-2 bg-dark" (click)="logout()"></p-button>
+
+  </div>
+</div>
+
+</nav>
+
