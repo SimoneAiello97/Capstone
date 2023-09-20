@@ -13,6 +13,7 @@ export class HomeService {
 
   apiUrl:string = environment.url;
   productUrls:string = this.apiUrl + 'customers/products';
+  cartUrl:string = this.apiUrl + 'customers';
 
   constructor(private http:HttpClient, private router: Router) { }
 
@@ -33,7 +34,11 @@ export class HomeService {
     return this.http.get<IProduct[]>(this.productUrls+'/related/'+id);
   }
 
-  /* getCart(){
-    return this.http.get<any>(this.apiUrl + 'cutomers/cart')
-  } */
+  getCart(){
+    return this.http.get<any>(this.cartUrl + '/cart')
+  }
+
+  addToCart(id:number){
+    return this.http.post<any>(this.cartUrl + '/addToCart/'+ id, id)
+  }
 }

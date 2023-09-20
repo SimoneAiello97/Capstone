@@ -18,7 +18,7 @@
        <p>
         {{prodotto.description}}
        </p>
-       <p-button label="Add to Cart" icon="pi pi-shopping-cart" styleClass="p-button-warning"></p-button>
+       <p-button label="Add to Cart" icon="pi pi-shopping-cart" styleClass="p-button-warning" (click)="addToCart(prodotto.id)"></p-button>
        <p-button label="Indietro"  styleClass="p-button-secondary p-button-text" [routerLink]="['/home']"></p-button>
       </div>
   </div>

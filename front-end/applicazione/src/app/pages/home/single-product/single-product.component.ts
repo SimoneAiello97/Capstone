@@ -11,6 +11,7 @@ import {NavbarComponent} from '../components/navbar/navbar.component';
   styleUrls: ['./single-product.component.scss']
 })
 export class SingleProductComponent {
+  [x: string]: any;
 
   prodotto!:IProduct
 
@@ -60,11 +61,19 @@ export class SingleProductComponent {
         numScroll: 1
     }
 ];
-this.adminSvc.getCart().subscribe(res=>{
+this.homeSvc.getCart().subscribe(res=>{
   console.log(res);
 
 })
 
+}
+
+addToCart(id:number){
+  this.homeSvc.addToCart(id).subscribe(res=>{
+    this.homeSvc.getCart().subscribe(res =>{
+      console.log(res);
+    })
+  })
 }
 
 }

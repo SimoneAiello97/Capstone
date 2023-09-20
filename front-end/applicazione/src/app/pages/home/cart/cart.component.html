@@ -1,1 +1,21 @@
-<p>cart works!</p>
+<div >
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">quantita'</th>
+        <th scope="col">prezzo</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of items">
+      <tr>
+        <td>{{item.product.name}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.totalPrice}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+  <p></p>
+
+</div>

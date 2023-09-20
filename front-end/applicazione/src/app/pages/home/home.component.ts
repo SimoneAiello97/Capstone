@@ -41,7 +41,9 @@ export class HomeComponent {
     this.adminSvc.getAllProducts(0,4).subscribe(res=>{
       this.prodotti=res.content
     })
-    this.adminSvc.getCart().subscribe(res =>{
+    this.homeSvc.getCart().subscribe(res =>{
+      console.log(res);
+
       this.numeroCarrello = res.cartItem.length;
 
     })
@@ -160,6 +162,17 @@ export class HomeComponent {
       this.prodotti=res.content
       this.keyword = ''
       this.numberCategory =undefined;
+    })
+  }
+
+  addToCart(id:number){
+    this.homeSvc.addToCart(id).subscribe(res=>{
+      this.homeSvc.getCart().subscribe(res =>{
+        console.log(res);
+
+        this.numeroCarrello = res.cartItem.length;
+
+      })
     })
   }
 }
