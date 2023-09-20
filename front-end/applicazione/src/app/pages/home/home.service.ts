@@ -32,4 +32,8 @@ export class HomeService {
   relatedProducts(id:number){
     return this.http.get<IProduct[]>(this.productUrls+'/related/'+id);
   }
+
+  /* getCart(){
+    return this.http.get<any>(this.apiUrl + 'cutomers/cart')
+  } */
 }

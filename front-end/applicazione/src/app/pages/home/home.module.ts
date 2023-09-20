@@ -13,6 +13,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { DropdownModule } from 'primeng/dropdown';
 
+import { BadgeModule } from 'primeng/badge';
+
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { DropdownModule } from 'primeng/dropdown';
     RouterModule,
     InputTextModule,
     TreeSelectModule,
-    DropdownModule
+    DropdownModule,
+    BadgeModule
   ]
 })
 export class HomeModule { }

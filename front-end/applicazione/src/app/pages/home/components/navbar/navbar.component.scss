@@ -3,6 +3,9 @@
 justify-content: center;
 background-color: white;
 transition: background-color 0.5s ease-in-out;
+i.pi-shopping-cart{
+  cursor: pointer;
+}
 .container{
   width: 1400px;
   display: flex;

@@ -31,6 +31,7 @@ export class HomeComponent {
     totalPages: 0
   };
 
+  numeroCarrello:number|undefined
   numberCategory:number|undefined
 
   keyword!:string;
@@ -39,6 +40,10 @@ export class HomeComponent {
     this.allCategories()
     this.adminSvc.getAllProducts(0,4).subscribe(res=>{
       this.prodotti=res.content
+    })
+    this.adminSvc.getCart().subscribe(res =>{
+      this.numeroCarrello = res.cartItem.length;
+
     })
     this.initAnimation();
     const utente:any = localStorage.getItem('user')

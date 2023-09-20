@@ -11,9 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -108,4 +110,36 @@ public ResponseEntity<ShoppingCart> cart() {
          ResponseEntity<ShoppingCart> resp =new ResponseEntity<ShoppingCart>(cart, HttpStatus.OK);
         return resp;
     }
+
+@PutMapping("/updateCart/{id}/{quantity}")
+@PreAuthorize("hasRole('USER')")
+public ResponseEntity<ShoppingCart> updateCart(
+        @PathVariable("id") Long productId,
+        @PathVariable("quantity") int quantity
+) {
+    String email = SecurityContextHolder.getContext().getAuthentication().getName();
+    User customer = userService.getByEmail(email);
+    Product product = productService.getById(productId);
+    
+    ShoppingCart cart = cartService.updateItemInCart(product, quantity, customer);
+
+    ResponseEntity<ShoppingCart> resp = new ResponseEntity<>(cart, HttpStatus.OK);
+    return resp;
+}
+
+@DeleteMapping("/deleteFromCart/{id}")
+@PreAuthorize("hasRole('USER')")
+public ResponseEntity<ShoppingCart> deleteItemFromCart(
+        @PathVariable("id") Long productId
+) {
+    String email = SecurityContextHolder.getContext().getAuthentication().getName();
+    User customer = userService.getByEmail(email);
+    Product product = productService.getById(productId);
+
+    ShoppingCart cart = cartService.deleteItemFromCart(product, customer);
+
+    ResponseEntity<ShoppingCart> resp = new ResponseEntity<>(cart, HttpStatus.OK);
+    return resp;
+}
+
 }

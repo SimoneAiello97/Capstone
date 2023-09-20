@@ -13,8 +13,9 @@
         <span class="text-base">{{nomeUtente.charAt(0).toUpperCase()}}</span>
     </p-avatar>
 
-      <p-button label="Logout" styleClass="p-button-rounded p-button-secondary ms-2 bg-dark" (click)="logout()"></p-button>
 
+    <p-button label="Logout" styleClass="p-button-rounded p-button-secondary ms-2 bg-dark" (click)="logout()"></p-button>
+    <i class="pi pi-shopping-cart mr-4 p-text-secondary ms-4" pBadge style="font-size: 2rem" value="{{numeroCarrello}}" [routerLink]="['cart']"></i>
     </div>
   </div>
 

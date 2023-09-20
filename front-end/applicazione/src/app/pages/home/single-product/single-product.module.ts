@@ -9,6 +9,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { BadgeModule } from 'primeng/badge';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     CardModule,
     CarouselModule,
     AvatarModule,
-    AvatarGroupModule
+    AvatarGroupModule,
+    BadgeModule
 
   ]
 })

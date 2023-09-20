@@ -144,4 +144,8 @@ export class AdminService {
       );
   }
 
+
+  getCart(){
+    return this.http.get<any>(this.apiUrl + 'customers/cart')
+  }
 }

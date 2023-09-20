@@ -60,6 +60,10 @@ export class SingleProductComponent {
         numScroll: 1
     }
 ];
+this.adminSvc.getCart().subscribe(res=>{
+  console.log(res);
+
+})
 
 }
 

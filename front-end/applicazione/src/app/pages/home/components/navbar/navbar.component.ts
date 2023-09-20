@@ -11,8 +11,14 @@ import { AuthService } from 'src/app/pages/auth/auth.service';
 })
 export class NavbarComponent {
   nomeUtente!:string
+  numeroCarrello:number|undefined
   constructor(private authSvc:AuthService, private adminSvc:AdminService,private homeSvc:HomeService, private router: Router){}
   ngOnInit(){
+    this.adminSvc.getCart().subscribe(res =>{
+      this.numeroCarrello = res.cartItem.length;
+
+    })
+
     const utente:any = localStorage.getItem('user')
     const utenteparsato = JSON.parse(utente)
     console.log(utenteparsato);

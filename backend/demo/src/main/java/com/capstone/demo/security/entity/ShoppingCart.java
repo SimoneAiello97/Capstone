@@ -29,7 +29,7 @@ public class ShoppingCart {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User customer;
 
-    @JsonIgnore
+    //@JsonIgnore
      @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
     private Set<CartItem> cartItem;
 }

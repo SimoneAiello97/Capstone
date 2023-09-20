@@ -1,5 +1,7 @@
 package com.capstone.demo.security.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,10 +22,12 @@ public class CartItem {
     private int quantity;
     private double totalPrice;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "shopping_cart_id", referencedColumnName = "shopping_cart_id")
     private ShoppingCart cart;
 
+    //@JsonIgnore
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
