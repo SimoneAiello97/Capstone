@@ -41,4 +41,12 @@ export class HomeService {
   addToCart(id:number){
     return this.http.post<any>(this.cartUrl + '/addToCart/'+ id, id)
   }
+
+  putCart(idP:number, n:number){
+    return this.http.put<any>(this.cartUrl + '/updateCart/'+ idP+ '/' + n, n)
+  }
+
+  deleteFromCart(id:number){
+    return this.http.delete<any>(this.cartUrl + '/deleteFromCart/' + id)
+  }
 }
