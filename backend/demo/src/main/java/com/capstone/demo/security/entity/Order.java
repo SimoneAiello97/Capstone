@@ -18,12 +18,12 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private Long id;
-    private Date orderDate;
-    private Date deliveryDate;
+    /* private Date orderDate;
+    private Date deliveryDate; */
     private double totalPrice;
-    private double shippingFee;
+   /*  private double shippingFee;
     private String orderStatus;
-    private String notes;
+    private String notes; */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private User customer;

@@ -1,1 +1,11 @@
-<p>checkout works!</p>
+
+ <div class="container">
+ <h2 class="mt-5 mb-4">Pagamento</h2>
+ <div class="col-md-5 mb-2">
+  Totale prodotti: {{cart.totalItems}}
+  <ul *ngFor="let item of items">
+    <li>{{item.product.name}}</li>
+  </ul>
+</div>
+<button (click)="makePayment(cart.totalPrices)" class="btn btn-danger btn-block">Pay ${{cart.totalPrices}}</button>
+

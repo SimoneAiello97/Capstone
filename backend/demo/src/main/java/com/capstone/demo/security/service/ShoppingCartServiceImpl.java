@@ -13,6 +13,8 @@ import com.capstone.demo.security.entity.User;
 import com.capstone.demo.security.repository.CartItemRepository;
 import com.capstone.demo.security.repository.ShoppingCartRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
@@ -144,5 +146,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
 
         return totalPrice;
+    }
+
+    @Transactional
+    public void deleteCartById(Long id) {
+        ShoppingCart shoppingCart = cartRepository.getById(id);
+        for (CartItem cartItem : shoppingCart.getCartItem()) {
+            itemRepository.deleteById(cartItem.getId());
+        }
+        /* shoppingCart.setCustomer(null);
+        shoppingCart.getCartItem().clear();
+        shoppingCart.setTotalPrices(0);
+        shoppingCart.setTotalItems(0);
+         cartRepository.save(shoppingCart); */
+        
     }
 }

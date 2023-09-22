@@ -15,6 +15,7 @@ export class HomeService {
   productUrls:string = this.apiUrl + 'customers/products';
   cartUrl:string = this.apiUrl + 'customers';
 
+  ordineEffetuato:string ='ordine effettuato'
   constructor(private http:HttpClient, private router: Router) { }
 
 
@@ -48,5 +49,9 @@ export class HomeService {
 
   deleteFromCart(id:number){
     return this.http.delete<any>(this.cartUrl + '/deleteFromCart/' + id)
+  }
+
+  addOrder(){
+    return this.http.post<any>(this.cartUrl + '/addOrder', this.ordineEffetuato)
   }
 }

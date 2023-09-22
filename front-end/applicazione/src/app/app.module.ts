@@ -12,6 +12,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ModelComponent } from './model/model.component';
 import { AdminInterceptor } from './pages/admin/admin.interceptor';
 
+import { NgxStripeModule } from 'ngx-stripe';
+import { environment } from 'src/environments/environment.development';
+
 
 
 @NgModule({
@@ -26,6 +29,7 @@ import { AdminInterceptor } from './pages/admin/admin.interceptor';
     BrowserAnimationsModule,
     NoopAnimationsModule,
     AppLayoutModule,
+    NgxStripeModule.forRoot(environment.stripe.publicKey)
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

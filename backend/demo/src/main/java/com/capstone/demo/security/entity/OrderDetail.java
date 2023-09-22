@@ -20,7 +20,7 @@ public class OrderDetail {
     private double totalPrice;
     private double unitPrice;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", referencedColumnName = "order_id")
     private Order order;
 

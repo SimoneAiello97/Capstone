@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.demo.security.entity.Category;
+import com.capstone.demo.security.entity.Order;
 import com.capstone.demo.security.entity.Product;
 import com.capstone.demo.security.entity.ShoppingCart;
 import com.capstone.demo.security.entity.User;
 import com.capstone.demo.security.service.CategoryService;
+import com.capstone.demo.security.service.OrderServiceImpl;
 import com.capstone.demo.security.service.ProductServiceImpl;
 import com.capstone.demo.security.service.ShoppingCartServiceImpl;
 import com.capstone.demo.security.service.UserService;
@@ -48,6 +50,9 @@ public class CustomerController {
 
     @Autowired
     private ShoppingCartServiceImpl cartService;
+
+    @Autowired
+    private OrderServiceImpl orderService;
 
     @GetMapping("/products/highPrice")
     @PreAuthorize("hasRole('USER')")
@@ -139,6 +144,37 @@ public ResponseEntity<ShoppingCart> deleteItemFromCart(
     ShoppingCart cart = cartService.deleteItemFromCart(product, customer);
 
     ResponseEntity<ShoppingCart> resp = new ResponseEntity<>(cart, HttpStatus.OK);
+    return resp;
+}
+
+@GetMapping("/allOrders")
+public ResponseEntity<List<Order>> getAllOrders(){
+    
+    List<Order> orderList = orderService.findALlOrders();
+
+    ResponseEntity<List<Order>> resp = new ResponseEntity<List<Order>>(orderList, HttpStatus.OK);
+    return resp;
+}
+
+@GetMapping("/allOrdersCustomer")
+@PreAuthorize("hasRole('USER')")
+public ResponseEntity<List<Order>> getAllOrdersCustomer(){
+    String email = SecurityContextHolder.getContext().getAuthentication().getName();
+    User customer = userService.getByEmail(email);
+    List<Order> orderList = customer.getOrders();
+
+    ResponseEntity<List<Order>> resp = new ResponseEntity<List<Order>>(orderList, HttpStatus.OK);
+    return resp;
+}
+
+@PostMapping("/addOrder")
+@PreAuthorize("hasRole('USER')")
+public ResponseEntity<Order> addOrder(){
+    String email = SecurityContextHolder.getContext().getAuthentication().getName();
+    User customer = userService.getByEmail(email);
+    ShoppingCart cart = customer.getShoppingCart();
+    Order order = orderService.save(cart);
+     ResponseEntity<Order> resp = new ResponseEntity<Order>(order, HttpStatus.OK);
     return resp;
 }
 
