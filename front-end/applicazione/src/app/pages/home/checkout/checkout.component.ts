@@ -46,10 +46,11 @@ export class CheckoutComponent {
       key: this.stripeAPIKey,
       locale: 'auto',
 
-      token: function (stripeToken: any) {
+      token: (stripeToken: any) =>{
         console.log(stripeToken);
 
-        //alert('Stripe token generated!');
+        //alert('Pagamento effettuato');
+        this.addOrder()
       },
 
     });
@@ -61,11 +62,13 @@ console.log(paymentHandler.open);
       amount: amount * 100,
     });
 
-    this.addOrder()
+
   }
 
   addOrder(){
     this.homeSvc.addOrder().subscribe(res=>{
+      console.log(res);
+      this.router.navigate(['/']);
       alert("Ordine effettuato con successo")
     })
   }

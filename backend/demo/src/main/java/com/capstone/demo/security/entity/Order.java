@@ -3,6 +3,8 @@ package com.capstone.demo.security.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +26,8 @@ public class Order {
    /*  private double shippingFee;
     private String orderStatus;
     private String notes; */
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private User customer;

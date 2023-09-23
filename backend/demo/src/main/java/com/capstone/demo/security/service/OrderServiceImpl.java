@@ -85,6 +85,7 @@ public Order save(ShoppingCart shoppingCart) {
     
     order.setOrderDetailList(orderDetailList);
     orderRepository.save(order);
+    cartService.deleteCartById(shoppingCart.getId());
    
 
     return order;
@@ -102,20 +103,5 @@ public Order save(ShoppingCart shoppingCart) {
         return orderRepository.findAll();
     }
     
-    /* public void addOrderDetail(Order order, ShoppingCart shoppingCart){
-        System.out.println("DIOCANE");
-        Order order1 = orderRepository.getById(order.getId());
-        ShoppingCart shoppingCart1 = shoppingCartRepository.getById(shoppingCart.getId());
-        List<OrderDetail> orderDetailList = new ArrayList<>();
-        for (CartItem item : shoppingCart1.getCartItem()) {
-        OrderDetail orderDetail = new OrderDetail();
-        orderDetail.setOrder(order1);
-        orderDetail.setQuantity(item.getQuantity());
-        orderDetail.setTotalPrice(item.getTotalPrice());
-        orderDetail.setProduct(item.getProduct());
-        detailRepository.save(orderDetail);
-        orderDetailList.add(orderDetail);
-    }
-    order1.setOrderDetailList(orderDetailList);
-    } */
+    
 }

@@ -1,5 +1,7 @@
 package com.capstone.demo.security.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +22,7 @@ public class OrderDetail {
     private double totalPrice;
     private double unitPrice;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", referencedColumnName = "order_id")
     private Order order;
