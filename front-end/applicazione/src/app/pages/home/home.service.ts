@@ -54,4 +54,8 @@ export class HomeService {
   addOrder(){
     return this.http.post<any>(this.cartUrl + '/addOrder', this.ordineEffetuato)
   }
+
+  getAllOrders(){
+    return this.http.get<any>(this.cartUrl+"/allOrders");
+  }
 }

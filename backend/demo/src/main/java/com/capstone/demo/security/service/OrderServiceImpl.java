@@ -1,5 +1,6 @@
 package com.capstone.demo.security.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -70,6 +71,7 @@ public Order save(ShoppingCart shoppingCart) {
     order.setTotalPrice(shoppingCart.getTotalPrices());
     
     
+    order.setOrderDate(LocalDate.now());
    
     List<OrderDetail> orderDetailList = new ArrayList<>();
     shoppingCart.getCartItem().forEach(item ->{
@@ -79,8 +81,8 @@ public Order save(ShoppingCart shoppingCart) {
         orderDetail.setTotalPrice(item.getTotalPrice());
         orderDetail.setUnitPrice(item.getTotalPrice()/item.getQuantity());
         orderDetail.setProduct(item.getProduct());
-        orderDetailList.add(orderDetail);
         detailRepository.save(orderDetail);
+        orderDetailList.add(orderDetail);
     });
     
     order.setOrderDetailList(orderDetailList);
@@ -101,6 +103,10 @@ public Order save(ShoppingCart shoppingCart) {
     @Override
     public List<Order> findALlOrders() {
         return orderRepository.findAll();
+    }
+
+    public List<OrderDetail> findOrderDetail(){
+        return detailRepository.findAll();
     }
     
     

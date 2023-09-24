@@ -52,8 +52,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void enableById(Long id) {
         Product product = productRepository.getById(id);
-        product.set_activated(true);
-        product.set_deleted(false);
+        //product.set_activated(true);
+        //product.set_deleted(false);
         productRepository.save(product);
     }
 
@@ -76,8 +76,8 @@ public class ProductServiceImpl implements ProductService {
             productDto.setSalePrice(product.getSalePrice());
             productDto.setCostPrice(product.getCostPrice());
             productDto.setImage(product.getImage());
-            productDto.setDeleted(product.is_deleted());
-            productDto.setActivated(product.is_activated());
+            //productDto.setDeleted(product.is_deleted());
+            //productDto.setActivated(product.is_activated());
             productDtoList.add(productDto);
         }
         return productDtoList;
@@ -91,9 +91,8 @@ public class ProductServiceImpl implements ProductService {
           product.getSalePrice(), 
           product.getCurrentQuantity(), 
           product.getImage(),
-          product.getCategory(),
-            false,
-             true);
+          product.getCategory()
+        );
     productRepository.save(p);
     return p;
 	}

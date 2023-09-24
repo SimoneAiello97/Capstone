@@ -18,7 +18,7 @@ export class UsersComponent {
   getUsers() {
     this.adminSvc.getUsers().subscribe((res: any) => {
       console.log(res);
-      this.users = res.content; // Inizializza this.users con l'array dalla risposta API
+      this.users = res // Inizializza this.users con l'array dalla risposta API
     });
   }
 

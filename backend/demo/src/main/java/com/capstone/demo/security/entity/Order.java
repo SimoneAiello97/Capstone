@@ -1,5 +1,6 @@
 package com.capstone.demo.security.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private Long id;
+    private LocalDate orderDate;
     /* private Date orderDate;
     private Date deliveryDate; */
     private double totalPrice;
@@ -32,6 +34,7 @@ public class Order {
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private User customer;
 
+    //@JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderDetail> orderDetailList;
 }

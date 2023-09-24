@@ -37,9 +37,11 @@ public class User {
 
     private boolean isAuthenticated = false;
     
+    @JsonIgnore
     @OneToOne(mappedBy = "customer")
     private ShoppingCart shoppingCart;
 
+    //@JsonIgnore
     @OneToMany(mappedBy = "customer")
     private List<Order> orders; 
 

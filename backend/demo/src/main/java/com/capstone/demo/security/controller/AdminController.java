@@ -50,9 +50,9 @@ public class AdminController {
     
     @GetMapping("/users")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<Page<User>> getAllUsers(Pageable pageable) {
-		Page<User> ls = userSvc.getUsersPagination(pageable);
-		ResponseEntity<Page<User>> resp = new ResponseEntity<Page<User>>(ls, HttpStatus.OK);
+	public ResponseEntity<List<User>> getAllUsers() {
+		List<User> ls = userSvc.getAllUsers();
+		ResponseEntity<List<User>> resp = new ResponseEntity<List<User>>(ls, HttpStatus.OK);
 		return resp;
 	}
 
