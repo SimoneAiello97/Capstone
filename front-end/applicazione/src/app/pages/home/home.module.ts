@@ -14,12 +14,14 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { DropdownModule } from 'primeng/dropdown';
 
 import { BadgeModule } from 'primeng/badge';
+import { HeroComponent } from './components/hero/hero.component';
 
 
 
 @NgModule({
   declarations: [
     HomeComponent,
+    HeroComponent,
   ],
   imports: [
     CommonModule,

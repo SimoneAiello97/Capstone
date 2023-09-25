@@ -32,12 +32,14 @@ export class RegisterComponent  implements OnInit {
 
   ngOnInit() {
     this.clearMessages()
+
   }
     register(){
       this.authSvc.signUp(this.data)
       .subscribe(res =>
 
-        this.addMessages()
+
+this.addMessages()
         )
     }
 
@@ -63,7 +65,7 @@ export class RegisterComponent  implements OnInit {
   }
 
   addMessages() {
-    this.messages = [{ severity: 'Success', summary: 'Success', detail: "Verifica l'email per completare la registrazione!" }];
+    this.messages = [{ severity: 'success', summary: 'Success', detail: "Verifica l'email per completare la registrazione!" }];
   }
   clearMessages() {
     this.messages = [];

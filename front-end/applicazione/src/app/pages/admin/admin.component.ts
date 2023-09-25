@@ -19,6 +19,11 @@ export class AdminComponent {
 
   constructor (private homeSvc:HomeService){}
 
+
+  calculateTotal(): number {
+    return this.orders.reduce((total, order) => total + order.totalPrice, 0);
+  }
+
   ngOnInit(){
     this.homeSvc.getAllOrders().subscribe(res=>{
       console.log(res);
@@ -80,18 +85,28 @@ let value = 100;
 
 let dataPoints:any[] = [];
     const generateData = () => {
+      let currentDate:Date ; // Variabile per tenere traccia della data corrente
+  let accumulatedValue = 0;
   this.orders.forEach((element) => {
     const datoVecchio = element.orderDate.split('-');
     const year = parseInt(datoVecchio[0], 10); // Estrai l'anno e convertilo in un numero intero
     const month = parseInt(datoVecchio[1], 10) - 1; // Estrai il mese e sottrai 1 perché i mesi in JavaScript sono 0-based (0 = gennaio, 1 = febbraio, ecc.)
     const day = parseInt(datoVecchio[2], 10); // Estrai il giorno
 
-    const date = new Date(year, month, day);
-    const value = element.totalPrice;
+
+     date = new Date(year, month, day);
+     if (currentDate && date.getTime() === currentDate.getTime()) {
+      // Se la data è la stessa di quella precedente, accumula il valore
+      accumulatedValue += element.totalPrice;
+    } else {
+      // Se la data è diversa, crea un nuovo punto dati e reimposta l'accumulatore
+      accumulatedValue = element.totalPrice;
+      currentDate = date;
+    }
 
     dataPoints.push({
       date: date.getTime(),
-      value: value,
+      value: accumulatedValue,
     });
   });
 
@@ -131,7 +146,11 @@ let series = chart.series.push(am5xy.ColumnSeries.new(root, {
     labelText: "{valueY}"
   })
 }));
+series.columns.template.set("fill", am5.color("#f9af23"));
 
+// Puoi anche impostare il colore del bordo delle colonne se necessario
+series.columns.template.set("stroke", am5.color("#181818"));
+series.columns.template.set("strokeOpacity", 1); // Opzionale: imposta l'opacità del bordo
 series.columns.template.setAll({ strokeOpacity: 0 })
 
 
@@ -143,10 +162,7 @@ chart.set("scrollbarX", am5.Scrollbar.new(root, {
 
 //let data = generateDatas(this.numero);
 generateData()
-dataPoints.forEach(element => {
-  series.data.setAll(element);
-
-});
+series.data.setAll(dataPoints);
 console.log(dataPoints);
 
 

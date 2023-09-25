@@ -47,7 +47,7 @@ export class HomeComponent {
       this.numeroCarrello = res.cartItem.length;
 
     })
-    this.initAnimation();
+    //this.initAnimation();
     const utente:any = localStorage.getItem('user')
     const utenteparsato = JSON.parse(utente)
     console.log(utenteparsato);
@@ -60,7 +60,7 @@ export class HomeComponent {
   }
 
 
-  initAnimation() {
+ /*  initAnimation() {
     const h1 = document.querySelector('h1')  as HTMLElement;
     const boxes = document.querySelectorAll('.boxes__box') as NodeListOf<HTMLElement>;
     const img = document.querySelector('.boxes img')  as HTMLElement;
@@ -104,7 +104,7 @@ export class HomeComponent {
         }, 0);
       });
     }
-  }
+  } */
 
 
   onPageChange(e: any) {

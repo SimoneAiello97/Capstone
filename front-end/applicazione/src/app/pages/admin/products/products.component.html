@@ -2,15 +2,15 @@
 <p class="card mb-2" *ngIf="prodotti == undefined">
   Non ci sono prodotti
 </p>
-<div class="d-flex justify-content-between w-100">
+<div class="row">
 
 
-<form (submit)="loadProducts()" class="p-input-icon-left">
+<form (submit)="loadProducts()" class="p-input-icon-left col-12 col-md-4 mb-2">
   <i type="submit" class="pi pi-search"></i>
   <input type="text" pInputText [(ngModel)]="keyword"  [ngModelOptions]="{standalone: true}" placeholder="Inserisci la parola chiave di ricerca">
 </form>
 
-<p-button (click)="showDialog3()" icon="pi pi-plus" label="Crea nuovo Prodotto" class="d-flex justify-content-end"></p-button>
+<p-button (click)="showDialog3()" styleClass="p-button-warning" icon="pi pi-plus" label="Crea nuovo Prodotto" class="col-12 col-md-4"></p-button>
 <p-dialog header="Nuovo Prodotto" [(visible)]="visible3" [style]="{width: '50vw'}" [maximizable]="true">
 
   <form>
@@ -54,6 +54,8 @@
 </p-dialog>
 
 </div>
+
+
 <div class="card mt-3">
   <p-table [value]="prodotti!" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">

@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
@@ -6,7 +7,8 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-menu',
-    templateUrl: './app.menu.component.html'
+    templateUrl: './app.menu.component.html',
+    styleUrls: ['../admin.component.scss']
 })
 export class AppMenuComponent implements OnInit {
 
@@ -23,9 +25,9 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'UI Components',
+                label: 'Funzionalità',
                 items: [
-                    { label: 'Users', icon: 'pi pi-user', routerLink: ['./users'] },
+                  {styleClass: 'custom-menu-item',label: 'Users', icon: 'pi pi-user', routerLink: ['./users'] },
                     { label: 'Categorie', icon: 'pi pi-fw pi-list', routerLink: ['./categories'] },
                     { label: 'Prodotti', icon: 'pi pi-fw pi-slack', routerLink: ['./products'] },
                   /*   { label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate'] },

@@ -4,12 +4,14 @@
 
 <div *ngFor="let user of users, let i=index" class="my-3">
 
-  <p-card  [header]="'Utente ' + (i + 1)" >
-    <p class="m-0">
-
-      {{user.username}}
-    </p>
-  </p-card>
+  <div class="card d-flex flex-row justify-content-between" >
+    <div class="m-0">
+      <h3>{{user.name}}</h3>
+      <p><b>Email: </b>{{user.email}}</p>
+      <p><b>Username: </b>{{user.username}}</p>
+    </div>
+    <div><i class="pi pi-user" style="font-size: 2.5rem"></i></div>
+  </div>
 
 </div>
 </div>

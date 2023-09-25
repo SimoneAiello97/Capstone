@@ -1,16 +1,27 @@
-<h3 class="">Categorie</h3>
-<p class="card mb-2" *ngIf="categories.length == 0">
+<h3>Categorie</h3>
+<p class="card mb-2" *ngIf="categories == null">
   Non ci sono categorie
 </p>
+<p-button (click)="showDialog()" icon="pi pi-plus" label="Crea nuova Categoria" styleClass="p-button-raised p-button-warning"></p-button>
+<p-dialog header="Nuova Categoria" [(visible)]="visible"[(visible)]="visible" [style]="{width: '50vw'}" [maximizable]="true">
+
+  <form class="d-flex justify-content-center flex-column">
+    <input type="text" pInputText name="name" [(ngModel)]="newCategory.name" />
+    <p-button (click)="addCategory()" icon="pi pi-plus" label="Crea" styleClass= "p-button-warning" class="mt-2"></p-button>
+  </form>
+
+
+</p-dialog>
+
 <div *ngFor="let category of categories">
-  <p class="card mb-2">
+  <p class="card my-2">
 
   {{category.name}}
 
 
 
-  <p-button *ngIf="category._activated" label="Disabilita" styleClass="p-button-text mt-2" (click)="toggleCategory(category)" ></p-button>
-  <p-button *ngIf="!category._activated" label="Abilita" styleClass="p-button-outlined mt-2"(click)="toggleCategory(category)" ></p-button>
+  <p-button *ngIf="category._activated" label="Disabilita" styleClass="p-button-text p-button-warning  mt-2" (click)="toggleCategory(category)" ></p-button>
+  <p-button *ngIf="!category._activated" label="Abilita" styleClass="p-button-outlined p-button-warning mt-2"(click)="toggleCategory(category)" ></p-button>
 
 
 <!--   <p-button styleClass="p-button-danger" icon="pi pi-times" (click)="deleteCategory(category.id!)" class="x-button"></p-button> -->
@@ -18,13 +29,3 @@
 </div>
 
 
-<p-button (click)="showDialog()" icon="pi pi-plus" label="Crea nuova Categoria"></p-button>
-<p-dialog header="Nuova Categoria" [(visible)]="visible"[(visible)]="visible" [style]="{width: '50vw'}" [maximizable]="true">
-
-  <form class="d-flex justify-content-center flex-column">
-    <input type="text" pInputText name="name" [(ngModel)]="newCategory.name" />
-    <p-button (click)="addCategory()" icon="pi pi-plus" label="Crea" class="mt-2"></p-button>
-  </form>
-
-
-</p-dialog>
