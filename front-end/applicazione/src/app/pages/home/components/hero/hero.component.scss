@@ -86,6 +86,7 @@ $box: #f9af23;
 @media (max-width: 768px) {
   .hero {
     flex-direction: column; /* Cambia la direzione del flex container */
+    justify-content: start;
     align-items: center; /* Allinea al centro verticalmente */
     height: auto; /* Rimuovi l'altezza fissa */
     .title {
@@ -104,8 +105,8 @@ $box: #f9af23;
   }
   .hero__box {
     /* Modifica le dimensioni o la disposizione delle caselle */
-    max-width: 10%;
-		max-height: 10%;
+    max-width: 5%;
+		max-height: 5%;
   }
 }
 

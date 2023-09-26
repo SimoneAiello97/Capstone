@@ -38,13 +38,13 @@ export class HomeComponent {
   constructor(private authSvc:AuthService, private adminSvc:AdminService,private homeSvc:HomeService, private router: Router){}
   ngOnInit(){
     this.allCategories()
-    this.adminSvc.getAllProducts(0,4).subscribe(res=>{
+    this.adminSvc.getAllProducts(0,8).subscribe(res=>{
       this.prodotti=res.content
     })
     this.homeSvc.getCart().subscribe(res =>{
       console.log(res);
 
-      this.numeroCarrello = res.cartItem.length;
+      this.numeroCarrello = res?.cartItem.length;
 
     })
     //this.initAnimation();
@@ -158,7 +158,7 @@ export class HomeComponent {
   }
 
   reset(){
-    this.adminSvc.getAllProducts(0,4).subscribe(res=>{
+    this.adminSvc.getAllProducts(0,8).subscribe(res=>{
       this.prodotti=res.content
       this.keyword = ''
       this.numberCategory =undefined;

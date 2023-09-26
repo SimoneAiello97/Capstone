@@ -39,90 +39,72 @@ a{
 {
   font-size: 14px;
 }
- .immagine{
-
+/*  .immagine{
+  width: fit-content;
   max-height: 250px;
 
+} */
+.carte{
+
+
+.card{
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  //min-height: 250px;
+  //min-width: 100%;
+  //max-height: 60vh;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+.card-img{
+  object-fit:contain;
+  border-radius: 15px;
+  max-height: 100%;
+  //max-height: 50vh;
+}
+.card-body{
+  position: absolute;
+  top:0;
+  right: -100%;
+  background: #1017198d;
+  backdrop-filter: blur(5px);
+  border-radius: 25px;
+  color: #fff;
+  padding: 30px;
+  transition: 0.6s ease-out;
+}
+.card-title{
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.card-text{
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 400;
+}
+.card-btn{
+  color: #1f3d47;
+  background-color: rgba(62, 210, 210, 0.831);
+  border-radius: 5px;
+  text-transform: capitalize;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  cursor: pointer;
+  width: 60%;
 }
 
-/* .hero {
-	background-color: #f5f5f5;
-	width: 100%;
-	height: 100vh;
-	display:flex;
-	justify-content:space-between;
-	align-items:center;
-	overflow:hidden;
-	&__item {
-		padding-left: 80px;
-		&:last-child {
-			padding-left: 0;
-			padding-right: 180px;
-		}
-		.title {
-			position:relative;
-		}
-		h1 {
-			font-size: 90px;
-			position:relative;
-		}
-		img {
-			z-index: 2;
-			position:relative;
-			opacity: 0;
-			right: -1000px;
-		}
-	}
+&:hover .card-body{
+  right: 0;
 }
-
-$box: #f9af23;
-.boxes {
-	position:relative;
-	&__box {
-		min-width: 120px;
-		min-height: 120px;
-		background-color: $box;
-		position: absolute;
-		top: -70px;
-		left: -20px;
-		&:first-child {
-			top: -210px;
-			left: 0;
-		}
-		&:nth-child(2) {
-			background-color: lighten($box, 5%);
-			bottom: -50px;
-			left: -90px;
-			top:auto;
-			height: 240px;
-			width: 240px
-		}
-		&:nth-child(3) {
-			background-color: lighten($box, 4%);
-			top: -50px;
-			right: 40px;
-			left: auto;
-			height: 200px;
-			width: 200px;
-		}
-		&:nth-child(4) {
-			background-color: lighten($box, 7%);
-			top: -30px;
-			left:-120px;
-			height:220px;
-			width:220px;
-
-		}
-		&:nth-child(5) {
-			background-color: lighten($box, 2%);
-			right: -50px;
-			top: auto;
-			left:auto;
-			bottom:-40px;
-			height: 170px;
-			width: 170px;
-		}
-
-  }
 }
- */
+.rotate:hover {
+
+svg{
+  transform: rotate(-360deg);
+  transition: 2s ease-out;
+}
+}}

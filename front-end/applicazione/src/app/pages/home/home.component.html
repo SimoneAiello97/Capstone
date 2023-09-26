@@ -15,7 +15,7 @@
 
 
     <p-button label="Logout" styleClass="p-button-rounded p-button-secondary ms-2 bg-dark" (click)="logout()"></p-button>
-    <i class="pi pi-shopping-cart mr-4 p-text-secondary ms-4" pBadge style="font-size: 2rem" value="{{numeroCarrello}}" [routerLink]="['cart']"></i>
+    <i class="pi pi-shopping-cart mr-4 p-text-secondary ms-4" pBadge style="font-size: 2rem" value="{{numeroCarrello !== null ? numeroCarrello : 0}}" [routerLink]="['cart']"></i>
     </div>
   </div>
 
@@ -26,56 +26,51 @@
 <section class="container-fluid">
   <div class="row">
     <div class="card d-flex flex-column flex-md-row justify-content-center gap-3">
+      <div class="d-flex justify-content-evenly">
+
 
       <form (submit)="loadProducts()" class="p-float-label">
-        <!-- <i  type="submit" class="pi pi-search"></i> -->
         <input id="username" type="text" pInputText [(ngModel)]="keyword" [ngModelOptions]="{standalone: true}">
         <label htmlFor="username">Cosa cerchi?</label>
       </form>
-      <p-button icon="pi pi-sort-amount-down-alt" styleClass="p-button-rounded p-button-secondary  p-button-outlined"
+
+        <p-button icon="pi pi-sort-amount-down-alt" styleClass="p-button-rounded p-button-secondary  p-button-outlined "
         (click)="filterLowPrice()"></p-button>
 
-      <p-button icon="pi pi-sort-amount-up" styleClass="p-button-rounded p-button-secondary  p-button-outlined"
+      <p-button icon="pi pi-sort-amount-up" styleClass="p-button-rounded p-button-secondary  p-button-outlined "
         (click)="filterHighPrice()"></p-button>
-
-      <!--
-      <select  class="form-select" [(ngModel)]="numberCategory" [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelectChange($event)">
-
-        <option [value]="" selected disabled>una categoria</option>
-
-        <ng-container *ngFor="let categoria of categorie">
-        <option selected type="submit" [value]="categoria.id" >{{categoria.name}}</option>
-      </ng-container>
-    </select> -->
-
+      </div>
+<div class="d-flex justify-content-between">
       <p-dropdown placeholder="Seleziona un Categoria" [options]="categorie" [(ngModel)]="numberCategory"
         optionLabel="name" [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelectChange($event.id)"></p-dropdown>
 
-      <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger  p-button-outlined"
+      <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger  p-button-outlined ms-1"
         (click)="reset()"></p-button>
+      </div>
+
     </div>
   </div>
 
 
 <div class="row">
-  <div *ngFor="let prodotto of prodotti" class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 d-flex justify-content-center">
+  <div *ngFor="let prodotto of prodotti" class="col-12 col-md-6 col-lg-4 col-xl-3 my-2 d-flex justify-content-center carte">
+
+  <div class="card">
+      <img src="{{prodotto.image}}" class="card-img" alt="img-product">
+      <div class="card-body w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+          <h5 class="card-title">{{prodotto.name}}</h5>
+          <p class="card-text">{{prodotto.costPrice}} $</p>
+          <div class="d-flex flex-row flex-md-column flex-lg-row justify-content-between">
+            <p-button label="Add to Cart" icon="pi pi-shopping-cart" styleClass="p-button-warning" (click)="addToCart(prodotto.id)" ></p-button>
+            <p-button label="View Product" icon="pi pi-eye" styleClass="p-button-secondary bg-dark" [style]="{ 'margin-left': '.5em' }" [routerLink]="['single-product',prodotto.id]" ></p-button>
+          </div>
+      </div>
+  </div>
 
 
-  <p-card  header="{{prodotto.name}}" subheader="{{prodotto.salePrice}} $" [style]="{ width: '360px', height: '540px'}">
-    <ng-template pTemplate="header">
-        <img alt="Card" src="{{prodotto.image}}" class="immagine img-fluid"/>
-    </ng-template>
-    <p>
-        {{prodotto.description}}
-    </p>
-    <ng-template pTemplate="footer">
-        <p-button label="Add to Cart" icon="pi pi-shopping-cart" styleClass="p-button-warning" (click)="addToCart(prodotto.id)"></p-button>
-        <p-button label="View Product" icon="pi pi-eye" styleClass="p-button-secondary bg-dark" [style]="{ 'margin-left': '.5em' }" [routerLink]="['single-product',prodotto.id]"></p-button>
-    </ng-template>
-</p-card>
 </div>
 
 </div>
 
 </section>
-<p-paginator (onPageChange)="onPageChange($event)" [first]="0" [rows]="4" [totalRecords]="120" [rowsPerPageOptions]="[4, 8, 12]" ></p-paginator>
+<p-paginator (onPageChange)="onPageChange($event)" [first]="0" [rows]="8" [totalRecords]="120" [rowsPerPageOptions]="[8, 16, 24]" ></p-paginator>
