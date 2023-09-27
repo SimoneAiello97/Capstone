@@ -15,7 +15,7 @@
 
 
     <p-button label="Logout" styleClass="p-button-rounded p-button-secondary ms-2 bg-dark" (click)="logout()"></p-button>
-    <i class="pi pi-shopping-cart mr-4 p-text-secondary ms-4" pBadge style="font-size: 2rem" value="{{numeroCarrello !== null ? numeroCarrello : 0}}" [routerLink]="['cart']"></i>
+    <i class="pi pi-shopping-cart mr-4 p-text-secondary ms-4" pBadge style="font-size: 2rem" value="{{cart != null ? numeroCarrello : 0 }}" [routerLink]="['cart']"></i>
     </div>
   </div>
 
@@ -60,7 +60,7 @@
       <div class="card-body w-100 h-100 d-flex flex-column justify-content-center align-items-center">
           <h5 class="card-title">{{prodotto.name}}</h5>
           <p class="card-text">{{prodotto.costPrice}} $</p>
-          <div class="d-flex flex-row flex-md-column flex-lg-row justify-content-between">
+          <div class="d-flex flex-row flex-md-column flex-lg-row align-items-center justify-content-between">
             <p-button label="Add to Cart" icon="pi pi-shopping-cart" styleClass="p-button-warning" (click)="addToCart(prodotto.id)" ></p-button>
             <p-button label="View Product" icon="pi pi-eye" styleClass="p-button-secondary bg-dark" [style]="{ 'margin-left': '.5em' }" [routerLink]="['single-product',prodotto.id]" ></p-button>
           </div>

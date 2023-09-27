@@ -58,4 +58,8 @@ export class HomeService {
   getAllOrders(){
     return this.http.get<any>(this.cartUrl+"/allOrders");
   }
+
+  getSingleUser(){
+    return this.http.get<any>(this.cartUrl+"/singleUser");
+  }
 }

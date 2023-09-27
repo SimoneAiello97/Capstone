@@ -1,8 +1,8 @@
-import { of } from 'rxjs';
-import { ProductsRoutingModule } from './../../admin/products/products-routing.module';
+
 import { Component } from '@angular/core';
 import { HomeService } from '../home.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,20 +11,41 @@ import { Router } from '@angular/router';
 })
 export class CartComponent {
 
-  items:any[]|undefined
-  cart:any|undefined
+  items:any[]|undefined | null
+  cart:any|undefined |null
+  nomeUtente!:string
+  numeroCarrello:number|undefined
 
-  constructor(private homeSvc:HomeService, private router:Router){}
+  constructor(private homeSvc:HomeService,
+     private router:Router,
+      private authSvc:AuthService){}
 
   ngOnInit(){
-    this.getCart()
+    this.getCart();
+    const utente:any = localStorage.getItem('user')
+    const utenteparsato = JSON.parse(utente)
+    console.log(utenteparsato);
+
+    this.nomeUtente = utenteparsato.username
   }
+  logout(){
+    this.authSvc.logout()
+    this.router.navigate(['/auth'])
+  }
+
 
   getCart(){
     this.homeSvc.getCart().subscribe(res=>{
       console.log(res);
-      this.cart = res
-      this.items = res.cartItem
+      if(res){
+
+        this.cart = res
+        this.items = res.cartItem
+        this.items?.sort((a, b) => a.id - b.id);
+        console.log(this.items);
+        this.numeroCarrello = res?.cartItem.length;
+
+      }
 
     })
   }

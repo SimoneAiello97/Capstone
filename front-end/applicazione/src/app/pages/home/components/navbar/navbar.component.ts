@@ -14,10 +14,12 @@ export class NavbarComponent {
   numeroCarrello:number|undefined
   constructor(private authSvc:AuthService, private adminSvc:AdminService,private homeSvc:HomeService, private router: Router){}
   ngOnInit(){
-    this.adminSvc.getCart().subscribe(res =>{
+    this.homeSvc.getCart().subscribe(res =>{
       this.numeroCarrello = res.cartItem.length;
 
     })
+
+
 
     const utente:any = localStorage.getItem('user')
     const utenteparsato = JSON.parse(utente)
@@ -31,4 +33,11 @@ export class NavbarComponent {
     this.router.navigate(['/auth'])
   }
 
+
+  ngOnChanges(){
+    this.homeSvc.getCart().subscribe(res =>{
+      this.numeroCarrello = res.cartItem.length;
+
+    })
+  }
 }

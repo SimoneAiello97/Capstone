@@ -5,6 +5,10 @@ import { CartRoutingModule } from './cart-routing.module';
 import { CartComponent } from './cart.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { BadgeModule } from 'primeng/badge';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 @NgModule({
@@ -15,7 +19,11 @@ import { ButtonModule } from 'primeng/button';
     CommonModule,
     CartRoutingModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    AvatarModule,
+    AvatarGroupModule,
+    BadgeModule,
+    InputNumberModule
   ]
 })
 export class CartModule { }

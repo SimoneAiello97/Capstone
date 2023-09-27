@@ -10,7 +10,7 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { BadgeModule } from 'primeng/badge';
-
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { BadgeModule } from 'primeng/badge';
     CarouselModule,
     AvatarModule,
     AvatarGroupModule,
-    BadgeModule
+    BadgeModule,
+    NgxImageZoomModule
 
   ]
 })

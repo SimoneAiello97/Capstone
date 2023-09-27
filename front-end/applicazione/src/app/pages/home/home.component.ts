@@ -34,6 +34,8 @@ export class HomeComponent {
   numeroCarrello:number|undefined
   numberCategory:number|undefined
 
+  cart:any|undefined |null
+
   keyword!:string;
   constructor(private authSvc:AuthService, private adminSvc:AdminService,private homeSvc:HomeService, private router: Router){}
   ngOnInit(){
@@ -43,9 +45,11 @@ export class HomeComponent {
     })
     this.homeSvc.getCart().subscribe(res =>{
       console.log(res);
+      if(res){
 
-      this.numeroCarrello = res?.cartItem.length;
-
+      this.cart = res
+      this.numeroCarrello = res.cartItem.length;
+      }
     })
     //this.initAnimation();
     const utente:any = localStorage.getItem('user')
@@ -169,7 +173,7 @@ export class HomeComponent {
     this.homeSvc.addToCart(id).subscribe(res=>{
       this.homeSvc.getCart().subscribe(res =>{
         console.log(res);
-
+        this.cart = res
         this.numeroCarrello = res.cartItem.length;
 
       })

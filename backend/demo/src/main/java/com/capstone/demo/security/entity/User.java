@@ -41,7 +41,7 @@ public class User {
     @OneToOne(mappedBy = "customer")
     private ShoppingCart shoppingCart;
 
-    //@JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private List<Order> orders; 
 

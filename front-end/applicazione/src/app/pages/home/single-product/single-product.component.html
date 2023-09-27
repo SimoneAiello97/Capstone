@@ -1,28 +1,63 @@
-<app-navbar></app-navbar>
+<nav class="top-bar sticky-top navbarr">
+
+  <div class="container">
+  <div class="links">
+    <img class="logo" src="../../../assets/logo-e-store.png" alt="logo">
+
+
+  </div>
+  <div class="button-group d-flex align-items-center justify-content-between">
+    <p-avatar size="large" shape="circle" [style]="{ 'background-color': '#f9af23', color: '#ffffff' }">
+      <span class="text-base">{{nomeUtente.charAt(0).toUpperCase()}}</span>
+  </p-avatar>
+
+
+  <p-button label="Logout" styleClass="p-button-rounded p-button-secondary ms-2 bg-dark" (click)="logout()"></p-button>
+  <i class="pi pi-shopping-cart mr-4 p-text-secondary ms-4" pBadge style="font-size: 2rem" value="{{cart != null ? numeroCarrello : 0 }}" [routerLink]="['../../cart']"></i>
+  </div>
+</div>
+
+</nav>
 
 <div class="container-fluid py-2">
 
   <div class="row ">
-    <div class="col-12 col-md-6 d-flex justify-content-center">
-       <img src="{{prodotto.image}}" alt="" class="img-fluid">
+    <div class="col-12 col-md-6 d-flex justify-content-center section">
+      <div class="immagine">
+
+        <lib-ngx-image-zoom
+        [thumbImage]=myThumbnail
+        [fullImage]=myFullresImage
+        [magnification]="1.3"
+        [enableScrollZoom]="true"
+
+                      [enableLens]="true"
+                      [lensWidth]="300"
+                      [lensHeight]="300"
+
+                  ></lib-ngx-image-zoom>
+      </div>
+                  <!--  <img src="{{prodotto?.image}}" alt="" class="img-fluid"  /> -->
+      <!-- <div id="first"><span id="lens"></span></div>
+      <div id="second"></div>-->
     </div>
     <div class="col d-flex flex-column justify-content-center">
       <h1>
-        {{prodotto.name}}
+        {{prodotto?.name}}
       </h1>
       <h3>
-        {{prodotto.salePrice}} $
+        {{prodotto?.costPrice}} $
       </h3>
       <h4>Short description</h4>
 
        <p>
-        {{prodotto.description}}
+        {{prodotto?.description}}
        </p>
-       <p-button label="Add to Cart" icon="pi pi-shopping-cart" styleClass="p-button-warning" (click)="addToCart(prodotto.id)"></p-button>
+       <p-button label="Add to Cart" icon="pi pi-shopping-cart" styleClass="p-button-warning" (click)="addToCart(prodotto!.id)"></p-button>
        <p-button label="Indietro"  styleClass="p-button-secondary p-button-text" [routerLink]="['/home']"></p-button>
       </div>
   </div>
-  <div class="row card mt-4">
+  <div class="row card  mt-4">
      <h2>Prodotti Correlati:</h2>
 
 
@@ -31,7 +66,7 @@
               <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
                   <div class="mb-3">
                       <img src="{{ product.image }}" [alt]="product.name" class="w-50 shadow-2" />
-                  </div>
+                    </div>
                   <div>
                       <h4 class="mb-1">{{ product.name }}</h4>
                       <h6 class="mt-0 mb-3">{{ '$' + product.salePrice }}</h6>

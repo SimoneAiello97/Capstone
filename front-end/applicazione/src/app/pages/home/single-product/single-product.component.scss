@@ -1,3 +1,41 @@
+.top-bar{
+  display: flex;
+justify-content: center;
+background-color: white;
+transition: background-color 0.5s ease-in-out;
+i.pi-shopping-cart{
+  cursor: pointer;
+}
+.container{
+  width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    padding: 10px;
+  }
+a{
+  text-decoration:none;
+  color: black;
+}
+@media only screen and (max-width: 768px) {
+  width: 100%;
+}
+}
+.links{
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  .logo{
+    height: 50px;
+  }
+
+  }
+}
+
 .border-1
 {
   img{
@@ -6,8 +44,25 @@
   }
 }
 .container-fluid{
-  img{
-    width: 500px;
-    height: 500px;
+  .immagine{
+    overflow: hidden;
+  }
+  ::ng-deep .ngxImageZoomContainer{
+    height: 500px !important;
+    width: 500px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    @media screen and (max-width: 768px) {
+      height: 350px !important;
+    width: 350px !important;
+    }
+    > img{
+      object-fit:contain;
+      max-height: 100%;
+      width: 100%;
+    }
   }
 }
+

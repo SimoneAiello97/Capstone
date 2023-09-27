@@ -1,99 +1,83 @@
-<!-- <div >
+<nav class="top-bar sticky-top navbarr">
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">prezzo</th>
-        <th scope="col">quantita'</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let item of items">
-      <tr>
-        <td>{{item.product.name}}</td>
+  <div class="container">
+    <div class="links">
+      <img class="logo" src="../../../assets/logo-e-store.png" alt="logo" [routerLink]="['/home']">
 
-        <td>{{item.totalPrice}}</td>
-        <td>
-          <form>
-          <input type = "hidden" name = "id" [(ngModel)]="item.product.id" >
-          <td class="quantity-box">
-              <input type="number" name="quantity" [(ngModel)]="item.quantity" size="4"
-                     value="1" min="0" step="1"
-                     class="c-input-text qty text">
-          </td>
 
-          <td>
-              <button type="submit" name="action" value="update" title="Update"
-                      class="btn btn-primary" (click)="putCart(item.product.id, item.quantity)">
-                  Update
-              </button>
-              <button type="submit" name="action" value="delete" title="Update"
-                      class="btn btn-danger" (click)="deleteFromCart(item.product.id)">
-                  Delete
-              </button>
-          </td>
-      </form></td>
-      </tr>
+    </div>
+    <div class="button-group d-flex align-items-center justify-content-between">
+      <p-avatar size="large" shape="circle" [style]="{ 'background-color': '#f9af23', color: '#ffffff' }">
+        <span class="text-base">{{nomeUtente.charAt(0).toUpperCase()}}</span>
+      </p-avatar>
 
-    </tbody>
-  </table>
-  <div class="d-flex justify-content-center flex-column align-items-center">
-    <p>{{cart.totalItems}}</p>
-    <p>{{cart.totalPrices}} $</p>
+
+      <p-button label="Logout" styleClass="p-button-rounded p-button-secondary ms-2 bg-dark"
+        (click)="logout()"></p-button>
+      <i class="pi pi-shopping-cart mr-4 p-text-secondary ms-4" pBadge style="font-size: 2rem"
+        value="{{cart != null ? numeroCarrello : 0 }}" [routerLink]="['cart']"></i>
+    </div>
   </div>
 
-</div> -->
+</nav>
 
 <div class="container-fluid">
   <h3>Carrello</h3>
+  <div class="col-6 card" *ngIf="cart == null || items?.length ==0">
+    Non ci sono prodotti nel carrello
+  </div>
   <div class="row">
 
 
-    <div class="card col-8" >
+    <div class="card col-8" *ngIf="cart != null && items?.length !=0">
       <div class="row mb-3" *ngFor="let item of items">
+        <ng-container *ngIf="item.quantity <= 0">
+          {{ deleteFromCart(item.product.id) }}
+        </ng-container>
+
+        <div class="col-6" *ngIf="item?.quantity >0">
+          <p class="d-flex justify-content-center"><img src="{{item.product!.image}}" alt="{{item.product!.name}}" class="immagine img-fluid"></p>
+        </div>
+        <div class="col-6 d-flex flex-column justify-content-around" *ngIf="item?.quantity > 0">
+          <div>
+            <h4>{{item.product.name}}</h4>
+            <p>{{item.product.costPrice}} $</p>
+          </div>
+          <form class="d-flex">
+            <input type="hidden" name="id" [(ngModel)]="item.product!.id">
+
+              <p-inputNumber  pKeyFilter="int" name="quantity" [(ngModel)]="item!.quantity"
+              [showButtons]="true"
+            buttonLayout="horizontal"
+            inputId="horizontal"
+            spinnerMode="horizontal"
+            [step]="1"
+            decrementButtonClass="p-button-warning"
+            incrementButtonClass="p-button-warning"
+            incrementButtonIcon="pi pi-plus"
+            decrementButtonIcon="pi pi-minus"
+
+                class="c-input-text qty text" (ngModelChange)="putCart(item.product!.id, item!.quantity)"> </p-inputNumber>
 
 
-      <div class="col-6">
-        <p><img src="{{item.product.image}}" alt="{{item.product.name}}" class="w-50"></p>
+              <p-button  type="submit" icon="pi pi-trash" styleClass="p-button-danger" class="ms-2"
+                (click)="deleteFromCart(item.product.id)">
+              </p-button>
+
+          </form>
+        </div>
       </div>
-      <div class="col-6 d-flex flex-column justify-content-center">
-        <p>{{item.product.name}}</p>
-        <p>{{item.product.costPrice}} $</p>
 
-
-
-        <form>
-          <input type="hidden" name="id" [(ngModel)]="item.product.id">
-          <td class="quantity-box">
-            <input type="number" name="quantity" [(ngModel)]="item.quantity" size="4" value="1" min="0" step="1"
-              class="c-input-text qty text" (ngModelChange)="putCart(item.product.id, item.quantity)">
-          </td>
-
-          <td>
-            <!-- <button type="submit" name="action" value="update" title="Update" class="btn btn-primary"
-              (click)="putCart(item.product.id, item.quantity)">
-              Update
-            </button> -->
-            <button type="submit" name="action" value="delete" title="Update" class="btn btn-danger"
-              (click)="deleteFromCart(item.product.id)">
-              Delete
-            </button>
-          </td>
-        </form>
-      </div>
     </div>
-
-</div>
-  <div class="col-3 ">
+    <div class="col-3 " *ngIf="cart != null && items?.length !=0">
       <div class="card">
         <h4>Vai al checkout</h4>
-        <p>Totale Prodotti: {{cart.totalItems}}</p>
-        <p>Prezzo Finale: {{cart.totalPrices}} $</p>
-        <button pButton pRipple label="Procedi all'ordine" class="p-button-warning" [routerLink]="['../check-out']"></button>
+        <p>Totale Prodotti: {{cart?.totalItems}}</p>
+        <p>Prezzo Finale: {{cart?.totalPrices}} $</p>
+        <button pButton pRipple label="Procedi all'ordine" class="p-button-warning"
+          [routerLink]="['../check-out']"></button>
       </div>
     </div>
 
   </div>
-
 </div>
-

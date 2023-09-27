@@ -178,4 +178,13 @@ public ResponseEntity<Order> addOrder(){
     return resp;
 }
 
+@GetMapping("/singleUser")
+@PreAuthorize("hasRole('USER')")
+public ResponseEntity<User> getSingleCustomer(){
+    String email = SecurityContextHolder.getContext().getAuthentication().getName();
+    User customer = userService.getByEmail(email);
+    ResponseEntity<User> resp = new ResponseEntity<User>(customer, HttpStatus.OK);
+    return resp;
+}
+
 }

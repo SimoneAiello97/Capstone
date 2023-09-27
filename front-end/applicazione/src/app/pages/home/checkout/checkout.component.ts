@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment.development';
 import * as StripeCheckoutStatic from 'ngx-stripe'; // Importa Stripe
 import { HomeService } from '../home.service';
 import { Router } from '@angular/router';
+import { IUser } from 'src/app/interfaces/IUser';
 
 @Component({
   selector: 'app-checkout',
@@ -24,6 +25,7 @@ export class CheckoutComponent {
   cart:any
   items!:any[]
   paymentHandler: any = null;
+  user:IUser |null|undefined
 
   stripeAPIKey: any = 'pk_test_51NsnFeJDJmLsYj1ckercN8Aiq0C2Pci55cASU1KoH0BDKa8QYpHLGuqiSqJYCG2ZS6lsmchLlvwYduIRRjlmCPov006aFoHXcO';
 
@@ -31,6 +33,8 @@ export class CheckoutComponent {
   ngOnInit() {
     this.invokeStripe();
     this.getCart()
+    this.homeSvc.getSingleUser().subscribe(user=>this.user = user)
+
   }
 
   getCart(){
