@@ -1,29 +1,55 @@
 
- <div class="container">
- <h2 class="mt-5 mb-4">Pagamento</h2>
- <div class="row">
-
-   <div class="col-6 card">
-     <p> <b>Totale prodotti: </b>{{cart?.totalItems}}</p>
-     <p><b>Totale prezzo: </b>{{cart?.totalPrices}}</p>
-     <b>Dettaglio prodotti: </b>
-      <div *ngFor="let item of items">
-      {{item?.product.name}} x {{item?.quantity}}
-      </div>
-      <button (click)="makePayment(cart?.totalPrices)" class="btn btn-danger btn-block">Pay ${{cart?.totalPrices}}</button>
-    </div>
-
-    <div class="col-6 card">
-      <h5>Customer</h5>
-      <p>
-        <b>Name: </b>{{user?.name}}
-      </p>
-      <p>
-        <b>Username: </b>{{user?.username}}
-      </p>
-      <p>
-        <b>Email: </b>{{user?.email}}
-      </p>
-    </div>
+ <div class="container ">
+   <div class="d-flex justify-content-between align-items-center  my-3">
+   <h2>Check-out</h2>
+   <p-button label="Indietro" styleClass="p-button-secondary p-button-text"
+   [routerLink]="['../cart']"></p-button>
   </div>
+  <h4>Il tuo ordine</h4>
+ <div class="row">
+  <p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Prodotto</th>
+            <th>Nome</th>
+            <th>Quantità</th>
+            <th>Prezzo</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td><img src="{{ product.product.image }}" alt="{{ product.product.name }}" class="image-product"></td>
+            <td>{{ product.product.name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.product.costPrice * product.quantity | currency: 'EUR'}}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <tr>
+          <td colspan="2" class="text-right">Totale</td>
+          <td>{{cart?.totalItems }}</td>
+          <td>{{cart?.totalPrices | currency: 'EUR'}}</td>
+      </tr>
+      <tr>
+        <td class="fw-lighter">{{user?.username}}</td>
+        <td class="fw-lighter">{{user?.email}}</td>
+        <td class="fw-lighter"><img src="../../../../assets/2560px-Stripe_Logo,_revised_2016.svg.png" alt="" class="image-product"></td>
+        <td class="text-right">
+          <!-- <button (click)="makePayment(cart?.totalPrices)"
+          class="btn btn-danger btn-block">Pay Now</button> -->
+          <p-button label="Paga Ora!" styleClass="p-button-raised p-button-warning"
+          (click)="makePayment(cart?.totalPrices)">
 
+          </p-button>
+        </td>
+
+      </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog header="Ordine effettuato con successo!" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+  <p class="m-0">
+      Continua ad acquistare il prodotto giusto per te!
+  </p>
+</p-dialog>
+  </div>

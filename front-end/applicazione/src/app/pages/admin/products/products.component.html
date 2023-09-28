@@ -90,10 +90,10 @@
       <b>Descrizione prodotto:</b> {{prodotto.description}}
     </p>
     <p class="m-0">
-      <b>Costo vendita prodotto:</b> {{prodotto.costPrice}}
+      <b>Costo vendita prodotto:</b> {{prodotto.costPrice | currency: 'EUR'}}
     </p>
     <p class="m-0">
-      <b>Costo base prodotto:</b> {{prodotto.salePrice}}
+      <b>Costo base prodotto:</b> {{prodotto.salePrice | currency: 'EUR'}}
     </p>
     <p class="m-0">
       <b>Quantità prodotto:</b> {{prodotto.currentQuantity}}

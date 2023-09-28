@@ -5,7 +5,7 @@
         <div class="card d-flex flex-row justify-content-between" >
           <div>
             <h3>Revenue</h3>
-            ${{ calculateTotal() }}
+            {{ calculateTotal()| currency: 'EUR' }}
           </div>
           <div><i class="pi pi-money-bill" style="font-size: 2rem; color:green" ></i></div>
         </div>

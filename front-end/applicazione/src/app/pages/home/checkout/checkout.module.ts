@@ -7,6 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxStripeModule } from 'ngx-stripe';
 import { environment } from 'src/environments/environment.development';
 import { HttpClientModule } from '@angular/common/http';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -20,7 +23,10 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     NgxStripeModule.forRoot(environment.stripe.publicKey),
-    HttpClientModule
+    HttpClientModule,
+    TableModule,
+    ButtonModule,
+    DialogModule
   ]
 })
 export class CheckoutModule { }

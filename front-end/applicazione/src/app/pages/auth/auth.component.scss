@@ -153,3 +153,9 @@ ngb-carousel {
     }
   }
 }
+
+.carosello_img{
+  object-fit: contain;
+  max-height:100%;
+  //height: 100%;
+}

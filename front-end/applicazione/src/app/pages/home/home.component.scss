@@ -54,6 +54,7 @@ a{
   //min-height: 250px;
   //min-width: 100%;
   //max-height: 60vh;
+  z-index: 2;
   width: 400px;
   height: 400px;
   display: flex;
@@ -106,4 +107,11 @@ svg{
   transform: rotate(-360deg);
   transition: 2s ease-out;
 }
-}}
+}
+}
+
+
+
+
+
+

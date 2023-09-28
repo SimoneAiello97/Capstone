@@ -59,9 +59,9 @@
       <img src="{{prodotto.image}}" class="card-img" alt="img-product">
       <div class="card-body w-100 h-100 d-flex flex-column justify-content-center align-items-center">
           <h5 class="card-title">{{prodotto.name}}</h5>
-          <p class="card-text">{{prodotto.costPrice}} $</p>
+          <p class="card-text">{{prodotto.costPrice | currency: 'EUR'}}</p>
           <div class="d-flex flex-row flex-md-column flex-lg-row align-items-center justify-content-between">
-            <p-button label="Add to Cart" icon="pi pi-shopping-cart" styleClass="p-button-warning" (click)="addToCart(prodotto.id)" ></p-button>
+            <p-button label="Add to Cart" icon="pi pi-shopping-cart" styleClass="p-button-warning" (click)="addToCart(prodotto.id)"  ></p-button>
             <p-button label="View Product" icon="pi pi-eye" styleClass="p-button-secondary bg-dark" [style]="{ 'margin-left': '.5em' }" [routerLink]="['single-product',prodotto.id]" ></p-button>
           </div>
       </div>

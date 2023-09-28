@@ -26,6 +26,7 @@ export class CheckoutComponent {
   items!:any[]
   paymentHandler: any = null;
   user:IUser |null|undefined
+  visible: boolean = false;
 
   stripeAPIKey: any = 'pk_test_51NsnFeJDJmLsYj1ckercN8Aiq0C2Pci55cASU1KoH0BDKa8QYpHLGuqiSqJYCG2ZS6lsmchLlvwYduIRRjlmCPov006aFoHXcO';
 
@@ -34,7 +35,7 @@ export class CheckoutComponent {
     this.invokeStripe();
     this.getCart()
     this.homeSvc.getSingleUser().subscribe(user=>this.user = user)
-
+    this.visible = false
   }
 
   getCart(){
@@ -72,9 +73,13 @@ console.log(paymentHandler.open);
   addOrder(){
     this.homeSvc.addOrder().subscribe(res=>{
       console.log(res);
-      this.router.navigate(['/']);
-      alert("Ordine effettuato con successo")
-    })
+      this.visible = true;
+      setTimeout(() => {
+        this.visible = false;
+        this.router.navigate(['/']);
+      }, 3000);
+    });;
+
   }
 
 

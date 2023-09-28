@@ -22,26 +22,30 @@
 </nav>
 
 <div class="container-fluid">
-  <h3>Carrello</h3>
+  <div class="d-flex justify-content-between align-items-center my-2">
+    <h2>Carrello</h2>
+    <p-button label="Indietro" styleClass="p-button-secondary p-button-text"
+    [routerLink]="['/home']"></p-button>
+   </div>
   <div class="col-6 card" *ngIf="cart == null || items?.length ==0">
     Non ci sono prodotti nel carrello
   </div>
   <div class="row">
 
 
-    <div class="card col-8" *ngIf="cart != null && items?.length !=0">
-      <div class="row mb-3" *ngFor="let item of items">
+    <div class="card col-md-8 col-12" *ngIf="cart != null && items?.length !=0">
+      <div class="row my-3" *ngFor="let item of items">
         <ng-container *ngIf="item.quantity <= 0">
           {{ deleteFromCart(item.product.id) }}
         </ng-container>
 
-        <div class="col-6" *ngIf="item?.quantity >0">
+        <div class="col-md-6 col-12" *ngIf="item?.quantity >0">
           <p class="d-flex justify-content-center"><img src="{{item.product!.image}}" alt="{{item.product!.name}}" class="immagine img-fluid"></p>
         </div>
-        <div class="col-6 d-flex flex-column justify-content-around" *ngIf="item?.quantity > 0">
+        <div class="col-md-6 col-12 d-flex flex-column justify-content-around" *ngIf="item?.quantity > 0">
           <div>
             <h4>{{item.product.name}}</h4>
-            <p>{{item.product.costPrice}} $</p>
+            <p>{{item.product.costPrice | currency: 'EUR'}} </p>
           </div>
           <form class="d-flex">
             <input type="hidden" name="id" [(ngModel)]="item.product!.id">
@@ -69,15 +73,17 @@
       </div>
 
     </div>
-    <div class="col-3 " *ngIf="cart != null && items?.length !=0">
+    <div class="col-md-3 col-12" *ngIf="cart != null && items?.length !=0">
       <div class="card">
         <h4>Vai al checkout</h4>
         <p>Totale Prodotti: {{cart?.totalItems}}</p>
-        <p>Prezzo Finale: {{cart?.totalPrices}} $</p>
+        <p>Prezzo Finale: {{cart?.totalPrices| currency: 'EUR'}} </p>
         <button pButton pRipple label="Procedi all'ordine" class="p-button-warning"
           [routerLink]="['../check-out']"></button>
       </div>
     </div>
+
+
 
   </div>
 </div>

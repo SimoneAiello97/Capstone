@@ -36,6 +36,8 @@ export class HomeComponent {
 
   cart:any|undefined |null
 
+  isImageVisible = false;
+
   keyword!:string;
   constructor(private authSvc:AuthService, private adminSvc:AdminService,private homeSvc:HomeService, private router: Router){}
   ngOnInit(){
@@ -179,4 +181,6 @@ export class HomeComponent {
       })
     })
   }
+
+  
 }
