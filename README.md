@@ -29,7 +29,7 @@ Order Management: View and manage customer orders. <br>
 ## Technologies Used
 ### Frontend:
 
-Angular <br>
+Angular ![Static Badge](https://img.shields.io/badge/Angular-darkred?logo=angular) <br>
 HTML/CSS <br>
 JavaScript <br>
 TypeScript <br>
@@ -54,7 +54,7 @@ PostgreSQL
 ## Setup:
 ### Front-end Setup
 Navigate to the frontend directory.  <br>
-Run ![Static Badge](https://img.shields.io/badge/npm_install-black?logo=npm)
+Run ![Static Badge](https://img.shields.io/badge/npm_install-lightgrey?logo=npm)
 to install frontend dependencies.  <br>
 Configure the API endpoint URL in the frontend code.  <br>
 Run ng serve to start the frontend development server.  <br>
