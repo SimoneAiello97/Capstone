@@ -38,56 +38,47 @@ Chart.js <br>
 PrimeNg for UI components <br>
 Bootstrap for user-friendly experience responsive <br>
 
-
 ### Backend:
 
 Spring Boot (Java) <br>
 Spring Security for authentication and authorization <br>
 Spring Data JPA for data access <br>
 RESTful API endpoints <br>
-SendGrid or other email service for sending verification emails
+SpringMail for sending verification emails <br>
+Verification token generation and validation <br>
+
 ### Database:
 
 PostgreSQL
-Email Verification:
 
-SendGrid or other email service for sending verification emails
-Verification token generation and validation
-Setup
-Clone this repository.
+## Setup:
+### Front-end Setup
+Navigate to the frontend directory.  <br>
+Run npm install to install frontend dependencies.  <br>
+Configure the API endpoint URL in the frontend code.  <br>
+Run ng serve to start the frontend development server.  <br>
 
-Frontend Setup:
+### Backend Setup:
 
-Navigate to the frontend directory.
-Run npm install to install frontend dependencies.
-Configure the API endpoint URL in the frontend code.
-Run ng serve to start the frontend development server.
-Backend Setup:
+Navigate to the backend directory.  <br>
+Set up a PostgreSQL database and configure the database connection in application.properties.  <br>
+Configure email service credentials in application.properties.  <br>
+Run the Spring Boot application.  <br>
 
-Navigate to the backend directory.
-Set up a PostgreSQL database and configure the database connection in application.properties.
-Configure email service credentials in application.properties.
-Run the Spring Boot application.
-Access the application:
+###Access the application:
 
-Frontend: Open a web browser and navigate to http://localhost:4200 (or the configured port).
-Backend: The API endpoints are available at http://localhost:8080 (or the configured port).
-Usage
-Customer: Browse products, add them to the cart, and place orders. Verify your email address after registration.
+Frontend: Open a web browser and navigate to http://localhost:4200 (or the configured port).  <br>
+Backend: The API endpoints are available at http://localhost:8080 (or the configured port).  <br>
 
-Admin: Log in with admin credentials to access the admin dashboard. Manage products, categories, users, and orders.
+## Usage
+###Customer 
+Browse products, add them to the cart, and place orders. Verify your email address after registration.
 
-Deployment
-Frontend: Deploy the Angular app to a web hosting service or a cloud platform like AWS, Netlify, or Vercel.
+### Admin
+Log in with admin credentials (username:admin, password:admin) to access the admin dashboard. Manage products, categories, users, and orders.
 
-Backend: Deploy the Spring Boot application to a cloud platform like AWS, Heroku, or Azure. Configure a production-ready database and email service.
 
-Contributors
-[Your Name] - [Your Email]
-License
-This project is licensed under the [License Name] License - see the LICENSE.md file for details.
+# Contributors
+## Simone Aiello
 
-Acknowledgments
-Mention any libraries, frameworks, or tools used that deserve acknowledgement.
-Inspiration, if any, for your project.
-Any other relevant information or credits.
+
