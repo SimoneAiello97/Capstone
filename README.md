@@ -17,7 +17,7 @@ Product Search: Search for products using keywords. <br>
 Product Filtering: Filter products by price or category. <br>
 Product Details: View detailed information about a product. <br>
 Shopping Cart: Add and manage items in the shopping cart. <br>
-Checkout: Place orders and make payments. <br>
+Checkout: Place orders and make payments with STRIPE. <br>
 Order History: View past orders. <br>
 
 ### Admin Dashboard
@@ -26,14 +26,18 @@ Category Management: Manage product categories. <br>
 User Management: View and manage user accounts. <br>
 Order Management: View and manage customer orders. <br>
 
-Technologies Used
-Frontend:
+## Technologies Used
+### Frontend:
 
-Angular
-HTML/CSS
-JavaScript/TypeScript
-Angular Material for UI components
-Backend:
+Angular <br>
+HTML/CSS <br>
+JavaScript <br>
+TypeScript <br>
+PrimeNg for UI components <br>
+Bootstrap for user-friendly experience responsive <br>
+
+
+### Backend:
 
 Spring Boot (Java)
 Spring Security for authentication and authorization
