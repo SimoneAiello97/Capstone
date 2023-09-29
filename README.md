@@ -65,13 +65,13 @@ Set up a PostgreSQL database and configure the database connection in applicatio
 Configure email service credentials in application.properties.  <br>
 Run the Spring Boot application.  <br>
 
-###Access the application:
+### Access the application:
 
 Frontend: Open a web browser and navigate to http://localhost:4200 (or the configured port).  <br>
 Backend: The API endpoints are available at http://localhost:8080 (or the configured port).  <br>
 
 ## Usage
-###Customer 
+### Customer 
 Browse products, add them to the cart, and place orders. Verify your email address after registration.
 
 ### Admin
