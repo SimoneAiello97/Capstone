@@ -13,7 +13,6 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @ToString
 @Entity
 @Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = "username"),
-		@UniqueConstraint(columnNames = "email") })
+        @UniqueConstraint(columnNames = "email") })
 public class User {
 
     @Id
@@ -36,26 +35,19 @@ public class User {
     private String password;
 
     private boolean isAuthenticated = false;
-    
+
     @JsonIgnore
     @OneToOne(mappedBy = "customer")
     private ShoppingCart shoppingCart;
 
     @JsonIgnore
     @OneToMany(mappedBy = "customer")
-    private List<Order> orders; 
+    private List<Order> orders;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-    )
-
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 
     @JsonIgnore
     private Set<Role> roles = new HashSet<>();
-    
-    
-    
-    
+
 }

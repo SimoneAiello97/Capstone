@@ -29,7 +29,7 @@ export class ModelComponent {
   }
   ngOnInit(): void {
     this.deviceWidth = window.innerWidth;
-    console.log("🚀 ~ file: model-eth.component.ts:42 ~ ModelEthComponent ~ ngAfterViewInit ~ this.deviceWidth:", this.deviceWidth)
+    //console.log("🚀 ~ file: model-eth.component.ts:42 ~ ModelEthComponent ~ ngAfterViewInit ~ this.deviceWidth:", this.deviceWidth)
   }
 
   ngAfterViewInit() {

@@ -27,9 +27,6 @@ import com.capstone.demo.security.security.JwtTokenProvider;
 import com.capstone.demo.security.token.VerificationToken;
 import com.capstone.demo.security.token.VerificationTokenRepository;
 
-
-
-
 @Service
 public class AuthServiceImpl implements AuthService {
 
@@ -41,12 +38,11 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private VerificationTokenRepository tokenRepository;
 
-
     public AuthServiceImpl(AuthenticationManager authenticationManager,
-                           IUserRepository userRepository,
-                           RoleRepository roleRepository,
-                           PasswordEncoder passwordEncoder,
-                           JwtTokenProvider jwtTokenProvider) {
+            IUserRepository userRepository,
+            RoleRepository roleRepository,
+            PasswordEncoder passwordEncoder,
+            JwtTokenProvider jwtTokenProvider) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
@@ -56,13 +52,11 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String login(LoginDto loginDto) {
-        
-    	Authentication authentication = authenticationManager.authenticate(
-        		new UsernamePasswordAuthenticationToken(
-        				loginDto.getUsername(), loginDto.getPassword()
-        		)
-        ); 
-    	
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginDto.getUsername(), loginDto.getPassword()));
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String token = jwtTokenProvider.generateToken(authentication);
@@ -72,77 +66,85 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public User register(RegisterDto registerDto) {
+        //Queste singole righe di codice mi hanno fatto piangere per due giorni!
         // Controllo se l'utente di default "ADMIN" esiste nel database
-       /*  User adminUser = userRepository.findByUsername("admin").get();
-        if (adminUser == null) {
-        // L'utente "ADMIN" non esiste, quindi lo creo
-        adminUser = new User();
-        adminUser.setName("Admin Name");
-        adminUser.setUsername("admin");
-        adminUser.setEmail("admin@example.com");
-        adminUser.setAuthenticated(true);
-        adminUser.setPassword(passwordEncoder.encode("admin")); // Imposta la password di default
-        Role adminRole = roleRepository.findByRoleName(ERole.ROLE_ADMIN).get();
-        adminUser.setRoles(Collections.singleton(adminRole)); // Imposta il ruolo "ADMIN"
-        userRepository.save(adminUser);
-    } */
-    Optional<User> adminUserOptional = userRepository.findByUsername("admin");
-    if (adminUserOptional.isEmpty()) {
-    // L'utente "admin" non esiste, quindi lo creo
-    User adminUser = new User();
-    adminUser.setName("Admin Name");
-    adminUser.setUsername("admin");
-    adminUser.setEmail("admin@example.com");
-    adminUser.setAuthenticated(true);
-    adminUser.setPassword(passwordEncoder.encode("admin")); // Imposta la password di default
-    Role adminRole = roleRepository.findByRoleName(ERole.ROLE_ADMIN).get();
-    adminUser.setRoles(Collections.singleton(adminRole)); // Imposta il ruolo "ADMIN"
-    userRepository.save(adminUser);
-}
+        /*
+         * User adminUser = userRepository.findByUsername("admin").get();
+         * if (adminUser == null) {
+         * // L'utente "ADMIN" non esiste, quindi lo creo
+         * adminUser = new User();
+         * adminUser.setName("Admin Name");
+         * adminUser.setUsername("admin");
+         * adminUser.setEmail("admin@example.com");
+         * adminUser.setAuthenticated(true);
+         * adminUser.setPassword(passwordEncoder.encode("admin")); // Imposta la
+         * password di default
+         * Role adminRole = roleRepository.findByRoleName(ERole.ROLE_ADMIN).get();
+         * adminUser.setRoles(Collections.singleton(adminRole)); // Imposta il ruolo
+         * "ADMIN"
+         * userRepository.save(adminUser);
+         * }
+         */
+        Optional<User> adminUserOptional = userRepository.findByUsername("admin");
+        if (adminUserOptional.isEmpty()) {
+            // L'utente "admin" non esiste, quindi lo creo
+            User adminUser = new User();
+            adminUser.setName("Admin Name");
+            adminUser.setUsername("admin");
+            adminUser.setEmail("admin@example.com");
+            adminUser.setAuthenticated(true);
+            adminUser.setPassword(passwordEncoder.encode("admin")); // Imposta la password di default
+            Role adminRole = roleRepository.findByRoleName(ERole.ROLE_ADMIN).get();
+            adminUser.setRoles(Collections.singleton(adminRole)); // Imposta il ruolo "ADMIN"
+            userRepository.save(adminUser);
+        }
         // add check for username exists in database
-        if(userRepository.existsByUsername(registerDto.getUsername())){
-            throw new MyAPIException(HttpStatus.BAD_REQUEST, "Username `"+ registerDto.getUsername() +"` is already exists!.");
+        if (userRepository.existsByUsername(registerDto.getUsername())) {
+            throw new MyAPIException(HttpStatus.BAD_REQUEST,
+                    "Username `" + registerDto.getUsername() + "` is already exists!.");
         }
 
         // add check for email exists in database
-        if(userRepository.existsByEmail(registerDto.getEmail())){
-            throw new MyAPIException(HttpStatus.BAD_REQUEST, "Email `"+ registerDto.getEmail() +"` is already exists!.");
+        if (userRepository.existsByEmail(registerDto.getEmail())) {
+            throw new MyAPIException(HttpStatus.BAD_REQUEST,
+                    "Email `" + registerDto.getEmail() + "` is already exists!.");
         }
 
         User user = new User();
         user.setName(registerDto.getName());
         user.setUsername(registerDto.getUsername());
         user.setEmail(registerDto.getEmail());
-        user.setShoppingCart(null); 
+        user.setShoppingCart(null);
         user.setOrders(null);
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
         /* user.setAuthenticated(false); */
 
         Set<Role> roles = new HashSet<>();
-        
-        if(registerDto.getRoles() != null) {
-	        registerDto.getRoles().forEach(role -> {
-	        	Role userRole = roleRepository.findByRoleName(getRole(role)).get();
-	        	roles.add(userRole);
-	        });
+
+        if (registerDto.getRoles() != null) {
+            registerDto.getRoles().forEach(role -> {
+                Role userRole = roleRepository.findByRoleName(getRole(role)).get();
+                roles.add(userRole);
+            });
         } else {
-        	Role userRole = roleRepository.findByRoleName(ERole.ROLE_USER).get();
-        	roles.add(userRole);
+            Role userRole = roleRepository.findByRoleName(ERole.ROLE_USER).get();
+            roles.add(userRole);
         }
-        
+
         user.setRoles(roles);
         System.out.println(user);
         userRepository.save(user);
 
-        /* return "User registered successfully!."; */
         return user;
     }
 
-    
     public ERole getRole(String role) {
-    	if(role.equals("ADMIN")) return ERole.ROLE_ADMIN;
-    	else if(role.equals("MODERATOR")) return ERole.ROLE_MODERATOR;
-    	else return ERole.ROLE_USER;
+        if (role.equals("ADMIN"))
+            return ERole.ROLE_ADMIN;
+        else if (role.equals("MODERATOR"))
+            return ERole.ROLE_MODERATOR;
+        else
+            return ERole.ROLE_USER;
     }
 
     @Override
@@ -154,12 +156,12 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String validateToken(String theToken) {
         VerificationToken token = tokenRepository.findByToken(theToken);
-        if(token == null){
+        if (token == null) {
             return "Invalid verification token";
         }
         User user = token.getUser();
         Calendar calendar = Calendar.getInstance();
-        if ((token.getExpirationTime().getTime()-calendar.getTime().getTime())<= 0){
+        if ((token.getExpirationTime().getTime() - calendar.getTime().getTime()) <= 0) {
             return "Verification link already expired," +
                     " Please, click the link below to receive a new verification link";
         }
@@ -167,5 +169,5 @@ public class AuthServiceImpl implements AuthService {
         userRepository.save(user);
         return "valid";
     }
-    
+
 }

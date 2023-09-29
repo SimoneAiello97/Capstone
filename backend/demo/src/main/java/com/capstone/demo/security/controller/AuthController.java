@@ -26,8 +26,6 @@ import com.capstone.demo.security.token.VerificationTokenRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-
-
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -35,8 +33,10 @@ public class AuthController {
 
     @Autowired
     private ApplicationEventPublisher publisher;
+
     @Autowired
     private VerificationTokenRepository tokenRepository;
+
     @Autowired
     private AuthService authService;
 
@@ -45,10 +45,10 @@ public class AuthController {
     }
 
     // Build Login REST API
-    @PostMapping(value = {"/login", "/signin"})
-    public ResponseEntity<JWTAuthResponse> login(@RequestBody LoginDto loginDto){
-           	
-    	String token = authService.login(loginDto);
+    @PostMapping(value = { "/login", "/signin" })
+    public ResponseEntity<JWTAuthResponse> login(@RequestBody LoginDto loginDto) {
+
+        String token = authService.login(loginDto);
 
         JWTAuthResponse jwtAuthResponse = new JWTAuthResponse();
         jwtAuthResponse.setUsername(loginDto.getUsername());
@@ -58,41 +58,50 @@ public class AuthController {
     }
 
     // Build Register REST API
-    /* @PostMapping(value = {"/register", "/signup"})
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto, HttpServletRequest request){
+    @PostMapping(value = { "/register", "/signup" })
+    public ResponseEntity<Map<String, String>> register(@RequestBody RegisterDto registerDto,
+            HttpServletRequest request) {
         User user = authService.register(registerDto);
-         publisher.publishEvent(new RegistrationCompleteEvent(user, applicationUrl(request)));
-        return new ResponseEntity<>("User create succssfully! Please, check your email for to complete your registration",
-         HttpStatus.CREATED);
-    } */
-    @PostMapping(value = {"/register", "/signup"})
-public ResponseEntity<Map<String, String>> register(@RequestBody RegisterDto registerDto, HttpServletRequest request) {
-    User user = authService.register(registerDto);
-    publisher.publishEvent(new RegistrationCompleteEvent(user, applicationUrl(request)));
+        publisher.publishEvent(new RegistrationCompleteEvent(user, applicationUrl(request)));
 
-    Map<String, String> response = new HashMap<>();
-    response.put("message", "User created successfully! Please, check your email to complete your registration");
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "User created successfully! Please, check your email to complete your registration");
 
-    return new ResponseEntity<>(response, HttpStatus.CREATED);
-}
-
-    
-
-    public String applicationUrl(HttpServletRequest request) {
-        return "http://"+request.getServerName()+":"
-                +request.getServerPort()+request.getContextPath();
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-     @GetMapping("register/verifyEmail")
-    public String sendVerificationToken(@RequestParam("token") String token){
+    // Questo metodo genera l'URL di base dell'applicazione utilizzando le
+    // informazioni dalla richiesta HTTP.
+    // È utile per costruire URL assoluti nell'applicazione.
+    public String applicationUrl(HttpServletRequest request) {
+        return "http://" + request.getServerName() + ":"
+                + request.getServerPort() + request.getContextPath();
+    }
+
+    // Questo metodo gestisce la richiesta GET per la verifica dell'email
+    // utilizzando un token.
+    @GetMapping("register/verifyEmail")
+    public String sendVerificationToken(@RequestParam("token") String token) {
+        // Recupera il token di verifica dal repository tramite il token fornito come
+        // parametro.
         VerificationToken theToken = tokenRepository.findByToken(token);
-        if (theToken.getUser().isAuthenticated()){
+
+        // Verifica se l'utente associato al token è già autenticato.
+        if (theToken.getUser().isAuthenticated()) {
             return "This account has already been verified, please, login.";
         }
+
+        // Esegue la validazione del token di verifica attraverso il servizio di
+        // autenticazione.
         String verificationResult = authService.validateToken(token);
-        if (verificationResult.equalsIgnoreCase("valid")){
+
+        // Verifica il risultato della validazione e restituisce un messaggio
+        // appropriato.
+        if (verificationResult.equalsIgnoreCase("valid")) {
             return "Email verified successfully. Now you can login to your account";
+        } else {
+            return "Invalid verification link, please, check your email for a new verification link";
         }
-        return "Invalid verification link, please, check your email for new verification link";
     }
+
 }

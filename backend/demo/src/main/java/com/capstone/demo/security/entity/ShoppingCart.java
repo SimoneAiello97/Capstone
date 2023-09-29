@@ -30,6 +30,6 @@ public class ShoppingCart {
     private User customer;
 
     //@JsonIgnore
-     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
     private Set<CartItem> cartItem;
 }

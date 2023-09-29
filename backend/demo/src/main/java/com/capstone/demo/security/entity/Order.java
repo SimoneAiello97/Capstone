@@ -1,7 +1,6 @@
 package com.capstone.demo.security.entity;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,12 +21,7 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
     private LocalDate orderDate;
-    /* private Date orderDate;
-    private Date deliveryDate; */
     private double totalPrice;
-   /*  private double shippingFee;
-    private String orderStatus;
-    private String notes; */
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)

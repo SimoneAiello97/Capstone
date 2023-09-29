@@ -13,8 +13,6 @@ import com.capstone.demo.security.entity.User;
 import com.capstone.demo.security.repository.CartItemRepository;
 import com.capstone.demo.security.repository.ShoppingCartRepository;
 
-import jakarta.transaction.Transactional;
-
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 

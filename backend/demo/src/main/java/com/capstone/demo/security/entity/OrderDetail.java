@@ -1,10 +1,8 @@
 package com.capstone.demo.security.entity;
 
-import org.hibernate.annotations.ManyToAny;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,7 +28,6 @@ public class OrderDetail {
     @JoinColumn(name = "order_id", referencedColumnName = "order_id")
     private Order order;
 
-    //@JsonIgnoreProperties({"name", "description", "costPrice", "salePrice", "currentQuantity", "image", "category"})
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "product_id",  unique = false)

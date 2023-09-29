@@ -9,11 +9,8 @@ import { NgbCarousel, NgbRatingConfig, NgbSlideEvent, NgbSlideEventSource  } fro
   providers: [NgbRatingConfig]
 })
 export class AuthComponent  {
-
-
     isNavbarTransparent = false;
-    images = [1,2,3].map((n) => `../../../assets/carosello-ecommerce-${n}.jpg`);
-
+    images = [2,1,3].map((n) => `../../../assets/carosello-ecommerce-${n}.jpg`);
     paused = false;
     unpauseOnArrow = false;
     pauseOnIndicator = false;

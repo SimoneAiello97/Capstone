@@ -11,6 +11,6 @@ import com.capstone.demo.security.entity.OrderDetail;
 
 @Repository
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long>{
-     @Query("select o from Order o where o.customer.id = ?1")
+    @Query("select o from Order o where o.customer.id = ?1")
     List<Order> findAllByCustomerId(Long id);
 }

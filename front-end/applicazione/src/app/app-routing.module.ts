@@ -5,22 +5,38 @@ import { AuthGuard } from './pages/auth/auth.guard';
 import { AdminGuard } from './pages/auth/admin.guard';
 
 const routes: Routes = [
-  {path:'', redirectTo:'home', pathMatch:'full'},
-  { path: 'auth', loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule) },
- { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule), canActivate: [AuthGuard] },
-  { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule), canActivate: [AdminGuard] },
-/*   { path: 'check-out', loadChildren: () => import('./pages/home/checkout/checkout.module').then(m => m.CheckoutModule) }, */
- /*  { path: 'cart', loadChildren: () => import('./pages/home/cart/cart.module').then(m => m.CartModule) }, */
- /*  { path: 'single-product', loadChildren: () => import('./pages/home/single-product/single-product.module').then(m => m.SingleProductModule) }, */
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./pages/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomeModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./pages/admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [AdminGuard],
+  },
+
+  //QUESTE SONO TUTTE LE ROTTE GENERATE CON IL COMANDO DA TERMINALE E SPOSTATE POI NEI "GENITORI" APPOSITI
+  /*   { path: 'check-out', loadChildren: () => import('./pages/home/checkout/checkout.module').then(m => m.CheckoutModule) }, */
+  /*  { path: 'cart', loadChildren: () => import('./pages/home/cart/cart.module').then(m => m.CartModule) }, */
+  /*  { path: 'single-product', loadChildren: () => import('./pages/home/single-product/single-product.module').then(m => m.SingleProductModule) }, */
   /* { path: 'users', loadChildren: () => import('./pages/admin/users/users.module').then(m => m.UsersModule) }, */
   /* { path: 'products', loadChildren: () => import('./pages/admin/products/products.module').then(m => m.ProductsModule) }, */
- /*  { path: 'categories', loadChildren: () => import('./pages/admin/categories/categories.module').then(m => m.CategoriesModule) }, */
-/*   { path: 'register', loadChildren: () => import('./pages/auth/register/register.module').then(m => m.RegisterModule) },
+  /*  { path: 'categories', loadChildren: () => import('./pages/admin/categories/categories.module').then(m => m.CategoriesModule) }, */
+  /*   { path: 'register', loadChildren: () => import('./pages/auth/register/register.module').then(m => m.RegisterModule) },
    { path: 'login', loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginModule) } */
-  ];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

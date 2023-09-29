@@ -1,7 +1,6 @@
 package com.capstone.demo.security.dto;
 
 import com.capstone.demo.security.entity.Category;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

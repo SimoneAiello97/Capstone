@@ -7,8 +7,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.capstone.demo.security.entity.CartItem;
 import com.capstone.demo.security.entity.Order;
 import com.capstone.demo.security.entity.OrderDetail;
 import com.capstone.demo.security.entity.ShoppingCart;
@@ -17,81 +15,49 @@ import com.capstone.demo.security.repository.IUserRepository;
 import com.capstone.demo.security.repository.OrderDetailRepository;
 import com.capstone.demo.security.repository.OrderRepository;
 import com.capstone.demo.security.repository.ShoppingCartRepository;
-
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-
 
 @Service
 @RequiredArgsConstructor
-public class OrderServiceImpl  implements OrderService {
+public class OrderServiceImpl implements OrderService {
 
-    @Autowired OrderRepository orderRepository;
-    @Autowired ShoppingCartRepository shoppingCartRepository;
-    @Autowired OrderDetailRepository detailRepository;
-    @Autowired IUserRepository customerRepository;
-    @Autowired ShoppingCartServiceImpl cartService;
-    
-    /* @Transactional
-@Override
-public Order save(ShoppingCart shoppingCart) {
-    Order order = new Order();
-    order.setCustomer(shoppingCart.getCustomer());
-    
-    order.setTotalPrice(shoppingCart.getTotalPrices());
-    
-    
-        System.out.println("Diocane");
-    
-    // Elimina il carrello all'interno della stessa transazione
-    //cartService.deleteCartById(shoppingCart.getId());
-     orderRepository.save(order);
-    Order cazzo = orderRepository.getById(order.getId());
+    @Autowired
+    OrderRepository orderRepository;
+    @Autowired
+    ShoppingCartRepository shoppingCartRepository;
+    @Autowired
+    OrderDetailRepository detailRepository;
+    @Autowired
+    IUserRepository customerRepository;
+    @Autowired
+    ShoppingCartServiceImpl cartService;
 
-    List<OrderDetail> orderDetailList = new ArrayList<>();
-    order.setOrderDetailList(orderDetailList);
-    for (CartItem item : shoppingCart.getCartItem()) {
+    @Override
+    public Order save(ShoppingCart shoppingCart) {
+        Order order = new Order();
+        order.setCustomer(shoppingCart.getCustomer());
+        order.setTotalPrice(shoppingCart.getTotalPrices());
+
+        order.setOrderDate(LocalDate.now());
+
+        List<OrderDetail> orderDetailList = new ArrayList<>();
+        shoppingCart.getCartItem().forEach(item -> {
             OrderDetail orderDetail = new OrderDetail();
-            orderDetail.setOrder(cazzo);
+            orderDetail.setOrder(order);
             orderDetail.setQuantity(item.getQuantity());
             orderDetail.setTotalPrice(item.getTotalPrice());
+            orderDetail.setUnitPrice(item.getTotalPrice() / item.getQuantity());
             orderDetail.setProduct(item.getProduct());
             detailRepository.save(orderDetail);
             orderDetailList.add(orderDetail);
-        }
+        });
 
-    return cazzo;
-} */
+        order.setOrderDetailList(orderDetailList);
+        orderRepository.save(order);
+        cartService.deleteCartById(shoppingCart.getId());
 
-@Override
-//@Transactional
-public Order save(ShoppingCart shoppingCart) {
-    Order order = new Order();
-    order.setCustomer(shoppingCart.getCustomer());
-    order.setTotalPrice(shoppingCart.getTotalPrices());
-    
-    
-    order.setOrderDate(LocalDate.now());
-   
-    List<OrderDetail> orderDetailList = new ArrayList<>();
-    shoppingCart.getCartItem().forEach(item ->{
-    OrderDetail orderDetail = new OrderDetail(); 
-        orderDetail.setOrder(order);
-        orderDetail.setQuantity(item.getQuantity());
-        orderDetail.setTotalPrice(item.getTotalPrice());
-        orderDetail.setUnitPrice(item.getTotalPrice()/item.getQuantity());
-        orderDetail.setProduct(item.getProduct());
-        detailRepository.save(orderDetail);
-        orderDetailList.add(orderDetail);
-    });
-    
-    order.setOrderDetailList(orderDetailList);
-    orderRepository.save(order);
-    cartService.deleteCartById(shoppingCart.getId());
-   
-
-    return order;
-}
+        return order;
+    }
 
     @Override
     public List<Order> findAll(String username) {
@@ -105,9 +71,8 @@ public Order save(ShoppingCart shoppingCart) {
         return orderRepository.findAll();
     }
 
-    public List<OrderDetail> findOrderDetail(){
+    public List<OrderDetail> findOrderDetail() {
         return detailRepository.findAll();
     }
-    
-    
+
 }

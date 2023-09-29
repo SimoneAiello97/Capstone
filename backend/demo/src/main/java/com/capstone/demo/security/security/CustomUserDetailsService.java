@@ -7,12 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import com.capstone.demo.security.entity.User;
 import com.capstone.demo.security.exception.MyAPIException;
 import com.capstone.demo.security.repository.IUserRepository;
-
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 

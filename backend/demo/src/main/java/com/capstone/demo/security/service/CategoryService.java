@@ -3,8 +3,6 @@ package com.capstone.demo.security.service;
 
 
 import java.util.List;
-
-import com.capstone.demo.security.dto.CategoryDto;
 import com.capstone.demo.security.entity.Category;
 
 public interface CategoryService {

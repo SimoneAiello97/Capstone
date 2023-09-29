@@ -1,34 +1,31 @@
 <div class="main">
+  <p-card header="Accedi" subheader="Continua su eStore" [style]="{ width: '340px' }">
+    <ng-template pTemplate="header">
+      <div class="logo">
+        <img alt="Card" src="../../../../assets/logo-e-store.png" />
+      </div>
+    </ng-template>
 
+    <form class="d-flex flex-column justify-content-center align-items-center">
+      <div class="ciao">
+        <span class="p-float-label">
+          <input pInputText name="username" [(ngModel)]="data.username" />
+          <label htmlFor="username">Username</label>
+        </span>
+      </div>
+      <div class="ciao">
+        <p-password name="password" [(ngModel)]="data.password" [toggleMask]="true" [feedback]=false class="w-100"
+          placeholder="Password"></p-password>
+      </div>
+      <button (click)="login()" pButton pRipple label="Login" class="p-button-warning"></button>
+    </form>
+  </p-card>
 
-    <p-card header="Accedi" subheader="Continua su eStore" [style]="{ width: '340px' }">
+  <p-messages [(value)]="messages2" [enableService]="false"></p-messages>
 
-        <ng-template pTemplate="header">
-          <div class="logo">
-            <img alt="Card" src="../../../../assets/logo-e-store.png" />
-          </div>
-        </ng-template>
+  <p-messages [(value)]="messages" [enableService]="false"></p-messages>
 
-        <form class="d-flex flex-column justify-content-center align-items-center">
-          <div class="ciao">
-          <span class="p-float-label">
-            <input pInputText name="username" [(ngModel)]="data.username" />
-            <label htmlFor="username">Username</label>
-          </span>
-        </div>
-        <div class="ciao">
-          <p-password name="password" [(ngModel)]="data.password" [toggleMask]="true" [feedback]=false class="w-100" placeholder="Password"></p-password>
-        </div>
-        <button (click)="login()" pButton pRipple label="Login" class="p-button-warning"></button>
-      </form>
-    </p-card>
-
-  <!-- <div  class="d-flex flex-column align-items-center"> -->
-    <p-messages [(value)]="messages2" [enableService]="false"></p-messages>
-
-  <p-messages  [(value)]="messages" [enableService]="false" ></p-messages>
-
-  <p-button label="Non sei ancora Registrato?" styleClass="p-button-warning p-button-text mt-5" [routerLink]="['../register']"></p-button>
+  <p-button label="Non sei ancora Registrato?" styleClass="p-button-warning p-button-text mt-5"
+    [routerLink]="['../register']"></p-button>
   <p-button label="Indietro" styleClass="p-button-secondary p-button-text" [routerLink]="['/']"></p-button>
 </div>
-<!-- *ngIf="credenziali" [closable]="false" -->

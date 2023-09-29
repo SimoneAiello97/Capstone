@@ -4,8 +4,6 @@ package com.capstone.demo.security.service;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.capstone.demo.security.dto.ProductDto;
 import com.capstone.demo.security.entity.Product;
 
