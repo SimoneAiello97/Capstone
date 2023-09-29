@@ -32,6 +32,7 @@ Order Management: View and manage customer orders. <br>
 ![Static Badge](https://img.shields.io/badge/Angular-darkred?logo=angular) 
 ![Static Badge](https://img.shields.io/badge/HTML-darkorange?logo=html5)
 ![Static Badge](https://img.shields.io/badge/CSS-darkblue?logo=css3)
+![Static Badge](https://img.shields.io/badge/Sass-pink?logo=sass)
 ![Static Badge](https://img.shields.io/badge/JavaScript-yellow?logo=javascript)
 ![Static Badge](https://img.shields.io/badge/TypeScript-lightblue?logo=typescript)
 ![Static Badge](https://img.shields.io/badge/Three.js-grey?logo=threedotjs)
@@ -46,12 +47,14 @@ Order Management: View and manage customer orders. <br>
 ![Static Badge](https://img.shields.io/badge/Spring-green?logo=spring)
 ![Static Badge](https://img.shields.io/badge/Spring_Security-grey?logo=springsecurity)
 ![Static Badge](https://img.shields.io/badge/SpringMail-brown?logo=maildotcom)
-
+![Static Badge](https://img.shields.io/badge/Stripe-blue?logo=stripe)
+![Static Badge](https://img.shields.io/badge/PostMan-grey?logo=postman)
 
 
 ### Database:
 
-PostgreSQL
+![Static Badge](https://img.shields.io/badge/PostgreSQL-blue)
+
 
 ## Setup:
 ### Front-end Setup
