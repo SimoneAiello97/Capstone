@@ -29,11 +29,13 @@ Order Management: View and manage customer orders. <br>
 ## Technologies Used
 ### Frontend:
 
-Angular ![Static Badge](https://img.shields.io/badge/Angular-darkred?logo=angular) <br>
-HTML/CSS <br>
-JavaScript <br>
-TypeScript <br>
-Three.js <br>
+![Static Badge](https://img.shields.io/badge/Angular-darkred?logo=angular) 
+![Static Badge](https://img.shields.io/badge/HTML-darkorange?logo=html5)
+![Static Badge](https://img.shields.io/badge/CSS-darkblue?logo=css3)
+![Static Badge](https://img.shields.io/badge/JavaScript-yellow?logo=javascript)
+![Static Badge](https://img.shields.io/badge/TypeScript-lightblue?logo=typescript)
+![Static Badge](https://img.shields.io/badge/Three.js-grey?logo=threedotjs)
+
 Chart.js <br>
 PrimeNg for UI components <br>
 Bootstrap for user-friendly experience responsive <br>
