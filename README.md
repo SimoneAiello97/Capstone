@@ -5,6 +5,7 @@
 This is a full-stack E-commerce application that includes both an admin dashboard and a customer storefront. It also features user registration with email validation.
 
 ## Features <br><br>
+
 ### Security <br>
 Email Verification: Verify user email addresses. <br>
 Role-Based Access Control: Admin and user roles with restricted access. <br>
