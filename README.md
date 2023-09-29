@@ -4,24 +4,27 @@
 
 This is a full-stack E-commerce application that includes both an admin dashboard and a customer storefront. It also features user registration with email validation.
 
-## Features
-Customer Storefront
+## Features <br><br>
+### Security <br>
+Email Verification: Verify user email addresses. <br>
+Role-Based Access Control: Admin and user roles with restricted access. <br>
 
-Product Catalog: Browse a wide range of products. <br><br>
-Product Search: Search for products using keywords.
-Product Filtering: Filter products by price or category.
-Product Details: View detailed information about a product.
-Shopping Cart: Add and manage items in the shopping cart.
-Checkout: Place orders and make payments.
-Order History: View past orders.
-User Account: Manage user profile and settings.
-Admin Dashboard
-Product Management: Add, edit, and delete products.
-Category Management: Manage product categories.
-User Management: View and manage user accounts.
-Order Management: View and manage customer orders.
-Email Verification: Verify user email addresses.
-Role-Based Access Control: Admin and user roles with restricted access.
+### Customer Storefront
+
+Product Catalog: Browse a wide range of products. <br>
+Product Search: Search for products using keywords. <br>
+Product Filtering: Filter products by price or category. <br>
+Product Details: View detailed information about a product. <br>
+Shopping Cart: Add and manage items in the shopping cart. <br>
+Checkout: Place orders and make payments. <br>
+Order History: View past orders. <br>
+
+### Admin Dashboard
+Product Management: Add, edit, and delete products. <br>
+Category Management: Manage product categories. <br>
+User Management: View and manage user accounts. <br>
+Order Management: View and manage customer orders. <br>
+
 Technologies Used
 Frontend:
 
