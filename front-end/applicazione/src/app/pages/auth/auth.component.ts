@@ -12,7 +12,7 @@ export class AuthComponent  {
 
 
     isNavbarTransparent = false;
-    images = [62, 83, 466, 965, 982, 1043, 738].map((n) => `https://picsum.photos/id/${n}/900/500`);
+    images = [1,2,3].map((n) => `../../../assets/carosello-ecommerce-${n}.jpg`);
 
     paused = false;
     unpauseOnArrow = false;
