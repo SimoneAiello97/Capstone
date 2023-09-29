@@ -1,5 +1,5 @@
 
-E-Commerce Application
+#E-Store 
 This is a full-stack E-commerce application that includes both an admin dashboard and a customer storefront. It also features user registration with email validation.
 
 Features
