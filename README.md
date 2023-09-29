@@ -33,17 +33,20 @@ Angular <br>
 HTML/CSS <br>
 JavaScript <br>
 TypeScript <br>
+Three.js <br>
+Chart.js <br>
 PrimeNg for UI components <br>
 Bootstrap for user-friendly experience responsive <br>
 
 
 ### Backend:
 
-Spring Boot (Java)
-Spring Security for authentication and authorization
-Spring Data JPA for data access
-RESTful API endpoints
-Database:
+Spring Boot (Java) <br>
+Spring Security for authentication and authorization <br>
+Spring Data JPA for data access <br>
+RESTful API endpoints <br>
+SendGrid or other email service for sending verification emails
+### Database:
 
 PostgreSQL
 Email Verification:
