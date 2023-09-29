@@ -7,7 +7,7 @@ This is a full-stack E-commerce application that includes both an admin dashboar
 ## Features
 Customer Storefront
 
-Product Catalog: Browse a wide range of products.
+Product Catalog: Browse a wide range of products.<br></br>
 Product Search: Search for products using keywords.
 Product Filtering: Filter products by price or category.
 Product Details: View detailed information about a product.
