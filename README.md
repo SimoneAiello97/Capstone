@@ -1,9 +1,10 @@
 
-# E-Store 
+# E-Store  ![Yellow_E-commerce_Shop_Bag_Store_Logo__2_-removebg-preview](https://github.com/SimoneAiello97/Capstone/assets/126870680/6cb3a3ed-e0e8-4862-86f5-5910f05da071)
 This is a full-stack E-commerce application that includes both an admin dashboard and a customer storefront. It also features user registration with email validation.
 
 Features
 Customer Storefront
+
 Product Catalog: Browse a wide range of products.
 Product Search: Search for products using keywords.
 Product Filtering: Filter products by price or category.
