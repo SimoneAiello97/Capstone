@@ -35,19 +35,19 @@ Order Management: View and manage customer orders. <br>
 ![Static Badge](https://img.shields.io/badge/JavaScript-yellow?logo=javascript)
 ![Static Badge](https://img.shields.io/badge/TypeScript-lightblue?logo=typescript)
 ![Static Badge](https://img.shields.io/badge/Three.js-grey?logo=threedotjs)
-
-Chart.js <br>
-PrimeNg for UI components <br>
-Bootstrap for user-friendly experience responsive <br>
+![Static Badge](https://img.shields.io/badge/Chart.js-white?logo=chartdotjs)
+![Static Badge](https://img.shields.io/badge/NGPrime-red)
+![Static Badge](https://img.shields.io/badge/Bootstrap-purple?logo=bootstrap)
 
 ### Backend:
 
-Spring Boot (Java) <br>
-Spring Security for authentication and authorization <br>
-Spring Data JPA for data access <br>
-RESTful API endpoints <br>
-SpringMail for sending verification emails <br>
-Verification token generation and validation <br>
+![Static Badge](https://img.shields.io/badge/SpringBoot-darkgreen?logo=springboot)
+![Static Badge](https://img.shields.io/badge/Java-white)
+![Static Badge](https://img.shields.io/badge/Spring-green?logo=spring)
+![Static Badge](https://img.shields.io/badge/Spring_Security-grey?logo=springsecurity)
+![Static Badge](https://img.shields.io/badge/SpringMail-brown?logo=maildotcom)
+
+
 
 ### Database:
 
