@@ -70,7 +70,8 @@ Run the Spring Boot application.  <br>
 Frontend: Open a web browser and navigate to http://localhost:4200 (or the configured port).  <br>
 Backend: The API endpoints are available at http://localhost:8080 (or the configured port).  <br>
 
-## Usage <br>
+## Usage 
+
 ### Customer 
 Browse products, add them to the cart, and place orders. Verify your email address after registration.
 
