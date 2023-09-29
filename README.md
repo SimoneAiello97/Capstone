@@ -54,7 +54,7 @@ PostgreSQL
 ## Setup:
 ### Front-end Setup
 Navigate to the frontend directory.  <br>
-Run ![Static Badge](https://img.shields.io/badge/npm%20-install-red) to install frontend dependencies.  <br>
+Run ![Static Badge](https://img.shields.io/badge/npm%20install-black) to install frontend dependencies.  <br>
 Configure the API endpoint URL in the frontend code.  <br>
 Run ng serve to start the frontend development server.  <br>
 
