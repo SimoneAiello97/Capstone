@@ -4,7 +4,7 @@
 
 This is a full-stack E-commerce application that includes both an admin dashboard and a customer storefront. It also features user registration with email validation.
 
-## Features
+## Features 📱
 
 ### Security 🛡️🔒
 📧 Email Verification: Verify user email addresses.  <br>
@@ -26,7 +26,7 @@ This is a full-stack E-commerce application that includes both an admin dashboar
 👥 User Management: View and manage user accounts. <br>
 📊 Order Management: View and manage customer orders. <br>
 
-## Technologies Used
+## Technologies Used 💻
 ### Frontend:
 
 ![Static Badge](https://img.shields.io/badge/Angular-darkred?logo=angular) 
@@ -56,7 +56,7 @@ This is a full-stack E-commerce application that includes both an admin dashboar
 ![Static Badge](https://img.shields.io/badge/PostgreSQL-blue)
 
 
-## Setup:
+## Setup: 🔧
 ### Front-end Setup
 Navigate to the frontend directory.  <br>
 Run ![Static Badge](https://img.shields.io/badge/npm_install-lightgrey?logo=npm)
@@ -84,6 +84,6 @@ Browse products, add them to the cart, and place orders. Verify your email addre
 Log in with admin credentials (username:admin, password:admin) to access the admin dashboard. Manage products, categories, users, and orders.
 
 
-# Contributors: Simone Aiello
+# Simone Aiello 
 
 
