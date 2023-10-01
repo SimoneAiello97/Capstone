@@ -1,5 +1,5 @@
 
-![Yellow_E-commerce_Shop_Bag_Store_Logo__2_-removebg-preview](https://github.com/SimoneAiello97/Capstone/assets/126870680/3e1cbcd9-a2d5-44ce-8251-8028104efd99)
+![Yellow_E-commerce_Shop_Bag_Store_Logo__2_-removebg-preview](https://github.com/SimoneAiello97/Capstone/assets/126870680/3e1cbcd9-a2d5-44ce-8251-8028104efd99){width=100%}
 # E-Store 
 
 This is a full-stack E-commerce application that includes both an admin dashboard and a customer storefront. It also features user registration with email validation.
