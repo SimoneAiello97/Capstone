@@ -6,25 +6,25 @@ This is a full-stack E-commerce application that includes both an admin dashboar
 
 ## Features
 
-### Security 
-Email Verification: Verify user email addresses. <br>
-Role-Based Access Control: Admin and user roles with restricted access. <br>
+### Security 🛡️🔒
+📧 Email Verification: Verify user email addresses.  <br>
+🔑 Role-Based Access Control: Admin and user roles with restricted access. <br>
 
-### Customer Storefront
+### Customer Storefront 💲🛒
 
-Product Catalog: Browse a wide range of products. <br>
-Product Search: Search for products using keywords. <br>
-Product Filtering: Filter products by price or category. <br>
-Product Details: View detailed information about a product. <br>
-Shopping Cart: Add and manage items in the shopping cart. <br>
-Checkout: Place orders and make payments with STRIPE. <br>
-Order History: View past orders. <br>
+📃 Product Catalog: Browse a wide range of products. <br>
+🔎 Product Search: Search for products using keywords. <br>
+🔧 Product Filtering: Filter products by price or category. <br>
+📑 Product Details: View detailed information about a product. <br>
+🛒 Shopping Cart: Add and manage items in the shopping cart. <br>
+💵 Checkout: Place orders and make payments with STRIPE. <br>
+🗃️ Order History: View past orders. <br>
 
-### Admin Dashboard
-Product Management: Add, edit, and delete products. <br>
-Category Management: Manage product categories. <br>
-User Management: View and manage user accounts. <br>
-Order Management: View and manage customer orders. <br>
+### Admin Dashboard 👨‍💼💼
+👨‍💻 Product Management: Add, edit, and delete products. <br>
+📝 Category Management: Manage product categories. <br>
+👥 User Management: View and manage user accounts. <br>
+📊 Order Management: View and manage customer orders. <br>
 
 ## Technologies Used
 ### Frontend:
