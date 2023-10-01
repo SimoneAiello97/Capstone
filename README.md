@@ -62,14 +62,14 @@ Navigate to the frontend directory.  <br>
 Run ![Static Badge](https://img.shields.io/badge/npm_install-lightgrey?logo=npm)
 to install frontend dependencies.  <br>
 Configure the API endpoint URL in the frontend code.  <br>
-Run ng serve to start the frontend development server.  <br>
+Run ![Static Badge](https://img.shields.io/badge/ng_serve-grey?logo=angular) to start the frontend development server.  <br>
 
 ### Backend Setup:
 
 Navigate to the backend directory.  <br>
-Set up a PostgreSQL database and configure the database connection in application.properties.  <br>
-Configure email service credentials in application.properties.  <br>
-Run the Spring Boot application.  <br>
+Set up a PostgreSQL database and configure the database connection in ![Static Badge](https://img.shields.io/badge/Application_properties-grey?logo=spring)   <br>
+Configure email service credentials in ![Static Badge](https://img.shields.io/badge/Application_properties-grey?logo=spring) <br>
+Run the ![Static Badge](https://img.shields.io/badge/SpringBoot-darkgreen?logo=springboot) application.  <br>
 
 ### Access the application:
 
