@@ -73,19 +73,17 @@ Run the ![Static Badge](https://img.shields.io/badge/SpringBoot-darkgreen?logo=s
 
 ### Access the application:
 
-Frontend: Open a web browser and navigate to http://localhost:4200 (or the configured port).  <br>
-Backend: The API endpoints are available at http://localhost:8080 (or the configured port).  <br>
+Frontend: Open a web browser and navigate to http://localhost:4200 (or the configured port). 🚀 <br>
+Backend: The API endpoints are available at http://localhost:8080 (or the configured port). ▶️ <br>
 
-## Usage 
-
-### Customer 
+## Usage 🌐💻🔌
+### Customer 🛒
 Browse products, add them to the cart, and place orders. Verify your email address after registration.
 
-### Admin
+### Admin 🏬
 Log in with admin credentials (username:admin, password:admin) to access the admin dashboard. Manage products, categories, users, and orders.
 
 
-# Contributors
-## Simone Aiello
+# Contributors: Simone Aiello
 
 
