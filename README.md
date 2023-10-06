@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/SimoneAiello97/Capstone/assets/126870680/3e1cbcd9-a2d5-44ce-8251-8028104efd99?raw=true" alt="Sublime's custom image"/>
+  <img src="https://github.com/SimoneAiello97/Capstone/assets/126870680/83203a60-dd25-4817-9804-9643968f1708" alt="Sublime's custom image"/>
 </p>
 
 # E-Store 
@@ -12,7 +12,8 @@ This is a full-stack E-commerce application that includes both an admin dashboar
 📧 Email Verification: Verify user email addresses.  <br>
 🔑 Role-Based Access Control: Admin and user roles with restricted access. <br>
 
-### Customer Storefront 💲🛒
+### Customer Storefront 💲🛒![Yellow E-commerce Shop Bag Store Logo (3)](https://github.com/SimoneAiello97/Capstone/assets/126870680/83203a60-dd25-4817-9804-9643968f1708)
+
 
 📃 Product Catalog: Browse a wide range of products. <br>
 🔎 Product Search: Search for products using keywords. <br>
