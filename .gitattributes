@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Exclude vendor theme/layout assets from GitHub Linguist stats
+front-end/applicazione/src/assets/layout/styles/** linguist-vendored
